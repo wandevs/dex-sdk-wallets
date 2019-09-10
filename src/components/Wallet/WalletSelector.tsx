@@ -19,7 +19,7 @@ interface Props {
   copyCallback?: (text: string) => any;
 }
 
-interface State {}
+interface State { }
 
 const mapStateToProps = (state: any) => {
   const walletState: WalletState = state.WalletReducer;
@@ -73,6 +73,22 @@ class WalletSelector extends React.PureComponent<Props, State> {
             options={options}
             selected={selectedAccountID || ""}
           />
+          <div>
+            {"Address: "} {selectedAccountAddress}
+            <i
+              className="HydroSDK-copy HydroSDK-fa fa fa-clipboard"
+              onClick={async () => {
+                if (selectedAccountAddress) {
+                  await copy(selectedAccountAddress);
+                  if (copyCallback) {
+                    copyCallback(selectedAccountAddress);
+                  } else {
+                    alert("Copied to clipboard!");
+                  }
+                }
+              }}
+            />
+          </div>
         </div>
       </>
     );
