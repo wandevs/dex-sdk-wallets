@@ -7,9 +7,9 @@ import WalletConnectWallet from "./WalletConnectWallet";
 import Ledger from "./ledger";
 import Dcent from "./dcent";
 import request from "request";
-import { BigNumber } from "ethers/utils";
-import { Contract } from "ethers";
-import { JsonRpcProvider } from "ethers/providers";
+import { BigNumber } from "ethers-wan/utils";
+import { Contract } from "ethers-wan";
+import { JsonRpcProvider } from "ethers-wan/providers";
 
 const { NeedUnlockWalletError, NotSupportedError } = BaseWallet;
 export let globalNodeUrl = "https://ropsten.infura.io";

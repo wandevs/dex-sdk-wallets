@@ -1,4 +1,4 @@
-import { BigNumber } from "ethers/utils";
+import { BigNumber } from "ethers-wan/utils";
 import WalletConnect from "@walletconnect/browser";
 import { BaseWallet } from ".";
 import { convertUtf8ToHex } from "@walletconnect/utils";

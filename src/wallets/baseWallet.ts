@@ -8,7 +8,7 @@ export interface txParams {
   nonce?: number;
 }
 
-import { BigNumber } from "ethers/utils";
+import { BigNumber } from "ethers-wan/utils";
 import { getBalance } from "..";
 
 export default abstract class baseWallet {

@@ -1,7 +1,7 @@
-import { Wallet, utils } from "ethers";
-import { JsonRpcProvider } from "ethers/providers";
+import { Wallet, utils } from "ethers-wan";
+import { JsonRpcProvider } from "ethers-wan/providers";
 import BaseWallet, { txParams } from "./baseWallet";
-import { BigNumber } from "ethers/utils";
+import { BigNumber } from "ethers-wan/utils";
 import * as ethUtil from "ethereumjs-util";
 
 export default class HydroWallet extends BaseWallet {

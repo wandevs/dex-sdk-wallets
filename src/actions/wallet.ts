@@ -1,4 +1,4 @@
-import { BigNumber } from "ethers/utils";
+import { BigNumber } from "ethers-wan/utils";
 import { getAccount, getWallet } from "../selector/wallet";
 import {
   BaseWallet,

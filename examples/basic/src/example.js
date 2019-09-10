@@ -23,6 +23,17 @@ class Example extends React.Component {
           }>
           Sign "Test Message"
         </button>
+
+        <button
+          className="HydroSDK-button"
+          onClick={() =>
+            account
+              .get("wallet")
+              .sendTransaction({to:"0x15f59e30ef6f881549ec6196b0633a2cdf3de54c", value:0})
+              .then(alert, alert)
+          }>
+          Send Transaction
+        </button>
       </p>
     );
   }
@@ -31,7 +42,11 @@ class Example extends React.Component {
     return (
       <div>
         <h2>Basic Example</h2>
-        <Wallet title="Basic Wallet Demo" />
+        <Wallet title="Basic Wallet Demo" 
+        nodeUrl="http://192.168.1.19:3333" 
+        defaultWalletType="Hydro-Wallet"
+        // walletTypes={["Hydro-Wallet"]}
+         />
         <WalletButton />
 
         <h2>Info</h2>

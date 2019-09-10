@@ -4,7 +4,7 @@ import { truncateAddress } from "../../wallets";
 import { AccountState, WalletState } from "../../reducers/wallet";
 import { connect } from "react-redux";
 import { selectAccount } from "../../actions/wallet";
-import { BigNumber } from "ethers/utils";
+import { BigNumber } from "ethers-wan/utils";
 import copy from "clipboard-copy";
 
 interface Props {
