@@ -53,7 +53,7 @@ const initialState: WalletState = fromJS({
   walletCache: null,
   walletTranslations: {},
   LocalWallet: null,
-  unit: "ETH",
+  unit: "WAN",
   decimals: 18
 });
 
