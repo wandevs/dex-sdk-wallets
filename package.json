@@ -1,5 +1,5 @@
 {
-  "name": "@wanchain/dex-sdk-wallet",
+  "name": "wan-dex-sdk-wallet",
   "version": "0.0.81",
   "main": "./build/index.js",
   "files": [
