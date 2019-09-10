@@ -244,7 +244,7 @@ class LedgerConnector extends React.PureComponent<Props, State> {
               ) : (
                 <i className="HydroSDK-fa fa fa-spinner fa-spin" />
               )}{" "}
-              ETH
+              WAN
             </span>
           </div>
         ),
