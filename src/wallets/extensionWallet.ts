@@ -1,7 +1,7 @@
 import BaseWallet, { txParams } from "./baseWallet";
 declare global {
   interface Window {
-    web3: any;
+    wan3: any;
     ethereum?: any;
   }
 }
@@ -23,7 +23,7 @@ export default class ExtensionWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.web3.version.getNetwork((err: Error, networkId: number) => {
+      window.wan3.version.getNetwork((err: Error, networkId: number) => {
         if (err) {
           reject(err);
         } else {
@@ -42,7 +42,7 @@ export default class ExtensionWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.web3.personal.sign(window.web3.toHex(message), window.web3.eth.accounts[0], (err: Error, res: string) => {
+      window.wan3.personal.sign(window.wan3.toHex(message), window.wan3.eth.accounts[0], (err: Error, res: string) => {
         if (err) {
           reject(err);
         } else {
@@ -57,7 +57,7 @@ export default class ExtensionWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.web3.eth.sendTransaction(txParams, (err: Error, res: string) => {
+      window.wan3.eth.sendTransaction(txParams, (err: Error, res: string) => {
         if (err) {
           reject(err);
         } else {
@@ -72,8 +72,8 @@ export default class ExtensionWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.web3.currentProvider.sendAsync(
-        { method, params, from: window.web3.eth.accounts[0] },
+      window.wan3.currentProvider.sendAsync(
+        { method, params, from: window.wan3.eth.accounts[0] },
         (err: Error, res: any) => {
           if (err) {
             reject(err);
@@ -90,7 +90,7 @@ export default class ExtensionWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.web3.eth.getAccounts((err: Error, accounts: string[]) => {
+      window.wan3.eth.getAccounts((err: Error, accounts: string[]) => {
         if (err) {
           reject(err);
         } else {
@@ -112,16 +112,16 @@ export default class ExtensionWallet extends BaseWallet {
   }
 
   public isSupported(): boolean {
-    return !!window.web3;
+    return !!window.wan3;
   }
 
   public name(): string {
     if (!this.isSupported()) {
       return "";
     }
-    const cp = window.web3.currentProvider;
-    if (cp.isMetaMask) {
-      return "MetaMask";
+    const cp = window.wan3.currentProvider;
+    if (cp.isWanMask) {
+      return "WanMask";
     } else if (cp.isCipher) {
       return "Cipher";
     } else if (cp.isTrust) {
