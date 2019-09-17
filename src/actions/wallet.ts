@@ -262,14 +262,8 @@ export const loadDcentWallet = (dcent: any) => {
 export const loadExtensitonWallet = () => {
   return async (dispatch: any) => {
     let wallet;
-    if (typeof window !== "undefined" && window.ethereum) {
-      if (window.ethereum.isImToken) {
-        await ImToken.enableImToken();
-        wallet = new ImToken();
-      } else {
-        await ExtensionWallet.enableBrowserExtensionWallet();
-        wallet = new ExtensionWallet();
-      }
+    if (typeof window.wan3 !== "undefined") {
+      wallet = new ExtensionWallet();
     }
     if (wallet && wallet.isSupported()) {
       dispatch(supportExtensionWallet());
