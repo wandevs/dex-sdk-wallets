@@ -359,61 +359,61 @@ class Wallet extends React.PureComponent<Props, State> {
             dispatch(selectWalletType(option.value));
           }
         },
-        {
-          value: Ledger.TYPE,
-          component: (
-            <div className="HydroSDK-optionItem">
-              <Svg name="ledger" />
-              {Ledger.LABEL}
-            </div>
-          ),
-          onSelect: (option: Option) => {
-            dispatch(setWalletStep(WALLET_STEPS.SELECT));
-            dispatch(selectWalletType(option.value));
-          }
-        },
-        {
-          value: WalletConnectWallet.TYPE,
-          component: (
-            <div className="HydroSDK-optionItem">
-              <Svg name="WalletConnect" />
-              {WalletConnectWallet.LABEL}
-            </div>
-          ),
-          onSelect: (option: Option) => {
-            dispatch(setWalletStep(WALLET_STEPS.SELECT));
-            dispatch(selectWalletType(option.value));
-          }
-        },
-        {
-          value: CoinbaseWallet.TYPE,
-          component: (
-            <div className="HydroSDK-optionItem">
-              <Svg name="coinbase" />
-              {CoinbaseWallet.LABEL}
-            </div>
-          ),
-          onSelect: (option: Option) => {
-            dispatch(setWalletStep(WALLET_STEPS.SELECT));
-            dispatch(selectWalletType(option.value));
-          }
-        }
+        // {
+        //   value: Ledger.TYPE,
+        //   component: (
+        //     <div className="HydroSDK-optionItem">
+        //       <Svg name="ledger" />
+        //       {Ledger.LABEL}
+        //     </div>
+        //   ),
+        //   onSelect: (option: Option) => {
+        //     dispatch(setWalletStep(WALLET_STEPS.SELECT));
+        //     dispatch(selectWalletType(option.value));
+        //   }
+        // },
+        // {
+        //   value: WalletConnectWallet.TYPE,
+        //   component: (
+        //     <div className="HydroSDK-optionItem">
+        //       <Svg name="WalletConnect" />
+        //       {WalletConnectWallet.LABEL}
+        //     </div>
+        //   ),
+        //   onSelect: (option: Option) => {
+        //     dispatch(setWalletStep(WALLET_STEPS.SELECT));
+        //     dispatch(selectWalletType(option.value));
+        //   }
+        // },
+        // {
+        //   value: CoinbaseWallet.TYPE,
+        //   component: (
+        //     <div className="HydroSDK-optionItem">
+        //       <Svg name="coinbase" />
+        //       {CoinbaseWallet.LABEL}
+        //     </div>
+        //   ),
+        //   onSelect: (option: Option) => {
+        //     dispatch(setWalletStep(WALLET_STEPS.SELECT));
+        //     dispatch(selectWalletType(option.value));
+        //   }
+        // }
       ];
-      if (dcent) {
-        menuOptions.push({
-          value: Dcent.TYPE,
-          component: (
-            <div className="HydroSDK-optionItem">
-              <Svg name="dcent" />
-              {Dcent.LABEL}
-            </div>
-          ),
-          onSelect: (option: Option) => {
-            dispatch(setWalletStep(WALLET_STEPS.SELECT));
-            dispatch(selectWalletType(option.value));
-          }
-        });
-      }
+      // if (dcent) {
+      //   menuOptions.push({
+      //     value: Dcent.TYPE,
+      //     component: (
+      //       <div className="HydroSDK-optionItem">
+      //         <Svg name="dcent" />
+      //         {Dcent.LABEL}
+      //       </div>
+      //     ),
+      //     onSelect: (option: Option) => {
+      //       dispatch(setWalletStep(WALLET_STEPS.SELECT));
+      //       dispatch(selectWalletType(option.value));
+      //     }
+      //   });
+      // }
     }
     return menuOptions.concat(this.localWalletOptions());
   }
