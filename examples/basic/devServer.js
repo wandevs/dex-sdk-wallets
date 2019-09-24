@@ -27,5 +27,5 @@ http.createServer(app).listen(3030, "0.0.0.0", function(err) {
     return;
   }
 
-  console.log("Listening at https://localhost:3030");
+  console.log("Listening at http://localhost:3030");
 });

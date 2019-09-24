@@ -359,19 +359,19 @@ class Wallet extends React.PureComponent<Props, State> {
             dispatch(selectWalletType(option.value));
           }
         },
-        // {
-        //   value: Ledger.TYPE,
-        //   component: (
-        //     <div className="HydroSDK-optionItem">
-        //       <Svg name="ledger" />
-        //       {Ledger.LABEL}
-        //     </div>
-        //   ),
-        //   onSelect: (option: Option) => {
-        //     dispatch(setWalletStep(WALLET_STEPS.SELECT));
-        //     dispatch(selectWalletType(option.value));
-        //   }
-        // },
+        {
+          value: Ledger.TYPE,
+          component: (
+            <div className="HydroSDK-optionItem">
+              <Svg name="ledger" />
+              {Ledger.LABEL}
+            </div>
+          ),
+          onSelect: (option: Option) => {
+            dispatch(setWalletStep(WALLET_STEPS.SELECT));
+            dispatch(selectWalletType(option.value));
+          }
+        },
         // {
         //   value: WalletConnectWallet.TYPE,
         //   component: (

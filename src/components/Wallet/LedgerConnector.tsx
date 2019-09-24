@@ -209,17 +209,21 @@ class LedgerConnector extends React.PureComponent<Props, State> {
 
   private getPathOptions() {
     return [
+      // {
+      //   value: Ledger.PATH_TYPE.LEDGER_LIVE,
+      //   component: <div className="HydroSDK-pathItem">Ledger Live</div>
+      // },
+      // {
+      //   value: Ledger.PATH_TYPE.LEGACY,
+      //   component: <div className="HydroSDK-pathItem">Legacy (MEW / MyCrypto)</div>
+      // },
+      // {
+      //   value: Ledger.CUSTOMIZAION_PATH,
+      //   component: <div className="HydroSDK-pathItem">Customization</div>
+      // },
       {
-        value: Ledger.PATH_TYPE.LEDGER_LIVE,
-        component: <div className="HydroSDK-pathItem">Ledger Live</div>
-      },
-      {
-        value: Ledger.PATH_TYPE.LEGACY,
-        component: <div className="HydroSDK-pathItem">Legacy (MEW / MyCrypto)</div>
-      },
-      {
-        value: Ledger.CUSTOMIZAION_PATH,
-        component: <div className="HydroSDK-pathItem">Customization</div>
+        value: Ledger.PATH_TYPE.WAN,
+        component: <div className="HydroSDK-pathItem">(WAN) (m/44'/5718350'/0'/0)</div>
       }
     ];
   }

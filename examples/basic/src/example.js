@@ -43,7 +43,7 @@ class Example extends React.Component {
       <div>
         <h2>Basic Example</h2>
         <Wallet title="Basic Wallet Demo" 
-        nodeUrl="http://192.168.1.19:3333" 
+        nodeUrl="https://mywanwallet.io/testnet" 
         defaultWalletType="Hydro-Wallet"
         // walletTypes={["Hydro-Wallet"]}
          />

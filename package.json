@@ -22,22 +22,22 @@
     "not op_mini all"
   ],
   "dependencies": {
-    "@ledgerhq/hw-app-eth": "4.24.0",
-    "@ledgerhq/hw-transport-u2f": "4.24.0",
+    "@ledgerhq/hw-app-eth": "^4.46.0",
+    "@ledgerhq/hw-transport-u2f": "^4.46.0",
     "@walletconnect/browser": "^1.0.0-beta.18",
     "await-lock": "^1.1.3",
     "clipboard-copy": "^2.0.0",
     "ethereumjs-tx": "^1.3.7",
-    "ethereumjs-util": "5.2.0",
+    "ethereumjs-util": "^6.1.0",
     "ethers-wan": "^4.0.40",
     "immutable": "^3.8.2",
     "qr-image": "^3.2.0",
     "react-paginate": "^6.3.0",
-    "walletlink": "^1.0.0"
+    "walletlink": "^1.0.0",
+    "wanchaints-tx": "^0.0.2"
   },
   "devDependencies": {
     "@types/ethereumjs-tx": "^1.0.1",
-    "@types/ethereumjs-util": "^5.2.0",
     "@types/node": "11.13.2",
     "@types/qr-image": "^3.2.1",
     "@types/react": "16.8.6",
@@ -46,6 +46,7 @@
     "@types/request": "^2.48.1",
     "babel-runtime": "^6.26.0",
     "bignumber.js": "^8.1.1",
+    "ethereumjs-util": "^6.1.0",
     "perfect-scrollbar": "^1.4.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

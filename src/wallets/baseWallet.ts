@@ -1,4 +1,5 @@
 export interface txParams {
+  Txtype?: string;
   from?: string;
   to: string;
   data?: string;

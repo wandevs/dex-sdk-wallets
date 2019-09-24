@@ -1,7 +1,7 @@
 import { BaseWallet, getNetworkID, sendRawTransaction, getTransactionCount } from ".";
 import AwaitLock from "await-lock";
 import { txParams } from "./baseWallet";
-import EthereumTx from "ethereumjs-tx";
+import { Transaction } from "wanchaints-tx";
 
 const U2fTransport = require("@ledgerhq/hw-transport-u2f").default;
 const LedgerEth = require("@ledgerhq/hw-app-eth").default;
@@ -14,7 +14,8 @@ export default class Ledger extends BaseWallet {
   public ethAppVersion: string = "";
   public static PATH_TYPE = {
     LEDGER_LIVE: "m/44'/60'/0'/0",
-    LEGACY: "m/44'/60'/0'"
+    LEGACY: "m/44'/60'/0'",
+    WAN: "m/44'/5718350'/0'/0",
   };
   public static currentBasePath: string;
   public static currentIndex: number;
@@ -24,7 +25,7 @@ export default class Ledger extends BaseWallet {
 
   public constructor() {
     super();
-    const selectedBasePath = window.localStorage.getItem("Ledger:selectedBasePath") || Ledger.PATH_TYPE.LEGACY;
+    const selectedBasePath = window.localStorage.getItem("Ledger:selectedBasePath") || Ledger.PATH_TYPE.WAN;
     const selectedIndex = Number(window.localStorage.getItem("Ledger:selectedIndex")) || 0;
     Ledger.setPath(selectedBasePath, selectedIndex);
   }
@@ -90,16 +91,28 @@ export default class Ledger extends BaseWallet {
       await this.awaitLock.acquireAsync();
 
       const networkID = await this.loadNetworkId();
-      const tx = new EthereumTx(txParams);
+
+      const tempTxParams = {
+        Txtype: '0x01',
+        nonce: txParams.nonce?'0x' + txParams.nonce.toString(16):'0x00',
+        gasPrice: txParams.gasPrice?'0x'+txParams.gasPrice.toString(16):'0x29E8D60800',
+        gasLimit: txParams.gasLimit?'0x'+txParams.gasLimit.toString(16):'0x30D40',
+        to: txParams.to,
+        value: txParams.value?'0x' + txParams.value.toString(16): '0x00',
+        data: txParams.data?txParams.data:'0x',
+      }
+
+      const tx = new Transaction(tempTxParams, { chain: networkID });
 
       // Set the EIP155 bits
-      tx.raw[6] = Buffer.from([networkID]); // v
-      tx.raw[7] = Buffer.from([]); // r
-      tx.raw[8] = Buffer.from([]); // s
+      tx.raw[7] = Buffer.from([networkID]); // v
+      tx.raw[8] = Buffer.from([]); // r
+      tx.raw[9] = Buffer.from([]); // s
 
+      // let rawTx = tx2.serialize();
       // Pass hex-rlp to ledger for signing
       const result = await this.eth.signTransaction(this.currentPath(), tx.serialize().toString("hex"));
-
+      // const result = await this.eth.signTransaction(this.currentPath(), rawTx.toString("hex"));
       // Store signature in transaction
       tx.v = Buffer.from(result.v, "hex");
       tx.r = Buffer.from(result.r, "hex");
