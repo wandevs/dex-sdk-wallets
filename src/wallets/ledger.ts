@@ -91,6 +91,7 @@ export default class Ledger extends BaseWallet {
       await this.awaitLock.acquireAsync();
 
       const networkID = await this.loadNetworkId();
+      console.log('txParams', txParams);
 
       const tempTxParams = {
         Txtype: '0x01',
@@ -98,10 +99,10 @@ export default class Ledger extends BaseWallet {
         gasPrice: txParams.gasPrice?'0x'+txParams.gasPrice.toString(16):'0x29E8D60800',
         gasLimit: txParams.gasLimit?'0x'+txParams.gasLimit.toString(16):'0x30D40',
         to: txParams.to,
-        value: txParams.value?'0x' + txParams.value.toString(16): '0x00',
+        value: txParams.value?'0x' + Number(txParams.value).toString(16): '0x00',
         data: txParams.data?txParams.data:'0x',
       }
-
+      console.log('tempTxParams', tempTxParams);
       const tx = new Transaction(tempTxParams, { chain: networkID });
 
       // Set the EIP155 bits
