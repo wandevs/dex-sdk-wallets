@@ -15,7 +15,7 @@ export default class Ledger extends BaseWallet {
   public static PATH_TYPE = {
     LEDGER_LIVE: "m/44'/60'/0'/0",
     LEGACY: "m/44'/60'/0'",
-    WAN: "m/44'/5718350'/0'/0",
+    WAN: "m/44'/5718350'/0'",
   };
   public static currentBasePath: string;
   public static currentIndex: number;
@@ -27,6 +27,7 @@ export default class Ledger extends BaseWallet {
     super();
     const selectedBasePath = window.localStorage.getItem("Ledger:selectedBasePath") || Ledger.PATH_TYPE.WAN;
     const selectedIndex = Number(window.localStorage.getItem("Ledger:selectedIndex")) || 0;
+    console.log('select:', selectedBasePath, 'index:', selectedIndex);
     Ledger.setPath(selectedBasePath, selectedIndex);
   }
 
@@ -34,6 +35,7 @@ export default class Ledger extends BaseWallet {
     const transport = await U2fTransport.create();
     this.eth = new LedgerEth(transport);
     const config = await this.eth.getAppConfiguration();
+    console.log('config:', config);
     this.ethAppVersion = config.version;
   }
 
@@ -49,6 +51,7 @@ export default class Ledger extends BaseWallet {
   }
 
   public currentPath(): string {
+    console.log('currentPath:', Ledger.currentBasePath + "/" + Ledger.currentIndex.toString());
     return Ledger.currentBasePath + "/" + Ledger.currentIndex.toString();
   }
 
@@ -110,10 +113,9 @@ export default class Ledger extends BaseWallet {
       tx.raw[8] = Buffer.from([]); // r
       tx.raw[9] = Buffer.from([]); // s
 
-      // let rawTx = tx2.serialize();
       // Pass hex-rlp to ledger for signing
       const result = await this.eth.signTransaction(this.currentPath(), tx.serialize().toString("hex"));
-      // const result = await this.eth.signTransaction(this.currentPath(), rawTx.toString("hex"));
+
       // Store signature in transaction
       tx.v = Buffer.from(result.v, "hex");
       tx.r = Buffer.from(result.r, "hex");
@@ -151,6 +153,7 @@ export default class Ledger extends BaseWallet {
         const path = basePath + "/" + i.toString();
         const address = await this.eth.getAddress(path, false, false);
         addresses[path] = address.address.toLowerCase();
+        console.log('addr:', address.address, 'path:', path);
       }
       this.connected = true;
       this.awaitLock.release();
