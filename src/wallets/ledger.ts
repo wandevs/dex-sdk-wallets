@@ -27,7 +27,6 @@ export default class Ledger extends BaseWallet {
     super();
     const selectedBasePath = window.localStorage.getItem("Ledger:selectedBasePath") || Ledger.PATH_TYPE.WAN;
     const selectedIndex = Number(window.localStorage.getItem("Ledger:selectedIndex")) || 0;
-    console.log('select:', selectedBasePath, 'index:', selectedIndex);
     Ledger.setPath(selectedBasePath, selectedIndex);
   }
 
@@ -35,7 +34,6 @@ export default class Ledger extends BaseWallet {
     const transport = await U2fTransport.create();
     this.eth = new LedgerEth(transport);
     const config = await this.eth.getAppConfiguration();
-    console.log('config:', config);
     this.ethAppVersion = config.version;
   }
 
@@ -51,7 +49,6 @@ export default class Ledger extends BaseWallet {
   }
 
   public currentPath(): string {
-    console.log('currentPath:', Ledger.currentBasePath + "/" + Ledger.currentIndex.toString());
     return Ledger.currentBasePath + "/" + Ledger.currentIndex.toString();
   }
 
@@ -94,7 +91,6 @@ export default class Ledger extends BaseWallet {
       await this.awaitLock.acquireAsync();
 
       const networkID = await this.loadNetworkId();
-      console.log('txParams', txParams);
 
       const tempTxParams = {
         Txtype: '0x01',
@@ -105,7 +101,6 @@ export default class Ledger extends BaseWallet {
         value: txParams.value?'0x' + Number(txParams.value).toString(16): '0x00',
         data: txParams.data?txParams.data:'0x',
       }
-      console.log('tempTxParams', tempTxParams);
       const tx = new Transaction(tempTxParams, { chain: networkID });
 
       // Set the EIP155 bits
@@ -153,7 +148,6 @@ export default class Ledger extends BaseWallet {
         const path = basePath + "/" + i.toString();
         const address = await this.eth.getAddress(path, false, false);
         addresses[path] = address.address.toLowerCase();
-        console.log('addr:', address.address, 'path:', path);
       }
       this.connected = true;
       this.awaitLock.release();
