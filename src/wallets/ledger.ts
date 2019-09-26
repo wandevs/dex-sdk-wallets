@@ -76,7 +76,7 @@ export default class Ledger extends BaseWallet {
         message = Buffer.from(message).toString("hex");
       }
       const result = await this.eth.signPersonalMessage(this.currentPath(), message);
-      const v = parseInt(result.v, 10) - 27;
+      const v = parseInt(result.v, 10);// - 27; //MoLin: do not need to -27;
       let vHex = v.toString(16);
       if (vHex.length < 2) {
         vHex = `0${v}`;
