@@ -8,7 +8,7 @@ body {
 }
 .HydroSDK-dialog {
   max-width: 900px;
-  height: 500px;
+  height: 560px;
   position: fixed;
   top: 0;
   right: 0;
@@ -262,7 +262,7 @@ fieldset[disabled] button:hover {
   font-size: 14px;
   color: #333;
   grid-auto-flow: row;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   margin: 0;
   padding-inline-start: 40px;
 }
