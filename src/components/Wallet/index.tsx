@@ -14,6 +14,7 @@ import {
   defaultWalletTypes,
   setGlobalNodeUrl,
   Ledger,
+  Trezor,
   HydroWallet,
   globalNodeUrl,
   Dcent,
@@ -38,6 +39,8 @@ import {
 } from "../../actions/wallet";
 import Svg from "../Svg";
 import LedgerConnector from "./LedgerConnector";
+import TrezorConnector from "./TrezorConnector";
+
 import { Map } from "immutable";
 import NotSupport from "./NotSupport";
 import defaultTranslations from "../../i18n";
@@ -208,6 +211,8 @@ class Wallet extends React.PureComponent<Props, State> {
           if (account.get("isLocked")) return this.renderQrImage();
         } else if (selectedWalletType === Ledger.TYPE) {
           return <LedgerConnector copyCallback={copyCallback} />;
+        } else if (selectedWalletType === Trezor.TYPE) {
+          return <TrezorConnector copyCallback={copyCallback} />;
         } else if (selectedWalletType === ExtensionWallet.TYPE && !extensionWalletSupported) {
           return (
             <NotSupport
@@ -365,6 +370,19 @@ class Wallet extends React.PureComponent<Props, State> {
             <div className="HydroSDK-optionItem">
               <Svg name="ledger" />
               {Ledger.LABEL}
+            </div>
+          ),
+          onSelect: (option: Option) => {
+            dispatch(setWalletStep(WALLET_STEPS.SELECT));
+            dispatch(selectWalletType(option.value));
+          }
+        },
+        {
+          value: Trezor.TYPE,
+          component: (
+            <div className="HydroSDK-optionItem">
+              <Svg name="ledger" />
+              {Trezor.LABEL}
             </div>
           ),
           onSelect: (option: Option) => {

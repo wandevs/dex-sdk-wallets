@@ -8,6 +8,7 @@ import {
   NotSupportedError,
   WalletConnectWallet,
   Ledger,
+  Trezor,
   ImToken,
   Dcent,
   CoinbaseWallet,
@@ -148,6 +149,7 @@ export const selectAccount = (accountID: string, type: string) => {
   return async (dispatch: any, getState: any) => {
     if (
       type !== Ledger.TYPE &&
+      type !== Trezor.TYPE &&
       type !== WalletConnectWallet.TYPE &&
       type !== Dcent.TYPE &&
       type !== CoinbaseWallet.TYPE
@@ -353,6 +355,27 @@ export const disconnectLedger = () => {
   };
 };
 
+export const loadTrezor = () => {
+  return async (dispatch: any) => {
+    const wallet = new Trezor();
+    await wallet.initTransport();
+    dispatch(watchWallet(wallet));
+    dispatch(connectLedger());
+  };
+};
+
+export const connectTrezor = () => {
+  return {
+    type: "HYDRO_WALLET_CONNECT_TREZOR"
+  };
+};
+
+export const disconnectTrezor = () => {
+  return {
+    type: "HYDRO_WALLET_DISCONNECT_TREZOR"
+  };
+};
+
 export const watchWallet = (wallet: BaseWallet) => {
   return async (dispatch: any, getState: any) => {
     const accountID = wallet.id();
@@ -377,6 +400,9 @@ export const watchWallet = (wallet: BaseWallet) => {
       } catch (e) {
         if (type === Ledger.TYPE) {
           dispatch(disconnectLedger());
+          clearTimer(accountID);
+        } else if (type === Trezor.TYPE) {
+          dispatch(disconnectTrezor());
           clearTimer(accountID);
         } else if (e !== NeedUnlockWalletError && e !== NotSupportedError) {
           throw e;
