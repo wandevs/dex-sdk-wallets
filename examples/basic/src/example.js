@@ -30,7 +30,8 @@ class Example extends React.Component {
             account
               .get("wallet")
               .sendTransaction({to:"0x15f59e30ef6f881549ec6196b0633a2cdf3de54c", value:0})
-              .then(alert, alert)
+              // .then(alert, alert)
+              .then(console.log, console.log)
           }>
           Send Transaction
         </button>

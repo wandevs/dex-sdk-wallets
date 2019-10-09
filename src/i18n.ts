@@ -37,6 +37,7 @@ export default {
   selectAddress: "Select Address",
   toggleButtonText: "Please Click to Select A Wallet",
   connectLedger: "Connect Ledger",
+  connectTrezor: "Connect Trezor",
   currentWalletTypeNotSupported: "Current wallet type is not supported",
   noAvailableAddress: "No available address",
   pleaseSelectAddress: "Please select an address",

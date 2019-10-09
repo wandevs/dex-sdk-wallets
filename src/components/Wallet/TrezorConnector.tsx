@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Trezor, truncateAddress, getBalance } from "../../wallets";
 import { getAccount } from "../..";
-import { loadLedger, selectAccount } from "../../actions/wallet";
+import { loadTrezor, selectAccount } from "../../actions/wallet";
 import Select, { Option } from "./Select";
 import { BigNumber } from "bignumber.js";
 import ReactPaginate from "react-paginate";
@@ -14,7 +14,7 @@ interface Props {
   dispatch: any;
   wallet: Trezor | null;
   isLocked: boolean;
-  ledgerConnecting: boolean;
+  trezorConnecting: boolean;
   walletTranslations: { [key: string]: any };
   copyCallback?: (text: string) => any;
 }
@@ -36,7 +36,7 @@ const mapStateToProps = (state: { WalletReducer: WalletState }) => {
   return {
     wallet: account ? (account.get("wallet") as Trezor) : null,
     isLocked: account ? account.get("isLocked") : true,
-    ledgerConnecting: state.WalletReducer.get("ledgerConnecting"),
+    trezorConnecting: state.WalletReducer.get("trezorConnecting"),
     walletTranslations: state.WalletReducer.get("walletTranslations")
   };
 };
@@ -59,8 +59,6 @@ class TrezorConnector extends React.PureComponent<Props, State> {
   }
 
   public componentDidMount() {
-
-
     const { wallet } = this.props;
     const { addresses } = this.state;
     if (wallet && wallet.connected) {
@@ -92,7 +90,7 @@ class TrezorConnector extends React.PureComponent<Props, State> {
   }
 
   public render() {
-    const { isLocked, ledgerConnecting, walletTranslations } = this.props;
+    const { isLocked, trezorConnecting, walletTranslations } = this.props;
 
     return (
       <div className="HydroSDK-ledger">
@@ -100,10 +98,10 @@ class TrezorConnector extends React.PureComponent<Props, State> {
         {isLocked && (
           <button
             className="HydroSDK-button HydroSDK-submitButton HydroSDK-featureButton"
-            disabled={ledgerConnecting}
-            onClick={() => this.connectLedger()}>
-            {ledgerConnecting ? <i className="HydroSDK-fa fa fa-spinner fa-spin" /> : null}{" "}
-            {walletTranslations.connectLedger}
+            disabled={trezorConnecting}
+            onClick={() => this.connectTrezor()}>
+            {trezorConnecting ? <i className="HydroSDK-fa fa fa-spinner fa-spin" /> : null}{" "}
+            {walletTranslations.connectTrezor}
           </button>
         )}
       </div>
@@ -116,7 +114,7 @@ class TrezorConnector extends React.PureComponent<Props, State> {
       return (
         <NotSupport
           iconName="ledger"
-          title={walletTranslations.connectLedger}
+          title={walletTranslations.connectTrezor}
           desc={walletTranslations.connectTrezorDesc}
         />
       );
@@ -326,10 +324,10 @@ class TrezorConnector extends React.PureComponent<Props, State> {
     this.setState({ currentAddress: address });
   }
 
-  private async connectLedger() {
+  private async connectTrezor() {
     const { dispatch } = this.props;
     dispatch(selectAccount(Trezor.TYPE, Trezor.TYPE));
-    await dispatch(loadLedger());
+    await dispatch(loadTrezor());
     const pathType = Trezor.getPathType(Trezor.currentBasePath);
     this.setState({
       pathType,

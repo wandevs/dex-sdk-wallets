@@ -11,7 +11,6 @@
   "author": "david@ddex.io",
   "license": "Apache v2.0",
   "devDependencies": {
-    "wan-dex-sdk-wallet": "^0.0.88",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.5",
@@ -31,11 +30,14 @@
     "express": "^4.16.4",
     "redux-thunk": "^2.3.0",
     "style-loader": "^0.23.1",
+    "wan-dex-sdk-wallet": "^0.0.90",
     "webpack": "^4.30.0",
     "webpack-dev-middleware": "^3.6.2",
     "webpack-hot-middleware": "^2.24.3"
   },
   "dependencies": {
+    "@types/js-base64": "^2.3.1",
+    "js-base64": "^2.5.1",
     "perfect-scrollbar": "^1.4.0",
     "request": "^2.88.0"
   }

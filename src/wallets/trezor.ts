@@ -2,20 +2,9 @@ import { BaseWallet, getNetworkID, sendRawTransaction, getTransactionCount } fro
 import AwaitLock from "await-lock";
 import { txParams } from "./baseWallet";
 import { Transaction } from "wanchaints-tx";
-import { SignedMessage } from 'trezor-connect';
-import { errors } from "ethers-wan";
 import { Base64 } from 'js-base64';
 
-declare global {
-  interface Window {
-    TrezorConnect: any;
-  }
-}
-
-var TrezorConnect = window.TrezorConnect;
-
-const U2fTransport = require("@ledgerhq/hw-transport-u2f").default;
-const LedgerEth = require("@ledgerhq/hw-app-eth").default;
+let TrezorConnect:any = require('trezor-connect').default;
 
 export default class Trezor extends BaseWallet {
   public static LABEL = "Trezor";
@@ -29,6 +18,7 @@ export default class Trezor extends BaseWallet {
   public connected: boolean = false;
   public static CUSTOMIZAION_PATH = "Customization";
   public static PREFIX_ETHEREUM_PATH = "m/44'/60'/";
+  public static addresses: { [key: string]: string } = {};
 
   public constructor() {
     super();
@@ -38,18 +28,8 @@ export default class Trezor extends BaseWallet {
   }
 
   public async initTransport() {
-    // const transport = await U2fTransport.create();
-    // this.eth = new LedgerEth(transport);
-    // const config = await this.eth.getAppConfiguration();
-    // this.ethAppVersion = config.version;
     try {
-      var script = document.createElement("script");
-      script.id = "jsonp";
-      script.src = 'https://connect.trezor.io/8/trezor-connect.js';
-      document.body.appendChild(script);
-
-      TrezorConnect = window.TrezorConnect;
-
+      Trezor.addresses = {};
       await TrezorConnect.init({
         // connectSrc: 'file://' + __dirname + '/trezor-connect/', // for trezor-connect hosted locally set endpoint to application files (ignore this field for connect hosted online, connect.trezor.io will be used by default)
         // connectSrc: 'https://sisyfos.trezor.io/connect-electron/',
@@ -100,18 +80,22 @@ export default class Trezor extends BaseWallet {
 
   public async signPersonalMessage(message: string): Promise<string> {
     try {
+      console.log('signPersonalMessage', message);
       await this.awaitLock.acquireAsync();
       if (message.slice(0, 2) === "0x") {
         message = message.slice(2);
       } else {
-        message = Buffer.from(message).toString("hex");
+        // message = Buffer.from(message).toString("hex");
       }
-      const result = await TrezorConnect.signMessage({ path: this.currentPath(), message: message });
-      // const result = await this.eth.signPersonalMessage(this.currentPath(), message);
-      const sig = result.payload as SignedMessage;
-      const sigString = Base64.decode(sig.signature);
-      console.log("sigString:", sigString);
-      return "0x" + sigString;
+      console.log('signPersonalMessage', message);
+      const result = await TrezorConnect.ethereumSignMessage({ path: this.currentPath(), message: message });
+      console.log('result:', result);
+      if(!result.success) {
+        throw new Error("Signature failed!");
+      }
+      const sig = result.payload;
+      console.log('length:', result.payload.signature.length);
+      return "0x" + result.payload.signature;
       // const v = parseInt(sig.signature, 10);// - 27; //MoLin: do not need to -27;
       // let vHex = v.toString(16);
       // if (vHex.length < 2) {
@@ -131,8 +115,6 @@ export default class Trezor extends BaseWallet {
 
       const networkID = await this.loadNetworkId();
 
-
-
       const tempTxParams = {
         Txtype: '0x01',
         nonce: txParams.nonce ? '0x' + txParams.nonce.toString(16) : '0x00',
@@ -142,6 +124,26 @@ export default class Trezor extends BaseWallet {
         value: txParams.value ? '0x' + Number(txParams.value).toString(16) : '0x00',
         data: txParams.data ? txParams.data : '0x',
       }
+      console.log('tempTxParams:', tempTxParams);
+      console.log('path:', this.currentPath());
+      const result = await TrezorConnect.ethereumSignTransaction({
+        path: this.currentPath(),
+        transaction: {
+          to: tempTxParams.to,
+          value: tempTxParams.value,
+          data: tempTxParams.data,
+          chainId: networkID,
+          nonce: tempTxParams.nonce,
+          gasLimit: tempTxParams.gasLimit,
+          gasPrice: tempTxParams.gasPrice,
+          txType: 0x01
+        }
+      })
+      console.log("sign result:", result);
+
+      if (!result.success) {
+        throw new Error("TrezorConnect.ethereumSignTransaction Failed");
+      }
 
       const tx = new Transaction(tempTxParams, { chain: networkID });
 
@@ -150,32 +152,10 @@ export default class Trezor extends BaseWallet {
       tx.raw[8] = Buffer.from([]); // r
       tx.raw[9] = Buffer.from([]); // s
 
-      const result = TrezorConnect.ethereumSignTransaction({
-        path: this.currentPath(),
-        transaction: {
-          to: tx.to,
-          value: tx.value,
-          data: tx.data,
-          chainId: networkID,
-          nonce: tx.nonce,
-          gasLimit: tx.gasLimit,
-          gasPrice: tx.gasPrice,
-          txType: tx.Txtype
-        }
-      })
-
-      console.log("sign result:", result);
-
-      if (!result.success) {
-        throw new Error("TrezorConnect.ethereumSignTransaction Failed");
-      }
-      // Pass hex-rlp to ledger for signing
-      // const result = await this.eth.signTransaction(this.currentPath(), tx.serialize().toString("hex"));
-
       // Store signature in transaction
-      tx.v = Buffer.from(result.payload.v, "hex");
-      tx.r = Buffer.from(result.payload.r, "hex");
-      tx.s = Buffer.from(result.payload.s, "hex");
+      tx.v = Buffer.from(result.payload.v.slice(2), "hex");
+      tx.r = Buffer.from(result.payload.r.slice(2), "hex");
+      tx.s = Buffer.from(result.payload.s.slice(2), "hex");
 
       console.log('signed tx:', tx);
       // EIP155: v should be chain_id * 2 + {35, 36}
@@ -184,6 +164,7 @@ export default class Trezor extends BaseWallet {
       if (signedChainId !== validChainId) {
         throw new Error("Invalid networkId signature returned. Expected: " + networkID + ", Got: " + signedChainId);
       }
+      console.log('signedChainId', signedChainId, 'validChainId', validChainId);
       return `0x${tx.serialize().toString("hex")}`;
     } catch (e) {
       throw e;
@@ -204,21 +185,36 @@ export default class Trezor extends BaseWallet {
 
   public async getAddressesWithPath(basePath: string, from: number, count: number): Promise<{ [key: string]: string }> {
     try {
+      count = (count == 1) ? 3 : count; // change 1->3;
+
       await this.awaitLock.acquireAsync();
-      const addresses: { [key: string]: string } = {};
+
+      let bundle=[];
       for (let i = from; i < from + count; i++) {
         const path = basePath + "/" + i.toString();
-        // const address = await this.eth.getAddress(path, false, false);
-        const address = await TrezorConnect.ethereumGetAddress({
-          path: path
-        });
-        addresses[path] = address.address.toLowerCase();
+        if(Trezor.addresses[path]) {
+          continue;
+        }
+        bundle.push({path:path, showOnTrezor: false});
       }
+      if(bundle.length > 0) {
+        const bundleResult = await TrezorConnect.ethereumGetAddress({
+          bundle: bundle
+        });
+        if(!bundleResult.success) {
+          throw new Error("Get address failed!");
+        }
+  
+        for(let i=0; i<bundleResult.payload.length; i++) {
+          Trezor.addresses[bundle[i].path] = bundleResult.payload[i].address.toLowerCase();
+        }
+      }
+
       this.connected = true;
       this.awaitLock.release();
-      return addresses;
+      return Trezor.addresses;
     } catch (e) {
-      // ledger disconnected
+      // trezor disconnected
       this.connected = false;
       throw e;
     }
