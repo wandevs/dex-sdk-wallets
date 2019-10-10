@@ -1,6 +1,6 @@
 {
   "name": "wan-dex-sdk-wallet",
-  "version": "0.0.95",
+  "version": "0.0.96",
   "main": "./build/index.js",
   "files": [
     "build",
