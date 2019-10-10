@@ -226,6 +226,40 @@ class Svg extends React.PureComponent<Props, any> {
             />
           </svg>
         );
+        case "trezor":
+          return (
+            <svg
+              className="HydroSDK-themeSvg"
+              xmlns="http://www.w3.org/2000/svg"
+              width={size}
+              height={size}
+              viewBox="0 0 16 16">
+            <image width="16" height="16" x="0" y="0"
+              href="data:image/png;base64,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" />
+            </svg>
+          );
       case 'dcent':
         return (
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enableBackground="new 0 0 16 16" >  

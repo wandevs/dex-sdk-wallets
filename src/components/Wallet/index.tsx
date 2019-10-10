@@ -381,7 +381,7 @@ class Wallet extends React.PureComponent<Props, State> {
           value: Trezor.TYPE,
           component: (
             <div className="HydroSDK-optionItem">
-              <Svg name="ledger" />
+              <Svg name="trezor" />
               {Trezor.LABEL}
             </div>
           ),
