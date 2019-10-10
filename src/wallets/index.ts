@@ -5,6 +5,7 @@ import CoinbaseWallet from "./coinbaseWallet";
 import BaseWallet from "./baseWallet";
 import WalletConnectWallet from "./WalletConnectWallet";
 import Ledger from "./ledger";
+import Trezor from "./trezor";
 import Dcent from "./dcent";
 import request from "request";
 import { BigNumber } from "ethers-wan/utils";
@@ -21,6 +22,7 @@ export {
   NotSupportedError,
   WalletConnectWallet,
   Ledger,
+  Trezor,
   ImToken,
   Dcent,
   CoinbaseWallet
@@ -203,4 +205,4 @@ export const getContract = (contractAddress: string, abi: any): Contract => {
   return new Contract(contractAddress, abi, provider);
 };
 
-export const defaultWalletTypes = [ExtensionWallet.TYPE, HydroWallet.TYPE, WalletConnectWallet.TYPE, Ledger.TYPE];
+export const defaultWalletTypes = [ExtensionWallet.TYPE, HydroWallet.TYPE, Ledger.TYPE, Trezor.TYPE];

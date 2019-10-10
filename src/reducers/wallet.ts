@@ -28,6 +28,7 @@ export interface WalletProps {
   selectedWalletType: string;
   extensionWalletSupported: boolean;
   ledgerConnecting: boolean;
+  trezorConnecting: boolean;
   isShowWalletModal: boolean;
   step: string;
   walletCache: {
@@ -48,6 +49,7 @@ const initialState: WalletState = fromJS({
   selectedWalletType: "",
   extensionWalletSupported: false,
   ledgerConnecting: false,
+  trezorConnecting: false,
   isShowWalletModal: false,
   step: WALLET_STEPS.SELECT,
   walletCache: null,
@@ -77,6 +79,12 @@ export default (state = initialState, action: any) => {
       return state;
     case "HYDRO_WALLET_CONNECT_LEDGER":
       state = state.set("ledgerConnecting", true);
+      return state;
+    case "HYDRO_WALLET_DISCONNECT_TREZOR":
+      state = state.set("trezorConnecting", false);
+      return state;
+    case "HYDRO_WALLET_CONNECT_TREZOR":
+      state = state.set("trezorConnecting", true);
       return state;
     case "HYDRO_WALLET_DELETE_ACCOUNT":
       state = state.removeIn(["accounts", action.payload.accountID]);

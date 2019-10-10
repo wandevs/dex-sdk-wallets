@@ -21,7 +21,7 @@ export default {
   confirmErrorMsg: "Confirmation must match",
   createDesc:
     "Once you click the Next button you will be taken through the wallet creation process. ***Please complete all three steps, or your wallet will NOT be created.***",
-  dialogTitle: "Hydro SDK Wallet",
+  dialogTitle: "Wanchain Wallet Selection",
   dialogSubtitle: "",
   selectWallet: "Select Wallet",
   close: "Close",
@@ -37,6 +37,7 @@ export default {
   selectAddress: "Select Address",
   toggleButtonText: "Please Click to Select A Wallet",
   connectLedger: "Connect Ledger",
+  connectTrezor: "Connect Trezor",
   currentWalletTypeNotSupported: "Current wallet type is not supported",
   noAvailableAddress: "No available address",
   pleaseSelectAddress: "Please select an address",
@@ -46,5 +47,7 @@ export default {
   installMetamaskDesc:
     'WanMask browser extension currently runs on Google Chrome. For Safari users, please try other wallet options.',
   connectLedgerDesc:
-    'Ensure “Browser Support” and “Contract Data” is enabled within your device settings. <br/>Having issues still? Try reconnecting your Ledger or view Ledger Support.<a target="_blank" rel="noopener noreferrer" href="https://support.ddex.io/hc/en-us/articles/360001576533">Ledger Support</a>'
+    'Ensure “Browser Support” and “Contract Data” is enabled within your device settings. <br/>Having issues still? Try reconnecting your Ledger or view Ledger Support.<a target="_blank" rel="noopener noreferrer" href="https://support.ddex.io/hc/en-us/articles/360001576533">Ledger Support</a>',
+  connectTrezorDesc:
+    'Install Trezor bridge from trezor.io <a target="_blank" rel="noopener noreferrer" href="https://wallet.trezor.io/#/bridge">Trezor Bridge Download</a> <br/> Connect your Trezor wallet directly to your computer.'
 };
