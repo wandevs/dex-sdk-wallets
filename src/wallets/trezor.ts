@@ -82,26 +82,30 @@ export default class Trezor extends BaseWallet {
     try {
       console.log('signPersonalMessage', message);
       await this.awaitLock.acquireAsync();
+      let bHex = false;
       if (message.slice(0, 2) === "0x") {
         message = message.slice(2);
+        bHex = true;
       } else {
         // message = Buffer.from(message).toString("hex");
       }
       console.log('signPersonalMessage', message);
-      const result = await TrezorConnect.ethereumSignMessage({ path: this.currentPath(), message: message });
+      const result = await TrezorConnect.ethereumSignMessage({ path: this.currentPath(), message: message, hex: bHex });
       console.log('result:', result);
       if(!result.success) {
         throw new Error("Signature failed!");
       }
-      const sig = result.payload;
+
+      const verify = await TrezorConnect.ethereumVerifyMessage({
+        address:'0xfe67a8e6284908b002e25bece2814b49c52803cb',
+        message: message,
+        signature: result.payload.signature,
+        hex: bHex
+      });
+      console.log('verify:', verify);
       console.log('length:', result.payload.signature.length);
       return "0x" + result.payload.signature;
-      // const v = parseInt(sig.signature, 10);// - 27; //MoLin: do not need to -27;
-      // let vHex = v.toString(16);
-      // if (vHex.length < 2) {
-      //   vHex = `0${v}`;
-      // }
-      // return `0x${result.r}${result.s}${vHex}`;
+
     } catch (e) {
       throw e;
     } finally {

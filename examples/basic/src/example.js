@@ -18,10 +18,10 @@ class Example extends React.Component {
           onClick={() =>
             account
               .get("wallet")
-              .signPersonalMessage("Test Message")
+              .signPersonalMessage("0xff2137d657209247083297f72c85e10227634b221049a44c63348509a08d95cc")
               .then(alert, alert)
           }>
-          Sign "Test Message"
+          Sign "0xff2137d657209247083297f72c85e10227634b221049a44c63348509a08d95cc"
         </button>
 
         <button
