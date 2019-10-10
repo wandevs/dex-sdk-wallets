@@ -93,7 +93,7 @@ class TrezorConnector extends React.PureComponent<Props, State> {
     const { isLocked, trezorConnecting, walletTranslations } = this.props;
 
     return (
-      <div className="HydroSDK-ledger">
+      <div className="HydroSDK-trezor">
         {this.renderContent()}
         {isLocked && (
           <button
@@ -113,7 +113,7 @@ class TrezorConnector extends React.PureComponent<Props, State> {
     if (isLocked) {
       return (
         <NotSupport
-          iconName="ledger"
+          iconName="trezor"
           title={walletTranslations.connectTrezor}
           desc={walletTranslations.connectTrezorDesc}
         />
