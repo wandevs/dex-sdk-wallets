@@ -45,7 +45,6 @@ export default class Trezor extends BaseWallet {
         },
         env: 'chrome'
       })
-      console.log('TrezorConnect is ready')
     } catch (error) {
       console.error('TrezorConnect init error', error.toString())
     }
@@ -80,7 +79,6 @@ export default class Trezor extends BaseWallet {
 
   public async signPersonalMessage(message: string): Promise<string> {
     try {
-      console.log('signPersonalMessage', message);
       await this.awaitLock.acquireAsync();
       let bHex = false;
       if (message.slice(0, 2) === "0x") {
@@ -89,9 +87,7 @@ export default class Trezor extends BaseWallet {
       } else {
         // message = Buffer.from(message).toString("hex");
       }
-      console.log('signPersonalMessage', message);
       const result = await TrezorConnect.ethereumSignMessage({ path: this.currentPath(), message: message, hex: bHex });
-      console.log('result:', result);
       if(!result.success) {
         throw new Error("Signature failed!");
       }
@@ -102,8 +98,6 @@ export default class Trezor extends BaseWallet {
         signature: result.payload.signature,
         hex: bHex
       });
-      console.log('verify:', verify);
-      console.log('length:', result.payload.signature.length);
       return "0x" + result.payload.signature;
 
     } catch (e) {
@@ -128,8 +122,6 @@ export default class Trezor extends BaseWallet {
         value: txParams.value ? '0x' + Number(txParams.value).toString(16) : '0x00',
         data: txParams.data ? txParams.data : '0x',
       }
-      console.log('tempTxParams:', tempTxParams);
-      console.log('path:', this.currentPath());
       const result = await TrezorConnect.ethereumSignTransaction({
         path: this.currentPath(),
         transaction: {
@@ -143,7 +135,6 @@ export default class Trezor extends BaseWallet {
           txType: 0x01
         }
       })
-      console.log("sign result:", result);
 
       if (!result.success) {
         throw new Error("TrezorConnect.ethereumSignTransaction Failed");
@@ -161,14 +152,12 @@ export default class Trezor extends BaseWallet {
       tx.r = Buffer.from(result.payload.r.slice(2), "hex");
       tx.s = Buffer.from(result.payload.s.slice(2), "hex");
 
-      console.log('signed tx:', tx);
       // EIP155: v should be chain_id * 2 + {35, 36}
       const signedChainId = Math.floor((tx.v[0] - 35) / 2);
       const validChainId = networkID & 0xff; // FIXME this is to fixed a current workaround that app don't support > 0xff
       if (signedChainId !== validChainId) {
         throw new Error("Invalid networkId signature returned. Expected: " + networkID + ", Got: " + signedChainId);
       }
-      console.log('signedChainId', signedChainId, 'validChainId', validChainId);
       return `0x${tx.serialize().toString("hex")}`;
     } catch (e) {
       throw e;
