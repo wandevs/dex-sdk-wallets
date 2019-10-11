@@ -314,7 +314,7 @@ class Create extends React.PureComponent<Props, State> {
         <div className="HydroSDK-label">
           {"Select Address (option)"}
           <button type="load" onClick = {e => this.onLoadAddress(e)} 
-            style={{width: "80px", height: "21px", margin: "0 0 0 14px" }}
+            style={{width: "80px", height: "21px", margin: "0 0 0 14px", fontSize: "12px" }}
             disabled={loading}>
             {loading ? <i className="HydroSDK-fa fa fa-spinner fa-spin" /> : null}
             {"Load"}
