@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import Input from "../Input";
 import { setWalletStep, WALLET_STEPS, cacheWallet, watchWallet } from "../../../actions/wallet";
 import { WalletState } from "../../../reducers/wallet";
-import { HydroWallet } from "../../../wallets";
+import { HydroWallet, truncateAddress, getBalance } from "../../../wallets";
 import Select, { Option } from "../Select";
+import { BigNumber } from "bignumber.js";
+
 
 interface Props {
   dispatch: any;
@@ -20,6 +22,17 @@ interface State {
   processing: boolean;
   mnemonic: string;
   errorMsg: string | null;
+
+  loading: boolean;
+  addresses: { [key: string]: string };
+  balances: { [key: string]: BigNumber };
+  pathType: string;
+  realPath: string;
+  index: number;
+  currentAddress: string | null;
+  currentPage: number;
+  gotoPageInputValue: number;
+  currentPath: string;
 }
 
 const mapStateToProps = (state: { WalletReducer: WalletState }) => {
@@ -30,6 +43,9 @@ const mapStateToProps = (state: { WalletReducer: WalletState }) => {
   };
 };
 
+const batchCount = 3;
+const basePath = "m/44'/5718350'/0'/0";
+const defaultPath = "m/44'/5718350'/0'/0/0";
 class Create extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -39,7 +55,18 @@ class Create extends React.PureComponent<Props, State> {
       confirmation: "",
       isConfirm: true,
       processing: false,
-      errorMsg: null
+      errorMsg: null,
+
+      loading: false,
+      pathType: basePath,
+      realPath: basePath,
+      index: 0,
+      currentPage: 0,
+      addresses: {},
+      balances: {},
+      currentAddress: null,
+      gotoPageInputValue: 1,
+      currentPath: defaultPath
     };
   }
 
@@ -129,32 +156,72 @@ class Create extends React.PureComponent<Props, State> {
     );
   }
 
-  private renderAddressSelection() {
-    const { mnemonic, errorMsg } = this.state;
-    const { isRecovery } = this.props;
+  private async loadAddresses() {
+    const { LocalWallet } = this.props;
+    if (!LocalWallet) {
+      return;
+    }
+    const { realPath, index } = this.state;
+    this.setState({ loading: true });
+    const addresses = await LocalWallet.getAddressesWithPath(realPath, index, batchCount);
+    this.setState({ addresses, loading: false });
+  }
 
-    const handleChange = (mnemonic: string) => {
-      this.setState({
-        mnemonic,
-        errorMsg: null
+  private getAddressOptions() {
+    const { addresses, balances } = this.state;
+    const addressOptions: Option[] = [];
+    Object.keys(addresses).map((path: string) => {
+      const address = addresses[path];
+      const balance = balances[address];
+      addressOptions.push({
+        value: address,
+        component: (
+          <div className="HydroSDK-address-option">
+            <span>
+              <i className="HydroSDK-fa fa fa-check" />
+              {truncateAddress(address)}
+            </span>
+            <span>
+              {balance ? (
+                balance.div("1000000000000000000").toFixed(5)
+              ) : (
+                <i className="HydroSDK-fa fa fa-spinner fa-spin" />
+              )}{" "}
+              WAN
+            </span>
+          </div>
+        ),
+        onSelect: () => {
+          this.selectAccount(address, path);
+        }
       });
-    };
+    });
+    return addressOptions;
+  }
+
+  public selectAccount(address: string, path: string) {
+    this.setState({ currentAddress: address, currentPath: path });
+  }
+
+  private renderAddressSelection() {
+    const { isRecovery } = this.props;
 
     if (!isRecovery) {
       return null;
     }
-    const options:any = [];
+    const addressOptions = this.getAddressOptions();
     return (
       <div>
         <br/>
         <div className="HydroSDK-label">
-            {"Select Address:"}
+          {"Select Custom Address:"}
+          <button>{"Load"}</button>
         </div>
         <Select
             blank={"Default Address"}
-            noCaret={options.length === 0}
-            disabled={options.length === 0}
-            options={options}
+            noCaret={addressOptions.length === 0}
+            disabled={addressOptions.length === 0}
+            options={addressOptions}
             selected={"Default Address"}
           />
       </div>
