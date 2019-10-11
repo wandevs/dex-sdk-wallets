@@ -20,7 +20,7 @@ export default {
   confirm: "Confirm",
   confirmErrorMsg: "Confirmation must match",
   createDesc:
-    "Once you click the Next button you will be taken through the wallet creation process. ***Please complete all three steps, or your wallet will NOT be created.***",
+    "Once you click the Next button you will be taken through the wallet creation process. ***Please complete all four steps, or your wallet will NOT be created.***",
   dialogTitle: "Wanchain Wallet Selection",
   dialogSubtitle: "",
   selectWallet: "Select Wallet",

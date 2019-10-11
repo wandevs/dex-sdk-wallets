@@ -4,6 +4,7 @@ import Input from "../Input";
 import { setWalletStep, WALLET_STEPS, cacheWallet, watchWallet } from "../../../actions/wallet";
 import { WalletState } from "../../../reducers/wallet";
 import { HydroWallet } from "../../../wallets";
+import Select, { Option } from "../Select";
 
 interface Props {
   dispatch: any;
@@ -79,6 +80,7 @@ class Create extends React.PureComponent<Props, State> {
     return (
       <form className="HydroSDK-form" onSubmit={e => this.submit(e)}>
         {this.renderRecoveryInput()}
+        {this.renderAddressSelection()}
         <Input
           label={walletTranslations.password}
           text={password}
@@ -124,6 +126,38 @@ class Create extends React.PureComponent<Props, State> {
         errorMsg={errorMsg}
         handleChange={(mnemonic: string) => handleChange(mnemonic)}
       />
+    );
+  }
+
+  private renderAddressSelection() {
+    const { mnemonic, errorMsg } = this.state;
+    const { isRecovery } = this.props;
+
+    const handleChange = (mnemonic: string) => {
+      this.setState({
+        mnemonic,
+        errorMsg: null
+      });
+    };
+
+    if (!isRecovery) {
+      return null;
+    }
+    const options:any = [];
+    return (
+      <div>
+        <br/>
+        <div className="HydroSDK-label">
+            {"Select Address:"}
+        </div>
+        <Select
+            blank={"Default Address"}
+            noCaret={options.length === 0}
+            disabled={options.length === 0}
+            options={options}
+            selected={"Default Address"}
+          />
+      </div>
     );
   }
 }
