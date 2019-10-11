@@ -6,7 +6,8 @@ import { WalletState } from "../../../reducers/wallet";
 import { HydroWallet, truncateAddress, getBalance } from "../../../wallets";
 import Select, { Option } from "../Select";
 import { BigNumber } from "bignumber.js";
-
+import { Wallet } from "ethers-wan";
+import ReactPaginate from "react-paginate";
 
 interface Props {
   dispatch: any;
@@ -68,17 +69,30 @@ class Create extends React.PureComponent<Props, State> {
       gotoPageInputValue: 1,
       currentPath: defaultPath
     };
+
+    this.onLoadAddress = this.onLoadAddress.bind(this);
   }
 
   public componentDidUpdate(prevProps: Props, prevState: State) {
-    const { password, confirmation } = this.state;
+    const { password, confirmation, addresses, index } = this.state;
+    const { LocalWallet, isRecovery } = this.props;
     if ((password && confirmation && password !== prevState.password) || confirmation !== prevState.confirmation) {
       this.setState({ isConfirm: password === confirmation });
+    }
+
+    if (isRecovery) {
+      if (LocalWallet != prevProps.LocalWallet || index != prevState.index) {
+        this.loadAddresses();
+      }
+      if (addresses !== prevState.addresses) {
+        this.loadBalances();
+      }
     }
   }
 
   private async submit(e: React.FormEvent) {
-    const { password, confirmation, mnemonic } = this.state;
+    console.log('submit:', e);
+    const { password, confirmation, mnemonic, currentPath } = this.state;
     const { dispatch, isRecovery, LocalWallet } = this.props;
     e.preventDefault();
     if (password !== confirmation) {
@@ -88,7 +102,7 @@ class Create extends React.PureComponent<Props, State> {
     this.setState({ processing: true });
     try {
       if (isRecovery) {
-        const wallet = await LocalWallet.fromMnemonic(mnemonic, password);
+        const wallet = await LocalWallet.fromMnemonic(mnemonic, password, currentPath);
         dispatch(watchWallet(wallet));
         dispatch(setWalletStep(WALLET_STEPS.SELECT));
       } else {
@@ -156,15 +170,33 @@ class Create extends React.PureComponent<Props, State> {
     );
   }
 
-  private async loadAddresses() {
-    const { LocalWallet } = this.props;
-    if (!LocalWallet) {
-      return;
+  private onLoadAddress(e: React.FormEvent) {
+    e.preventDefault();
+    this.setState({loading: true}, ()=>{ setTimeout(()=>{this.loadAddresses()}, 0)});
+    
+
+    // this.setState({loading : true});
+    // await this.loadAddresses();
+    // this.setState({loading : false});
+  }
+
+  private loadAddresses() {
+    const { realPath, index, mnemonic } = this.state;
+    const addresses : { [key: string]: string } = {};
+    console.log('loadAddress');
+    
+    console.log('set loading true');
+    try {
+      for (let i = index; i < index + batchCount; i++) {
+        const path = realPath + "/" + i.toString();
+        addresses[path] = Wallet.fromMnemonic(mnemonic, path).address
+      }
+      this.setState({ addresses });
+    } catch (error) {
+      this.setState({errorMsg: error.message });
     }
-    const { realPath, index } = this.state;
-    this.setState({ loading: true });
-    const addresses = await LocalWallet.getAddressesWithPath(realPath, index, batchCount);
-    this.setState({ addresses, loading: false });
+    console.log('set loading false');
+    this.setState({loading: false})
   }
 
   private getAddressOptions() {
@@ -203,26 +235,98 @@ class Create extends React.PureComponent<Props, State> {
     this.setState({ currentAddress: address, currentPath: path });
   }
 
+  private changePage = ({ selected }: { [key: string]: any }) => {
+    this.setState({
+      currentPage: selected,
+      index: selected * batchCount
+    });
+  };
+
+  private gotoPageSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const { gotoPageInputValue } = this.state;
+    const pageNumber = Number(gotoPageInputValue) - 1;
+    this.setState({
+      currentPage: pageNumber,
+      index: pageNumber * batchCount
+    });
+  };
+
+  private loadBalances() {
+    const { addresses } = this.state;
+    Object.keys(addresses).map(async (path: string) => {
+      let { balances } = this.state;
+      const address = addresses[path];
+      const balance = await getBalance(address);
+      balances[address] = new BigNumber(String(balance));
+      this.setState({ balances });
+      this.forceUpdate();
+    });
+  }
+
+  private renderFooter() {
+    const { currentPage, gotoPageInputValue } = this.state;
+    return (
+      <>
+        <ReactPaginate
+          key={currentPage}
+          initialPage={currentPage}
+          previousLabel={"<"}
+          nextLabel={">"}
+          breakLabel={"..."}
+          pageCount={10000}
+          marginPagesDisplayed={0}
+          pageRangeDisplayed={2}
+          onPageChange={this.changePage}
+          containerClassName={"HydroSDK-pagination"}
+          breakClassName={"break-me"}
+          activeClassName={"active"}
+        />
+        <div className="HydroSDK-paginationGotoPage">
+          Go to page
+          <form onSubmit={this.gotoPageSubmit}>
+            <input
+              className="HydroSDK-input"
+              type="number"
+              min="1"
+              step="1"
+              value={gotoPageInputValue}
+              onChange={event => this.setState({ gotoPageInputValue: parseInt(event.target.value, 10) })}
+            />
+          </form>
+        </div>
+      </>
+    );
+  }
+
   private renderAddressSelection() {
     const { isRecovery } = this.props;
-
+    const { loading, currentAddress } = this.state;
+    console.log('loading:', loading, isRecovery);
     if (!isRecovery) {
       return null;
     }
     const addressOptions = this.getAddressOptions();
+
     return (
       <div>
         <br/>
         <div className="HydroSDK-label">
-          {"Select Custom Address:"}
-          <button>{"Load"}</button>
+          {"Select Address (option)"}
+          <button type="load" onClick = {e => this.onLoadAddress(e)} 
+            style={{width: "80px", height: "21px", margin: "0 0 0 14px" }}
+            disabled={loading}>
+            {loading ? <i className="HydroSDK-fa fa fa-spinner fa-spin" /> : null}
+            {"Load"}
+          </button>
         </div>
         <Select
             blank={"Default Address"}
             noCaret={addressOptions.length === 0}
             disabled={addressOptions.length === 0}
             options={addressOptions}
-            selected={"Default Address"}
+            selected={!loading && currentAddress}
+            footer={this.renderFooter()}
           />
       </div>
     );

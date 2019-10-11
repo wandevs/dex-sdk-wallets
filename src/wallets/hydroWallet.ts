@@ -40,8 +40,8 @@ export default class HydroWallet extends BaseWallet {
     return hydroWallet;
   }
 
-  public static async fromMnemonic(mnemonic: string, password: string): Promise<HydroWallet> {
-    const wallet = await Wallet.fromMnemonic(mnemonic);
+  public static async fromMnemonic(mnemonic: string, password: string, path?: string): Promise<HydroWallet> {
+    const wallet = await Wallet.fromMnemonic(mnemonic, path);
     const hydroWallet = new HydroWallet(wallet.address, wallet);
     await hydroWallet.save(password);
     return hydroWallet;
