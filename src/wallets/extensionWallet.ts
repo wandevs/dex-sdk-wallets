@@ -104,7 +104,7 @@ export default class ExtensionWallet extends BaseWallet {
     if (!window.ethereum) {
       return;
     }
-    await window.ethereum.enable();
+    // await window.ethereum.enable();
   }
 
   public isLocked(address: string | null): boolean {

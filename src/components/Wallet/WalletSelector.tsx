@@ -50,8 +50,6 @@ class WalletSelector extends React.PureComponent<Props, State> {
       blankText = walletTranslations.pleaseSelectAddress;
     }
 
-    let extension = (walletType === "EXTENSION")
-
     return (
       <>
         <div className="HydroSDK-fieldGroup">
@@ -94,13 +92,6 @@ class WalletSelector extends React.PureComponent<Props, State> {
               }}
             />
           </div>
-          {
-            extension ? 
-            <div 
-              style={{background: "aliceblue",
-              margin: "50px",
-              padding: "10px"}}>{walletTranslations.selectAddress}</div>:null
-          }
         </div>
       </>
     );
