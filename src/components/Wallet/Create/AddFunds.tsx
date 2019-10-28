@@ -22,14 +22,14 @@ class AddFunds extends React.PureComponent<Props, any> {
     return (
       <div className="HydroSDK-addFunds">
         <div className="HydroSDK-buttonGroup">
-          <a href="https://www.coinbase.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://hbg.com" target="_blank" rel="noopener noreferrer">
             <div className="button coinbase">
-              <Svg name="Coinbase" />
+              <Svg name="huobi" />
             </div>
           </a>
-          <a href="https://gemini.com/" target="_blank" rel="noopener noreferrer">
+          <a href="https://binance.com/" target="_blank" rel="noopener noreferrer">
             <div className="button gemini">
-              <Svg name="Gemini" />
+              <Svg name="binance" />
             </div>
           </a>
         </div>

@@ -1,6 +1,6 @@
 export default {
   addFundsDesc:
-    "There are multiple ways to add funds to your browser wallet. If you already have Ethereum or Wrapped Ethereum, simply transfer to your Hydro wallet's public address. If you do not already have Ethereum, you can purchase some from a variety of platforms. We've linked a few for your convenience.",
+    "There are multiple ways to add funds to your browser wallet. If you already have Wan Coins or Wrapped Wan Coins, simply transfer to your Wanchain DEX wallet's public address. If you do not already have Wan Coins, you can purchase some from a variety of platforms. We've linked a few for your convenience.",
   done: "Done",
   recoveryPhrase: "Recovery Phrase",
   testingDesc:
