@@ -3,7 +3,6 @@ import { WalletReducer } from "./reducers";
 import { getSelectedAccount, getAccount, getSelectedAccountWallet, getWallet, getAccounts } from "./selector/wallet";
 import { selectAccount, unlockBrowserWalletAccount, showWalletModal, hideWalletModal } from "./actions/wallet";
 import { getBalance, getTransactionReceipt, getContract, getEstimateGas } from "./wallets";
-console.log('local source')
 export {
   Wallet,
   WalletReducer,

@@ -91,7 +91,6 @@ class Create extends React.PureComponent<Props, State> {
   }
 
   private async submit(e: React.FormEvent) {
-    console.log('submit:', e);
     const { password, confirmation, mnemonic, currentPath } = this.state;
     const { dispatch, isRecovery, LocalWallet } = this.props;
     e.preventDefault();
@@ -183,9 +182,6 @@ class Create extends React.PureComponent<Props, State> {
   private loadAddresses() {
     const { realPath, index, mnemonic } = this.state;
     const addresses : { [key: string]: string } = {};
-    console.log('loadAddress');
-    
-    console.log('set loading true');
     try {
       for (let i = index; i < index + batchCount; i++) {
         const path = realPath + "/" + i.toString();
@@ -195,7 +191,6 @@ class Create extends React.PureComponent<Props, State> {
     } catch (error) {
       this.setState({errorMsg: error.message });
     }
-    console.log('set loading false');
     this.setState({loading: false})
   }
 
@@ -302,7 +297,6 @@ class Create extends React.PureComponent<Props, State> {
   private renderAddressSelection() {
     const { isRecovery } = this.props;
     const { loading, currentAddress } = this.state;
-    console.log('loading:', loading, isRecovery);
     if (!isRecovery) {
       return null;
     }

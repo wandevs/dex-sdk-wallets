@@ -39,8 +39,6 @@ class WalletSelector extends React.PureComponent<Props, State> {
   public render() {
     const { selectedAccountID, walletTranslations, selectedAccountAddress, copyCallback, walletType } = this.props;
 
-    console.log("walletSelector:", this.props);
-
     const options = this.getOptions();
 
     let blankText;
