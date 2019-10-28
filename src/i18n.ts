@@ -35,6 +35,7 @@ export default {
   importWallet: "Import Wallet",
   deleteWallet: "Delete Wallet",
   selectAddress: "Select Address",
+  extensionTip: "WanMask is a Chrome Extension Wallet, which can be download in chrome extension shop.",
   toggleButtonText: "Please Click to Select A Wallet",
   connectLedger: "Connect Ledger",
   connectTrezor: "Connect Trezor",
@@ -45,7 +46,7 @@ export default {
   inputPath: "Input a path",
   installMetamask: "Install WanMask",
   installMetamaskDesc:
-    'WanMask browser extension currently runs on Google Chrome. For Safari users, please try other wallet options.',
+    'WanMask browser extension currently runs on Google Chrome. For Safari users, please try other wallet options. <br/> Install WanMask from chrome web store <a target="_blank" rel="noopener noreferrer" href="https://chrome.google.com/webstore/detail/wanmask/omnkcjdohbnjfjmlaiboojplahajnenj?utm_source=chrome-ntp-icon">WanMask Install</a>',
   connectLedgerDesc:
     'Ensure “Browser Support” and “Contract Data” is enabled within your device settings. <br/>Having issues still? Try reconnecting your Ledger or view Ledger Support.<a target="_blank" rel="noopener noreferrer" href="https://support.ddex.io/hc/en-us/articles/360001576533">Ledger Support</a>',
   connectTrezorDesc:

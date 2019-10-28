@@ -37,7 +37,9 @@ const mapStateToProps = (state: any) => {
 
 class WalletSelector extends React.PureComponent<Props, State> {
   public render() {
-    const { selectedAccountID, walletTranslations, selectedAccountAddress, copyCallback } = this.props;
+    const { selectedAccountID, walletTranslations, selectedAccountAddress, copyCallback, walletType } = this.props;
+
+    console.log("walletSelector:", this.props);
 
     const options = this.getOptions();
 
@@ -47,6 +49,9 @@ class WalletSelector extends React.PureComponent<Props, State> {
     } else {
       blankText = walletTranslations.pleaseSelectAddress;
     }
+
+    let extension = (walletType === "EXTENSION")
+
     return (
       <>
         <div className="HydroSDK-fieldGroup">
@@ -89,6 +94,13 @@ class WalletSelector extends React.PureComponent<Props, State> {
               }}
             />
           </div>
+          {
+            extension ? 
+            <div 
+              style={{background: "aliceblue",
+              margin: "50px",
+              padding: "10px"}}>{walletTranslations.selectAddress}</div>:null
+          }
         </div>
       </>
     );
