@@ -60,6 +60,14 @@ export default class Ledger extends BaseWallet {
     return Ledger.TYPE;
   }
 
+  public ledgerAlert(info: string): void {
+    if(window.alertAntd) {
+      window.alertAntd(info);
+    } else {
+      alert(info);
+    }
+  }
+
   public signMessage(message: string): Promise<string> | null {
     return this.signPersonalMessage(message);
   }
@@ -67,6 +75,8 @@ export default class Ledger extends BaseWallet {
   public async signPersonalMessage(message: string): Promise<string> {
     try {
       await this.awaitLock.acquireAsync();
+      this.ledgerAlert('Please confirm in your ledger');
+
       if (message.slice(0, 2) === "0x") {
         message = message.slice(2);
       } else {
@@ -89,6 +99,7 @@ export default class Ledger extends BaseWallet {
   public async signTransaction(txParams: txParams): Promise<string> {
     try {
       await this.awaitLock.acquireAsync();
+      this.ledgerAlert('Please confirm in your ledger');
 
       const networkID = await this.loadNetworkId();
 

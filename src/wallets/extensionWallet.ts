@@ -3,6 +3,7 @@ declare global {
   interface Window {
     wan3: any;
     ethereum?: any;
+    alertAntd?: any;
   }
 }
 
