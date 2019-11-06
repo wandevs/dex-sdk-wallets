@@ -3,7 +3,7 @@ import ExtensionWallet from "./extensionWallet";
 import ImToken from "./imtoken";
 import CoinbaseWallet from "./coinbaseWallet";
 import BaseWallet from "./baseWallet";
-import WalletConnectWallet from "./WalletConnectWallet";
+import WalletConnectWallet from "./walletConnectWallet";
 import Ledger from "./ledger";
 import Trezor from "./trezor";
 import Dcent from "./dcent";

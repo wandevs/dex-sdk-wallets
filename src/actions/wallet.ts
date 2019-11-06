@@ -290,7 +290,7 @@ export const loadWalletConnectWallet = () => {
     dispatch(watchWallet(wallet));
     const accountID = wallet.id();
 
-    wallet.connector.on("connect", async (error, payload) => {
+    wallet.connector.on("connect", async (error: any, payload: any) => {
       if (error) {
         throw error;
       }
@@ -303,7 +303,7 @@ export const loadWalletConnectWallet = () => {
       dispatch(loadNetwork(accountID, payload.params[0].chainId));
     });
 
-    wallet.connector.on("session_update", (error, payload) => {
+    wallet.connector.on("session_update", (error: any, payload: any) => {
       if (error) {
         throw error;
       }
@@ -315,7 +315,7 @@ export const loadWalletConnectWallet = () => {
       dispatch(loadNetwork(accountID, chainId));
     });
 
-    wallet.connector.on("disconnect", async (error, payload) => {
+    wallet.connector.on("disconnect", async (error: any, payload: any) => {
       if (error) {
         throw error;
       }

@@ -2,8 +2,8 @@ body {
   font-size: 14px;
 }
 .HydroSDK-toggleButton {
-  background-color: #535ec3;
-  border-color: #4954ac;
+  background-color: transparent;
+  border-color: transparent;
   color: #fff !important;
 }
 .HydroSDK-dialog {
