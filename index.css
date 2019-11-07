@@ -2,13 +2,20 @@ body {
   font-size: 14px;
 }
 .HydroSDK-toggleButton {
-  background: transparent;
+  background-color: transparent;
   border-color: transparent;
-  color: #fff !important;
+  color: #fff;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
   font-family:Roboto Condensed;
+  height: 30px;
+  font-size: 1rem;
+  border-radius:4px;
 }
-.HydroSDK-toggleButton:hover, .HydroSDK-toggleButton:active, .HydroSDK-toggleButton:focus, .HydroSDK-toggleButton:visited{
+.HydroSDK-toggleButton:hover, .HydroSDK-toggleButton:active{
   background:linear-gradient(90deg,rgba(65,78,221,1) 0%,rgba(41,48,124,1) 100%);
+  font-weight: bold;
 }
 .HydroSDK-dialog {
   max-width: 900px;
@@ -161,7 +168,7 @@ body {
   border-radius: 2px;
 }
 .HydroSDK-button {
-  height: 40px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
