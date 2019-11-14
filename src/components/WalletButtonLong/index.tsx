@@ -15,7 +15,7 @@ interface Props {
 class WalletButtonLong extends React.PureComponent<Props, any> {
   public render() {
     return (
-      <button className="HydroSDK-button HydroSDK-toggleButton" onClick={() => this.handleClick()}>
+      <button className="HydroSDK-button HydroSDK-toggleButton-long" onClick={() => this.handleClick()}>
         {this.toggleText()}
       </button>
     );
