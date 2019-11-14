@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Wallet, getSelectedAccount, WalletButton } from "wan-dex-sdk-wallet";
+import { Wallet, getSelectedAccount, WalletButton, WalletButtonLong } from "wan-dex-sdk-wallet";
 import "wan-dex-sdk-wallet/index.css";
 class Example extends React.Component {
   renderAccount(account) {
@@ -49,7 +49,7 @@ class Example extends React.Component {
         // walletTypes={["Hydro-Wallet"]}
          />
         <WalletButton />
-
+        <WalletButtonLong />
         <h2>Info</h2>
         <div>{selectedAccount ? this.renderAccount(selectedAccount) : <p>No selected Account</p>}</div>
       </div>

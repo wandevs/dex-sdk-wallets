@@ -1,4 +1,4 @@
-import { Wallet, WalletButton } from "./components";
+import { Wallet, WalletButton, WalletButtonLong } from "./components";
 import { WalletReducer } from "./reducers";
 import { getSelectedAccount, getAccount, getSelectedAccountWallet, getWallet, getAccounts } from "./selector/wallet";
 import { selectAccount, unlockBrowserWalletAccount, showWalletModal, hideWalletModal } from "./actions/wallet";
@@ -7,6 +7,7 @@ export {
   Wallet,
   WalletReducer,
   WalletButton,
+  WalletButtonLong,
   getAccounts,
   getSelectedAccount,
   getAccount,
