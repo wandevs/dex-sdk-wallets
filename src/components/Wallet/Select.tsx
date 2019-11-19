@@ -1,5 +1,4 @@
 import * as React from "react";
-import PerfectScrollbar from "perfect-scrollbar";
 
 export interface Option {
   value: any;
@@ -48,9 +47,6 @@ export default class Select extends React.PureComponent<Props, State> {
   }
 
   public componentDidUpdate(prevProps: Props) {
-    if (this.props.options !== prevProps.options) {
-      this.ps.update();
-    }
   }
 
   public componentWillUnmount() {
@@ -133,7 +129,7 @@ export default class Select extends React.PureComponent<Props, State> {
     }
 
     return (
-      <div className={dropdownClassNames.join(" ")} ref={this.setRef}>
+      <div className={dropdownClassNames.join(" ")}>
         {items}
         {footer && <div className="HydroSDK-selectFooter">{footer}</div>}
       </div>
@@ -167,15 +163,6 @@ export default class Select extends React.PureComponent<Props, State> {
       </div>
     );
   }
-
-  public setRef = (ref: any) => {
-    if (ref) {
-      this.ps = new PerfectScrollbar(ref, {
-        suppressScrollX: true,
-        maxScrollbarLength: 20
-      });
-    }
-  };
 
   private renderCaret() {
     return <div className="HydroSDK-caret" />;
