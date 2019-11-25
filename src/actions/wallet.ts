@@ -12,7 +12,8 @@ import {
   ImToken,
   Dcent,
   CoinbaseWallet,
-  getNetworkID
+  getNetworkID,
+  LightWallet
 } from "../wallets";
 import { AccountState } from "../reducers/wallet";
 export const WALLET_STEPS = {
@@ -174,6 +175,12 @@ export const supportExtensionWallet = () => {
   };
 };
 
+export const supportLightWallet = () => {
+  return {
+    type: "HYDRO_WALLET_SUPPORT_LIGHT_WALLET"
+  };
+};
+
 export const lockAccount = (accountID: string) => {
   return {
     type: "HYDRO_WALLET_LOCK_ACCOUNT",
@@ -230,6 +237,8 @@ export const loadWallet = (type: string, action?: any) => {
     switch (type) {
       case ExtensionWallet.TYPE:
         return dispatch(loadExtensitonWallet());
+      case LightWallet.TYPE:
+        return dispatch(loadLightWallet());
       case LocalWallet.TYPE:
         return dispatch(loadLocalWallets());
       case WalletConnectWallet.TYPE:
@@ -272,6 +281,33 @@ export const loadExtensitonWallet = () => {
       dispatch(watchWallet(wallet));
     } else {
       window.setTimeout(() => dispatch(loadExtensitonWallet()), 1000);
+    }
+  };
+};
+
+export const loadLightWallet = () => {
+  console.log('loadLightWallet');
+  return async (dispatch: any) => {
+    try {
+      let wallet;
+      if (typeof window.lightWallet !== "undefined") {
+        wallet = new LightWallet();
+      }
+      if (wallet && wallet.isSupported()) {
+        dispatch(supportLightWallet());
+
+        let addrs = await wallet.getAllAddresses()
+        for(let i=0; i<addrs.length; i++) {
+          const subWallet = new LightWallet();
+          subWallet.currentAddress = addrs[i];
+          dispatch(watchWallet(subWallet));
+        }
+      } else {
+        window.setTimeout(() => dispatch(loadLightWallet()), 1000);
+      }
+    } catch (error) {
+      console.log(error);
+      window.setTimeout(() => dispatch(loadLightWallet()), 1000);
     }
   };
 };
@@ -384,7 +420,7 @@ export const watchWallet = (wallet: BaseWallet) => {
     if (isTimerExist(accountID)) {
       clearTimer(accountID);
     }
-
+    console.log('watchWallet:', wallet, accountID);
     if (!getAccount(getState(), accountID)) {
       await dispatch(initAccount(accountID, wallet));
     } else {

@@ -3,6 +3,15 @@ import { connect } from "react-redux";
 import { Wallet, getSelectedAccount, WalletButton, WalletButtonLong } from "wan-dex-sdk-wallet";
 import "wan-dex-sdk-wallet/index.css";
 class Example extends React.Component {
+  componentDidMount() {
+    try {
+      console.log('Example componentDidMount');
+      console.log(window.parent.lightWallet);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   renderAccount(account) {
     return (
       <p>
@@ -44,9 +53,9 @@ class Example extends React.Component {
       <div>
         <h2>Basic Example</h2>
         <Wallet title="Basic Wallet Demo" 
-        nodeUrl="https://mywanwallet.io/testnet" 
-        defaultWalletType="Hydro-Wallet"
-        // walletTypes={["Hydro-Wallet"]}
+          nodeUrl="https://mywanwallet.io/testnet" 
+          // defaultWalletType="LIGHTWALLET"
+          // walletTypes={["LIGHTWALLET"]}
          />
         <WalletButton />
         <WalletButtonLong />

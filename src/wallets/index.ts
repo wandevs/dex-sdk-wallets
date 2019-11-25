@@ -6,6 +6,7 @@ import BaseWallet from "./baseWallet";
 import WalletConnectWallet from "./walletConnectWallet";
 import Ledger from "./ledger";
 import Trezor from "./trezor";
+import LightWallet from "./lightWallet";
 import Dcent from "./dcent";
 import request from "request";
 import { BigNumber } from "ethers-wan/utils";
@@ -25,7 +26,8 @@ export {
   Trezor,
   ImToken,
   Dcent,
-  CoinbaseWallet
+  CoinbaseWallet,
+  LightWallet
 };
 
 export const payloadId = (): number => {
@@ -205,4 +207,4 @@ export const getContract = (contractAddress: string, abi: any): Contract => {
   return new Contract(contractAddress, abi, provider);
 };
 
-export const defaultWalletTypes = [ExtensionWallet.TYPE, HydroWallet.TYPE, Ledger.TYPE, Trezor.TYPE];
+export const defaultWalletTypes = [ExtensionWallet.TYPE, HydroWallet.TYPE, Ledger.TYPE, Trezor.TYPE, LightWallet.TYPE];

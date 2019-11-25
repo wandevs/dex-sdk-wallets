@@ -27,6 +27,7 @@ export interface WalletProps {
   selectedAccountID: string | null;
   selectedWalletType: string;
   extensionWalletSupported: boolean;
+  lightWalletSupported: boolean;
   ledgerConnecting: boolean;
   trezorConnecting: boolean;
   isShowWalletModal: boolean;
@@ -48,6 +49,7 @@ const initialState: WalletState = fromJS({
   selectedAccountID: null,
   selectedWalletType: "",
   extensionWalletSupported: false,
+  lightWalletSupported: false,
   ledgerConnecting: false,
   trezorConnecting: false,
   isShowWalletModal: false,
@@ -96,10 +98,12 @@ export default (state = initialState, action: any) => {
       state = state.set("step", action.payload.step);
       return state;
     case "HYDRO_WALLET_INIT_ACCOUNT":
+      console.log('HYDRO_WALLET_INIT_ACCOUNT:', action.payload.accountID);
       state = state.setIn(["accounts", action.payload.accountID], initializeAccount);
       state = state.setIn(["accounts", action.payload.accountID, "wallet"], action.payload.wallet);
       return state;
     case "HYDRO_WALLET_UPDATE_WALLET":
+      console.log('HYDRO_WALLET_UPDATE_WALLET:', action.payload.wallet.id());
       const wallet = action.payload.wallet;
       state = state.setIn(["accounts", wallet.id(), "wallet"], wallet);
       return state;
@@ -129,6 +133,9 @@ export default (state = initialState, action: any) => {
       return state;
     case "HYDRO_WALLET_SUPPORT_EXTENSION_WALLET":
       state = state.set("extensionWalletSupported", true);
+      return state;
+    case "HYDRO_WALLET_SUPPORT_LIGHT_WALLET":
+      state = state.set("lightWalletSupported", true);
       return state;
     case "HYDRO_WALLET_LOAD_NETWORK":
       state = state.setIn(["accounts", action.payload.accountID, "networkId"], action.payload.networkId);

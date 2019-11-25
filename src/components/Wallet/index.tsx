@@ -18,7 +18,8 @@ import {
   HydroWallet,
   globalNodeUrl,
   Dcent,
-  CoinbaseWallet
+  CoinbaseWallet,
+  LightWallet
 } from "../../wallets";
 import { WalletState, AccountState } from "../../reducers/wallet";
 import { getSelectedAccount } from "../../selector/wallet";
@@ -45,6 +46,12 @@ import { Map } from "immutable";
 import NotSupport from "./NotSupport";
 import defaultTranslations from "../../i18n";
 
+declare global {
+  interface Window {
+    lightWallet: any;
+  }
+}
+
 interface State {
   password: string;
   processing: boolean;
@@ -60,6 +67,7 @@ interface Props {
   selectedAccount: AccountState | null;
   accounts: Map<string, AccountState>;
   extensionWalletSupported: boolean;
+  lightWalletSupported: boolean;
   isShowWalletModal: boolean;
   step: string;
   walletTypes?: string[];
@@ -160,6 +168,7 @@ class Wallet extends React.PureComponent<Props, State> {
   private loadExtensitonWallet() {
     const { dispatch, walletTypes, loadWalletActions } = this.props;
     const types = walletTypes ? walletTypes : defaultWalletTypes;
+    console.log('loadExtensitonWallet:', types);
     types.map(type => {
       const loadWalletAction = loadWalletActions ? loadWalletActions[type] : null;
       dispatch(loadWallet(type, loadWalletAction));
@@ -197,6 +206,7 @@ class Wallet extends React.PureComponent<Props, State> {
   private renderStepContent() {
     const {
       extensionWalletSupported,
+      lightWalletSupported,
       accounts,
       step,
       walletTranslations,
@@ -219,6 +229,14 @@ class Wallet extends React.PureComponent<Props, State> {
               iconName="metamask"
               title={walletTranslations.installMetamask}
               desc={walletTranslations.installMetamaskDesc}
+            />
+          );
+        } else if (selectedWalletType === LightWallet.TYPE && !lightWalletSupported) {
+          return (
+            <NotSupport
+              iconName="metamask"
+              title={walletTranslations.installLightWallet}
+              desc={walletTranslations.installLightWalletDesc}
             />
           );
         }
@@ -390,50 +408,32 @@ class Wallet extends React.PureComponent<Props, State> {
             dispatch(selectWalletType(option.value));
           }
         },
-        // {
-        //   value: WalletConnectWallet.TYPE,
-        //   component: (
-        //     <div className="HydroSDK-optionItem">
-        //       <Svg name="WalletConnect" />
-        //       {WalletConnectWallet.LABEL}
-        //     </div>
-        //   ),
-        //   onSelect: (option: Option) => {
-        //     dispatch(setWalletStep(WALLET_STEPS.SELECT));
-        //     dispatch(selectWalletType(option.value));
-        //   }
-        // },
-        // {
-        //   value: CoinbaseWallet.TYPE,
-        //   component: (
-        //     <div className="HydroSDK-optionItem">
-        //       <Svg name="coinbase" />
-        //       {CoinbaseWallet.LABEL}
-        //     </div>
-        //   ),
-        //   onSelect: (option: Option) => {
-        //     dispatch(setWalletStep(WALLET_STEPS.SELECT));
-        //     dispatch(selectWalletType(option.value));
-        //   }
-        // }
       ];
-      // if (dcent) {
-      //   menuOptions.push({
-      //     value: Dcent.TYPE,
-      //     component: (
-      //       <div className="HydroSDK-optionItem">
-      //         <Svg name="dcent" />
-      //         {Dcent.LABEL}
-      //       </div>
-      //     ),
-      //     onSelect: (option: Option) => {
-      //       dispatch(setWalletStep(WALLET_STEPS.SELECT));
-      //       dispatch(selectWalletType(option.value));
-      //     }
-      //   });
-      // }
+
+      if (window.lightWallet) {
+        menuOptions = [
+          {
+            value: LightWallet.TYPE,
+            component: (
+              <div className="HydroSDK-optionItem">
+                <Svg name="trezor" />
+                {LightWallet.LABEL}
+              </div>
+            ),
+            onSelect: (option: Option) => {
+              dispatch(setWalletStep(WALLET_STEPS.SELECT));
+              dispatch(selectWalletType(option.value));
+            }
+          }
+        ]
+      } 
     }
-    return menuOptions.concat(this.localWalletOptions());
+
+    if (window.lightWallet) {
+      return menuOptions;
+    } else {
+      return menuOptions.concat(this.localWalletOptions());
+    }
   }
 
   private localWalletOptions() {
@@ -508,6 +508,7 @@ export default connect((state: any) => {
     selectedAccount: getSelectedAccount(state),
     accounts: walletState.get("accounts"),
     extensionWalletSupported: walletState.get("extensionWalletSupported"),
+    lightWalletSupported: walletState.get("lightWalletSupported"),
     isShowWalletModal: walletState.get("isShowWalletModal"),
     step: walletState.get("step"),
     selectedWalletType: walletState.get("selectedWalletType"),
