@@ -1,8 +1,9 @@
-import BaseWallet, { txParams } from "./baseWallet";
+import { BaseWallet } from ".";
+import { txParams } from "./baseWallet";
+
 declare global {
   interface Window {
     lightWallet: any;
-    ethereum?: any;
     alertAntd?: any;
   }
 }
@@ -21,7 +22,7 @@ export default class LightWallet extends BaseWallet {
     return LightWallet.TYPE+ ":" + this.currentAddress;
   }
 
-  public loadNetworkId(): Promise<number | undefined> {
+  public loadNetworkId(): Promise<number> {
     return new Promise(async (resolve, reject) => {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
@@ -60,7 +61,7 @@ export default class LightWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.lightWallet.sendTransaction(txParams, (err: Error, res: string) => {
+      window.lightWallet.sendTransaction(txParams, this.currentAddress, (err: Error, res: string) => {
         if (err) {
           reject(err);
         } else {
