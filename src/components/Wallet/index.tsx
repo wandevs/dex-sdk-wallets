@@ -168,7 +168,6 @@ class Wallet extends React.PureComponent<Props, State> {
   private loadExtensitonWallet() {
     const { dispatch, walletTypes, loadWalletActions } = this.props;
     const types = walletTypes ? walletTypes : defaultWalletTypes;
-    console.log('loadExtensitonWallet:', types);
     types.map(type => {
       const loadWalletAction = loadWalletActions ? loadWalletActions[type] : null;
       dispatch(loadWallet(type, loadWalletAction));

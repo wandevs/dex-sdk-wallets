@@ -286,7 +286,6 @@ export const loadExtensitonWallet = () => {
 };
 
 export const loadLightWallet = () => {
-  console.log('loadLightWallet');
   return async (dispatch: any) => {
     try {
       let wallet;
@@ -420,7 +419,6 @@ export const watchWallet = (wallet: BaseWallet) => {
     if (isTimerExist(accountID)) {
       clearTimer(accountID);
     }
-    console.log('watchWallet:', wallet, accountID);
     if (!getAccount(getState(), accountID)) {
       await dispatch(initAccount(accountID, wallet));
     } else {

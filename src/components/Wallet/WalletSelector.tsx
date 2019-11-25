@@ -25,7 +25,6 @@ const mapStateToProps = (state: any) => {
   const walletState: WalletState = state.WalletReducer;
   const selectedAccountID = walletState.get("selectedAccountID");
   const accounts = walletState.get("accounts");
-  console.log('accounts:', accounts.toArray());
   return {
     accounts,
     selectedAccountID,
@@ -106,7 +105,6 @@ class WalletSelector extends React.PureComponent<Props, State> {
       const isLocked = account.get("isLocked");
       const balance = account.get("balance");
       const wallet = account.get("wallet");
-      console.log('address:', text);
       if (text) {
         options.push({
           value: accountID,
