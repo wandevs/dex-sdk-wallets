@@ -3,7 +3,7 @@ import { txParams } from "./baseWallet";
 
 declare global {
   interface Window {
-    lightWallet: any;
+    web3: any;
     alertAntd?: any;
   }
 }
@@ -27,7 +27,7 @@ export default class LightWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.lightWallet.loadNetworkId((err: Error, networkId: number) => {
+      window.web3.eth.getChainId((err: Error, networkId: number) => {
         if (err) {
           reject(err);
         } else {
@@ -46,7 +46,7 @@ export default class LightWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.lightWallet.signPersonalMessage(message, this.currentAddress, (err: Error, res: string) => {
+      window.web3.eth.sign(message, this.currentAddress, (err: Error, res: string) => {
         if (err) {
           reject(err);
         } else {
@@ -61,7 +61,10 @@ export default class LightWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.lightWallet.sendTransaction(txParams, this.currentAddress, (err: Error, res: string) => {
+
+      txParams.from = this.currentAddress;
+
+      window.web3.eth.sendTransaction(txParams, (err: Error, res: string) => {
         if (err) {
           reject(err);
         } else {
@@ -81,7 +84,7 @@ export default class LightWallet extends BaseWallet {
         reject(BaseWallet.NotSupportedError);
       }
 
-      window.lightWallet.getAddresses((err: Error, res: string[]) => {
+      window.web3.eth.getAccounts((err: Error, res: string[]) => {
         if (err) {
           reject(err);
         } else {
@@ -114,7 +117,11 @@ export default class LightWallet extends BaseWallet {
   }
 
   public isSupported(): boolean {
-    return !!window.lightWallet;
+    if(window.web3 && window.web3.eth) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public name(): string {
