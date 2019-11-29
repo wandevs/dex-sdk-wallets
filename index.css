@@ -88,7 +88,7 @@ body {
 }
 .HydroSDK-label {
   font-size: 14px;
-  color: #666666;
+  color: #fff;
   margin-bottom: 8px;
 }
 .HydroSDK-errorMsg {
@@ -133,7 +133,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow: auto;
-  background: #f7f7f7;
+  background: #303147;
   max-height: 240px;
 }
 .HydroSDK-dropdown.up {
@@ -226,7 +226,7 @@ fieldset[disabled] button:hover {
   display: flex;
 }
 .HydroSDK-input:focus {
-  border: 1px solid #cfcfcf;
+  border: 1px solid #40425f;
   outline: none;
 }
 .HydroSDK-featureButton {
@@ -488,12 +488,10 @@ fieldset[disabled] button:hover {
 }
 .HydroSDK-notSupportTitle {
   margin-top: 12px;
-  color: #333;
   font-size: 16px;
   font-weight: 500;
 }
 .HydroSDK-notSupportDesc {
-  color: #666666;
   margin-top: 4px;
   text-align: center;
 }
