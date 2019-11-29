@@ -46,13 +46,14 @@ body {
   bottom: 0;
   left: 0;
   margin: auto;
-  background: #fcfcfc;
-  color: #333;
+  background-color: #1B1C2E;
+  color: #fff;
   z-index: 10000;
   border-radius: 2px;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  border:1px solid #40425f;
 }
 .HydroSDK-backdrop {
   background: rgba(0, 0, 0, 0.7);
@@ -72,7 +73,7 @@ body {
 }
 .HydroSDK-desc {
   font-size: 13px;
-  color: #666666;
+  color: #fff;
   margin-top: 8px;
 }
 .HydroSDK-fieldGroup {
@@ -96,9 +97,10 @@ body {
 .HydroSDK-closeButton {
   position: absolute;
   font-size: 14px;
-  background: #fcfcfc;
-  color: #666666;
-  border: 1px solid #e0e0e0;
+  border:1px solid rgba(66,68,86,1);
+  background:linear-gradient(90deg,rgba(65,78,221,1) 0%,rgba(41,48,124,1) 100%);
+  border-radius:2px 0px 0px 2px;
+  color:white;
   bottom: 20px;
   padding: 12px;
 }
@@ -107,15 +109,15 @@ body {
 }
 .HydroSDK-unfolded .HydroSDK-dropdown {
   height: auto;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #424461;
 }
 .HydroSDK-selected {
-  border: 1px solid #e0e0e0;
+  border: 1px solid #40425f;
   border-radius: 2px;
   padding: 0 12px;
   height: 32px;
   line-height: 32px;
-  background: #f7f7f7;
+  background: #303147;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -145,10 +147,10 @@ body {
   height: 32px;
   line-height: 32px;
   cursor: pointer;
-  background: #f7f7f7;
+  background: #303147;
 }
 .HydroSDK-item:hover {
-  background: #e0e0e0;
+  background: #4a4b6d;
 }
 
 .HydroSDK-item:first-child {
@@ -170,7 +172,6 @@ body {
   position: relative;
   left: 12px;
   width: 36px;
-  border-left: 1px solid #e0e0e0;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   display: flex;
@@ -217,8 +218,8 @@ fieldset[disabled] button:hover {
   padding: 0 12px;
   height: 32px;
   line-height: 32px;
-  background: #f7f7f7;
-  border: 1px solid #e0e0e0;
+  background: #303147;
+  border: 1px solid #40425f;
   font-size: 14px;
 }
 .HydroSDK-hydroWalletButtonGroup {
@@ -229,9 +230,10 @@ fieldset[disabled] button:hover {
   outline: none;
 }
 .HydroSDK-featureButton {
-  background: #738bd7;
   color: #fff;
-  border-color: #738bd7;
+  border:1px solid rgba(66,68,86,1);
+  background:linear-gradient(90deg,rgba(65,78,221,1) 0%,rgba(41,48,124,1) 100%);
+  border-radius:2px;
 }
 .HydroSDK-submitButton {
   position: absolute;
@@ -291,7 +293,7 @@ fieldset[disabled] button:hover {
 .HydroSDK-words {
   display: grid;
   font-size: 14px;
-  color: #333;
+  color: #fff;
   grid-auto-flow: row;
   grid-template-columns: repeat(4, 1fr);
   margin: 0;
@@ -310,6 +312,7 @@ fieldset[disabled] button:hover {
   text-align: left;
   vertical-align: text-bottom;
   width: 60px;
+  color: white;
 }
 .HydroSDK-word > input.invalid {
   border-color: #ee494c;
@@ -330,7 +333,7 @@ fieldset[disabled] button:hover {
   align-items: center;
   height: 35px;
   cursor: pointer;
-  color: #333;
+  color: #fff;
 }
 .HydroSDK-checkbox > i {
   opacity: 0;
@@ -354,7 +357,7 @@ fieldset[disabled] button:hover {
   display: none;
 }
 .HydroSDK-addFunds {
-  color: #333;
+  color: #aaa;
   margin-top: 20px;
 }
 .HydroSDK-buttonGroup {
@@ -399,17 +402,17 @@ fieldset[disabled] button:hover {
   margin: 0 25px 0 15px;
 }
 .HydroSDK-hint {
-  background: #f7f7f7;
-  border: 1px solid #e0e0e0;
+  background: #303147;
+  border: 1px solid #40425f;
   border-radius: 2px;
   padding: 12px;
-  color: #666666;
+  color: #aaa;
   margin-top: 20px;
   text-align: left;
 }
 .HydroSDK-hintTitle {
   margin-bottom: 4px;
-  color: #333;
+  color: #fff;
 }
 .HydroSDK-selectFooter {
   position: relative;
@@ -447,8 +450,8 @@ fieldset[disabled] button:hover {
   align-items: center;
   justify-content: center;
   margin: 0 2px;
-  background: #fff;
-  color: #666666;
+  background: #40425f;
+  color: #fff;
   border-radius: 4px;
   cursor: pointer;
   height: 36px;
@@ -458,8 +461,8 @@ fieldset[disabled] button:hover {
 .HydroSDK-pagination li.disabled a:hover,
 .HydroSDK-pagination li.disabled a:focus,
 .HydroSDK-pagination li.disabled a:visited {
-  background: #e0e0e0;
-  color: #666666;
+  background: #40425f;
+  color: #fff;
   cursor: not-allowed;
 }
 .HydroSDK-pagination li a:hover,
@@ -467,8 +470,8 @@ fieldset[disabled] button:hover {
 .HydroSDK-pagination li.active a:hover,
 .HydroSDK-pagination li.active a:focus,
 .HydroSDK-pagination li.active a:visited {
-  background: #f7f7f7;
-  color: #333;
+  background: #40425f;
+  color: #fff;
 }
 .HydroSDK-customizationInputGroup {
   display: flex;
