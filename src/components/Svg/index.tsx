@@ -107,28 +107,31 @@ class Svg extends React.PureComponent<Props, any> {
             viewBox="0 0 16 16">
             <g>
               <title>Layer 1</title>
-              <g stroke="null" id="svg_12">
+              <g stroke="null" fill="#fff" id="svg_12">
                 <g
+                  fill="#fff"
                   stroke="null"
                   transform="matrix(0.08323892802615739,0,0,0.08268738295565478,-323.2631486270222,-252.59941803203154) "
                   id="svg_5">
-                  <g stroke="null" id="svg_6">
+                  <g stroke="null" fill="#fff" id="svg_6">
                     <path
                       stroke="null"
+                      fill="#fff"
                       id="svg_7"
                       d="m3971.376296,3202.788971l-73.8,0l0,-62.4l37.1,0l0,-14.1l-41.5,0c-5.3,0 -9.7,4.3 -9.7,9.7l0,71.2c0,5.3 4.3,9.7 9.7,9.7l80.1,0l0,-14.1c-0.8,0 -1.3,0 -1.7,0l-0.2,0z"
                     />
                   </g>
-                  <g stroke="null" id="svg_8">
+                  <g stroke="null" fill="#fff" id="svg_8">
                     <path
                       stroke="null"
                       id="svg_9"
                       d="m4066.576296,3087.288971l-80.1,0l0,14.1c0.8,0 1.3,0 1.7,0l0.2,0l73.8,0l0,62.4l-37.1,0l0,14.1l41.5,0c5.3,0 9.7,-4.3 9.7,-9.7l0,-71.2c0,-5.4 -4.4,-9.7 -9.7,-9.7z"
                     />
                   </g>
-                  <g stroke="null" id="svg_10">
+                  <g stroke="null" fill="#fff" id="svg_10">
                     <path
                       stroke="null"
+                      fill="#fff"
                       id="svg_11"
                       d="m3996.676296,3126.388971l-28.9,0l0,-39.1l-4.4,0c-5.3,0 -9.7,4.3 -9.7,9.7l0,71.2c0,5.3 4.3,9.7 9.7,9.7l4.4,0l5.8,0l0,-14.1l-5.8,0l0,-23.3l24.5,0l0,76.5l4.4,0c5.3,0 9.7,-4.3 9.7,-9.7l0,-71.2c0,-5.4 -4.3,-9.7 -9.7,-9.7z"
                     />
@@ -236,10 +239,10 @@ class Svg extends React.PureComponent<Props, any> {
               viewBox="0 0 16 16">
             <image width="16" height="16" x="0" y="0"
               href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHkAAACvCAMAAADuQ4FJAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
-              AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAUVBMVEX///8kKS8kKS8kKS8k
-              KS8kKS8kKS8kKS8kKS8kKS8kKS8kKS8kKS8kKS8kKS8kKS8kKS8kKS8kKS8kKS8kKS8kKS8kKS8k
-              KS8kKS8kKS/////FKjjFAAAAGXRSTlMAAzdikbLN4/oOgMCHQO6g2HB4GEggL1Opd2nW9wAAAAFi
-              S0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfjCgoWIjTnpFYeAAADjklEQVR4
+              AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAUVBMVEW4j7Pb1tDb1tDb1tDb
+              1tDb1tDb1tDb1tDb1tDb1tDb1tDb1tDb1tDb1tDb1tDb1tDb1tDb1tDb1tDb1tDb1tDb1tDb1tDb
+              1tDb1tDb1tD////6qH9mAAAAGXRSTlMAAzdikbLN4/oOgMCHQO6g2HB4GEggL1Opd2nW9wAAAAFi
+              S0dEGnVn5DIAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfjCxwTHioggfGaAAADjklEQVR4
               2u2c65LiIBCFcw9oYjSZJPL+L7qacWqj0nAasHa2qs9v4RPCoTsinWVs5UVZ1U2rzE2qbeqqLDS/
               Fz71cLwjN+xfqabr809yi6o1pE5D/yGsLhvj0fnygWnX48nH3QbeTWm5edki3I09phx34Z3npzn/
               SjbgTnHANw1phj2zBvwY9pIAvHIHvEmV0eDRBJGNqSLBVRj2rmvUphYBNqaOQEeBY0Y9xoGDn3W+
@@ -256,8 +259,8 @@ class Svg extends React.PureComponent<Props, any> {
               UQ3cW2TGHER3G0EK3yDs3GrO4GwqfFN802ObxZXIZHD+tiOjOaRLrJz1SQEBfyd+nr6X/12BUti7
               yV5BUfSeKiaoZDZx60pFvoPuBRYP+9Y9Cias3KbRAmJt0vJhmyCTnctPVMnLc9/LaZyNnOyscETR
               Y7JSaXYthMmQKBgrSxSFo2CspudU9V4f5qMFEPfaparsKBirRxQNiIIJ2GsTHgVv+gOosjxLA+d7
-              ZgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOS0xMC0xMFQxNDozNDo1MiswODowMOGnlzMAAAAldEVY
-              dGRhdGU6bW9kaWZ5ADIwMTktMTAtMTBUMTQ6MzQ6NTIrMDg6MDCQ+i+PAAAAAElFTkSuQmCC" />
+              ZgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOS0xMS0yOVQwMjozMDo0Mi0wNzowMM41LzUAAAAldEVY
+              dGRhdGU6bW9kaWZ5ADIwMTktMTEtMjlUMDI6MzA6NDItMDc6MDC/aJeJAAAAAElFTkSuQmCC" />
             </svg>
           );
       case 'dcent':
