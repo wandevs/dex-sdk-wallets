@@ -289,7 +289,7 @@ export const loadLightWallet = () => {
   return async (dispatch: any) => {
     try {
       let wallet;
-      if (typeof window.web3 !== "undefined" && typeof window.web3.eth !== "undefined") {
+      if (typeof window.web3 !== "undefined" && typeof window.web3.eth !== "undefined" && window.injectWeb3) {
         wallet = new LightWallet();
       }
       if (wallet && wallet.isSupported()) {

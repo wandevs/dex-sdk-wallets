@@ -117,7 +117,7 @@ export default class LightWallet extends BaseWallet {
   }
 
   public isSupported(): boolean {
-    if(!!window.web3 && !!window.web3.eth) {
+    if(!!window.web3 && !!window.web3.eth && !!window.injectWeb3) {
       return true;
     } else {
       return false;

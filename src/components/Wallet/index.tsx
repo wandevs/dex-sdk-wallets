@@ -49,6 +49,7 @@ import defaultTranslations from "../../i18n";
 declare global {
   interface Window {
     web3: any;
+    injectWeb3: any;
   }
 }
 
@@ -409,7 +410,7 @@ class Wallet extends React.PureComponent<Props, State> {
         },
       ];
 
-      if (!!window.web3 && !!window.web3.eth) {
+      if (!!window.web3 && !!window.web3.eth && !!window.injectWeb3) {
         menuOptions = [
           {
             value: LightWallet.TYPE,
@@ -428,7 +429,7 @@ class Wallet extends React.PureComponent<Props, State> {
       } 
     }
 
-    if (!!window.web3 && !!window.web3.eth) {
+    if (!!window.web3 && !!window.web3.eth && !!window.injectWeb3) {
       return menuOptions;
     } else {
       return menuOptions.concat(this.localWalletOptions());
