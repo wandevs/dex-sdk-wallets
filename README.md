@@ -1,4 +1,4 @@
-Introduction
+# Introduction
 
 Nearly every dapp needs to connect to a crypto wallet for Wanchain. There are many options such as WanMask, ledger. WanDevs sdk wallet makes it easier to integrate different kinds of wallets together, and give an uniform interfaces to interative with them.
 
