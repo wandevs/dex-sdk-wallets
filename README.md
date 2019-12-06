@@ -1,8 +1,8 @@
 Introduction
 
-Nearly every dapp needs to connect to a crypto wallet.There are many options such as metamask, ledger. Hydro sdk wallet makes it easier to integrate different kinds of wallets together, and give an uniform interfaces to interative with them.
+Nearly every dapp needs to connect to a crypto wallet for Wanchain. There are many options such as WanMask, ledger. WanDevs sdk wallet makes it easier to integrate different kinds of wallets together, and give an uniform interfaces to interative with them.
 
-Hydro SDK wallet also support browser local wallets. Secrets are saved in browser localstorage under your domain.
+WanDevs sdk wallets also support browser local wallets. Secrets are saved in browser localstorage under your domain.
 
 There is a default ui in this package. You can also implement another ui as you wish.
 
@@ -10,13 +10,12 @@ There is a default ui in this package. You can also implement another ui as you 
 
 ### Support wallets:
 
-- Metamask
-- Wallet Connect Protocol
+- WanMask
 - Browser Local Wallet
 - Ledger Wallet
-- Trust Wallet
-- Coinbase Wallet
-- Imtoken Wallet
+- Trezor Wallet
+- web3 inject Wallet
+- Wanchain Light Wallet
 
 ## Basic Usage Guide
 
