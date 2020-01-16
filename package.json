@@ -1,6 +1,6 @@
 {
   "name": "wan-dex-sdk-wallet",
-  "version": "0.0.126",
+  "version": "0.0.127",
   "main": "./build/index.js",
   "files": [
     "build",
@@ -8,9 +8,13 @@
   ],
   "scripts": {
     "build": "rm -rf build && tsc",
-    "example": "npm --prefix ./examples/$example install && npm --prefix ./examples/$example start",
-    "example:basic": "example=basic npm run example",
-    "prepublish": "npm run build"
+    "example": "npm --prefix ./examples/%example% install && npm --prefix ./examples/%example% start",
+    "example:basic": "cross-env NODE_ENV=development example=\"basic\" npm run example:start",
+    "example:start": "cross-env NODE_ENV=development npm --prefix ./examples/basic start",
+    "prepublish": "npm run build",
+    "estart": "npm run build && yarn && npm run rm && npm run copybuild && npm run example:start",
+    "rm": "rm -rf ./examples/basic/node_modules/wan-dex-sdk-wallet/build ./examples/basic/node_modules/wan-dex-sdk-wallet/index.css",
+    "copybuild": "cp -r ./{build,index.css} ./examples/basic/node_modules/wan-dex-sdk-wallet"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,6 +53,7 @@
     "@types/request": "^2.48.1",
     "babel-runtime": "^6.26.0",
     "bignumber.js": "^8.1.1",
+    "cross-env": "^6.0.3",
     "ethereumjs-util": "6.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
