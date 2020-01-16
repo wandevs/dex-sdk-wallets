@@ -74,7 +74,7 @@ class WalletSelector extends React.PureComponent<Props, State> {
             options={options}
             selected={selectedAccountID || ""}
           />
-          <div>
+          <div className="HydroSDK-selected-address">
             {"Address: "} {selectedAccountAddress}
             <i
               className="HydroSDK-copy HydroSDK-fa fa fa-clipboard"
