@@ -395,18 +395,17 @@ fieldset[disabled] button:hover {
   margin-top: 20px;
 }
 .HydroSDK-buttonGroup {
-  display: flex;
-  width: 520px;
+  display: block;
   text-align: center;
   margin: 20px auto;
 }
 .HydroSDK-buttonGroup > a {
-  display: block;
+  display: inline-block;
   width: 200px;
   height: 50px;
-}
-.HydroSDK-buttonGroup > a:first-child {
-  margin-right: 120px;
+  vertical-align: middle;
+  margin: 0px 30px;
+  padding-bottom: 5px;
 }
 .HydroSDK-buttonGroup .button {
   display: inline-block;
