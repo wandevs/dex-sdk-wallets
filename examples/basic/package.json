@@ -30,7 +30,7 @@
     "express": "^4.16.4",
     "redux-thunk": "^2.3.0",
     "style-loader": "^0.23.1",
-    "wan-dex-sdk-wallet": "^0.0.125",
+    "wan-dex-sdk-wallet": "^0.0.129",
     "webpack": "^4.30.0",
     "webpack-dev-middleware": "^3.6.2",
     "webpack-hot-middleware": "^2.24.3"
