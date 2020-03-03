@@ -7,18 +7,14 @@ import Backup from "./Create/Backup";
 import AddFunds from "./Create/AddFunds";
 import Input from "./Input";
 import Select, { Option } from "./Select";
-import * as qrImage from "qr-image";
 import {
   ExtensionWallet,
-  WalletConnectWallet,
   defaultWalletTypes,
   setGlobalNodeUrl,
   Ledger,
   Trezor,
   HydroWallet,
   globalNodeUrl,
-  Dcent,
-  CoinbaseWallet,
   LightWallet
 } from "../../wallets";
 import { WalletState, AccountState } from "../../reducers/wallet";
@@ -35,8 +31,6 @@ import {
   initCustomLocalWallet,
   setUnit,
   destoryTimer,
-  loadDcentWallet,
-  loadCoinbaseWallet
 } from "../../actions/wallet";
 import Svg from "../Svg";
 import LedgerConnector from "./LedgerConnector";
@@ -81,7 +75,6 @@ interface Props {
   unit?: string;
   decimals?: number;
   copyCallback?: (text: string) => any;
-  dcent?: any;
   appName?: string;
   appLogoUrl?: string;
 }
@@ -139,18 +132,7 @@ class Wallet extends React.PureComponent<Props, State> {
       isShowWalletModal,
       dispatch,
       translations,
-      selectedWalletType,
-      dcent,
-      appName,
-      appLogoUrl
     } = this.props;
-    if (dcent && selectedWalletType === Dcent.TYPE && prevProps.selectedWalletType !== Dcent.TYPE) {
-      dispatch(loadDcentWallet(dcent));
-    }
-
-    if (selectedWalletType === CoinbaseWallet.TYPE && prevProps.selectedWalletType !== CoinbaseWallet.TYPE) {
-      dispatch(loadCoinbaseWallet(appName, appLogoUrl));
-    }
 
     if (!isShowWalletModal && isShowWalletModal !== prevProps.isShowWalletModal && selectedAccount) {
       const wallet = selectedAccount.get("wallet");
@@ -216,10 +198,7 @@ class Wallet extends React.PureComponent<Props, State> {
     switch (step) {
       case WALLET_STEPS.SELECT:
       case WALLET_STEPS.DELETE:
-        if (selectedWalletType === WalletConnectWallet.TYPE) {
-          const account = accounts.get(WalletConnectWallet.TYPE)!;
-          if (account.get("isLocked")) return this.renderQrImage();
-        } else if (selectedWalletType === Ledger.TYPE) {
+        if (selectedWalletType === Ledger.TYPE) {
           return <LedgerConnector copyCallback={copyCallback} />;
         } else if (selectedWalletType === Trezor.TYPE) {
           return <TrezorConnector copyCallback={copyCallback} />;
@@ -254,23 +233,6 @@ class Wallet extends React.PureComponent<Props, State> {
       default:
         return null;
     }
-  }
-
-  private renderQrImage() {
-    const { accounts } = this.props;
-    const wallet = accounts.get(WalletConnectWallet.TYPE)!.get("wallet");
-    const connector = (wallet as any).connector;
-
-    return (
-      <div className="HydroSDK-qr-image">
-        <div
-          className="HydroSDK-qr-image-bg"
-          dangerouslySetInnerHTML={{
-            __html: qrImage.imageSync(connector.uri, { type: "svg" }).toString()
-          }}
-        />
-      </div>
-    );
   }
 
   private renderUnlockForm() {
@@ -365,7 +327,7 @@ class Wallet extends React.PureComponent<Props, State> {
   }
 
   private getWalletsOptions(): Option[] {
-    let { dispatch, menuOptions, dcent } = this.props;
+    let { dispatch, menuOptions } = this.props;
     if (!menuOptions) {
       menuOptions = [
         {

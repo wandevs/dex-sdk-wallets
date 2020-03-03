@@ -6,12 +6,8 @@ import {
   ExtensionWallet,
   NeedUnlockWalletError,
   NotSupportedError,
-  WalletConnectWallet,
   Ledger,
   Trezor,
-  ImToken,
-  Dcent,
-  CoinbaseWallet,
   getNetworkID,
   LightWallet
 } from "../wallets";
@@ -150,10 +146,7 @@ export const selectAccount = (accountID: string, type: string) => {
   return async (dispatch: any, getState: any) => {
     if (
       type !== Ledger.TYPE &&
-      type !== Trezor.TYPE &&
-      type !== WalletConnectWallet.TYPE &&
-      type !== Dcent.TYPE &&
-      type !== CoinbaseWallet.TYPE
+      type !== Trezor.TYPE
     ) {
       window.localStorage.setItem("HydroWallet:lastSelectedWalletType", type);
       window.localStorage.setItem("HydroWallet:lastSelectedAccountID", accountID);
@@ -241,32 +234,12 @@ export const loadWallet = (type: string, action?: any) => {
         return dispatch(loadLightWallet());
       case LocalWallet.TYPE:
         return dispatch(loadLocalWallets());
-      case WalletConnectWallet.TYPE:
-        return dispatch(loadWalletConnectWallet());
       default:
         if (action) {
           return action();
         }
         return;
     }
-  };
-};
-
-export const loadCoinbaseWallet = (appName?: string, appLogoUrl?: string) => {
-  return async (dispatch: any) => {
-    const networkId = await getNetworkID();
-    const wallet = new CoinbaseWallet(networkId, appName, appLogoUrl);
-    await wallet.enable();
-    if (wallet.isSupported()) {
-      dispatch(watchWallet(wallet));
-    }
-  };
-};
-
-export const loadDcentWallet = (dcent: any) => {
-  return async (dispatch: any) => {
-    const wallet = new Dcent(dcent);
-    dispatch(watchWallet(wallet));
   };
 };
 
@@ -308,55 +281,6 @@ export const loadLightWallet = () => {
       console.log(error);
       window.setTimeout(() => dispatch(loadLightWallet()), 1000);
     }
-  };
-};
-
-export const loadWalletConnectWallet = () => {
-  return async (dispatch: any) => {
-    let wallet = new WalletConnectWallet({ bridge: "" });
-
-    if (wallet.connector.connected) {
-      await wallet.connector.killSession();
-      wallet = new WalletConnectWallet({ bridge: "" });
-    }
-
-    await wallet.connector.createSession();
-
-    dispatch(watchWallet(wallet));
-    const accountID = wallet.id();
-
-    wallet.connector.on("connect", async (error: any, payload: any) => {
-      if (error) {
-        throw error;
-      }
-
-      const addresses = await wallet.getAddresses();
-
-      dispatch(unlockAccount(accountID));
-      dispatch(selectAccount(accountID, wallet.type()));
-      dispatch(loadAddress(accountID, addresses[0]));
-      dispatch(loadNetwork(accountID, payload.params[0].chainId));
-    });
-
-    wallet.connector.on("session_update", (error: any, payload: any) => {
-      if (error) {
-        throw error;
-      }
-
-      // get updated accounts and chainId
-      const { accounts, chainId } = payload.params[0];
-
-      dispatch(loadAddress(accountID, accounts[0]));
-      dispatch(loadNetwork(accountID, chainId));
-    });
-
-    wallet.connector.on("disconnect", async (error: any, payload: any) => {
-      if (error) {
-        throw error;
-      }
-
-      window.location.reload();
-    });
   };
 };
 

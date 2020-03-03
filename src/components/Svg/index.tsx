@@ -263,57 +263,6 @@ class Svg extends React.PureComponent<Props, any> {
               dGRhdGU6bW9kaWZ5ADIwMTktMTEtMjlUMDI6MzA6NDItMDc6MDC/aJeJAAAAAElFTkSuQmCC" />
             </svg>
           );
-      case 'dcent':
-        return (
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enableBackground="new 0 0 16 16" >  
-          <image width="16" height="16" x="0" y="0"
-            href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAIGNIUk0AAHomAACAhAAA+gAAAIDo
-            AAB1MAAA6mAAADqYAAAXcJy6UTwAAALKUExURQAAAG7JxKOnqW1vcaWpq42QkqSoqm2FhW5wcm1u
-            cGFiZG7JxG7JxG3JxKKoqaOnqaOnqW7JxG7JxG7JxG7JxG3KxKOnqaOnqaOnqW7JxG7JxG7JxG7J
-            xKOnqaOnqW7JxG7JxG7JxG7JxG7JxG7JxG7JxKOnqaOnqaOnqW7JxG7JxG7JxG7JxG3JxKOnqaOn
-            qaOnqaOnqaOnqaOnqaOnqW7JxG7JxG7JxG7JxKikp6SmqKOnqaOnqaOnqaOnqaOnqW7JxG7JxG7J
-            xG7JxKOnqaOnqaOnqaOnqaOnqW7JxG7JxG7JxG7JxG7JxG7JxKOnqaOnqaOnqaOnqW7JxG7JxG7J
-            xG7JxKOnqaOnqaOnqW7JxG7JxG7JxJeanKOnqaOnqaOnqW7JxG1vcWxucHJ0dqGlp6OnqW7JxG7J
-            xG1vcW1vcW1vcW1vcX6Bg6OnqaOnqaOnqW1vcW1vcW1vcW1vcW1vcW1vcaOnqaOnqaOnqW1vcW1v
-            caOnqaOnqW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW7KxW7Gwm1sbm1vcW1vcVxe
-            YJ6ipKSoqqOnqW7KxW7KxW6enG1vcW1vcW1vcW1vcW1vcW1vcW1vcWxucH+Bg6OnqaSoqm7JxG7J
-            xG7Lxm60sW1ydG1ucG1vcW1vcW1vcW1vcW1vcW1vcY2QkqSoqqOnqaOnqW7NyG6+uW19fm1tcG1v
-            cW1vcW1vcW1vcW1vcWxucHBydJaanKWpq21rbW1ucW1vcW1vcW1vcW1vcW1vcW1vcWttb21vcW1v
-            cW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1v
-            cW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcW1vcaOnqW7JxG1vcf//
-            /4C04gYAAADqdFJOUwAAAAAAAAAAAAAAD3GFeX8UBUGz+6CLoQgBKZbuyA0Wdt4KVsf8pyURAzqs
-            9qFteBaMvEUFI43q7wgCku+ZLAFi2f74A53gcgcV1f3OXg0mkeQjF+N+G3Hb5/SeLwdTxfwJAzlx
-            g+upAiCI7LUIN6j1EGjV/rQFCVLEk/wVr7MG+o/9zl8N538b32YIMwEGUs797phUla1BBAI2pahX
-            g+IY0rdbeNrtlCiH6IxVodonDVVnw910FmfU1XZSEiS9xlUJSbvNNxd23vWrovHlgx4plu7zo0L4
-            +8BNCGDP2GwS4+ojMJ7wqjliCxcPZj0AAAABYktHRO1WvoONAAAAB3RJTUUH4wgPBSgP/z7pywAA
-            AF50RVh0UmF3IHByb2ZpbGUgdHlwZSBpcHRjAAppcHRjCiAgICAgIDI4CjM4NDI0OTRkMDQwNDAw
-            MDAwMDAwMDAwZjFjMDI2ZTAwMDM1MjQ2NDcxYzAyMDAwMDAyMDAwNDAwCmCaPZ4AAAIVSURBVDjL
-            Y2BAAEZGbh5ePn4BJiYGrIBRUEhYRFTslbgEVgWMklLSMq9fAxXIymFRwMgor6D4+jUuBYyMSsoq
-            qq+hCtSAVjAxqWsgnMKoqaWt8xoCdPX0DZhACgyNjE2YoNpNzcyh0q8teCytQMJMTNavbGzt7JlA
-            2h0cnaDSzsJCgoxgXUwurq9evXJz92BiYPT0gkp7+/j6MYLlmZj8A2yACl4FBgEVBDtC5ENCw2DS
-            AuERr8Ag0h+uICo6RhIszcwSGxef8ApDgXAixHLmpOSU1LRXmArSM0AKmJkzs7JzcvPyC7AqYGYu
-            LCoueVNaxlpeUZmATUFSVfWbN0AFzExMNbXYFJTVvYEoAPokAI+CemZwSOJS0NCYhE9BU3NLKzMe
-            BW3tHUBpBgY2dAWdXd3szMxlLT29zODg4ujrnzARoWDS5ClTp02fwcwMkWZgnjlr9py58+ZDFCxY
-            uGjxkqVv3ixbvgKqnTlzZdubN6tWr1m7bj1QwYaNmzaDwufNmy1btzEDQeH2HSUgbsnOXbv3AFMM
-            5959YD4QVO8/cLD+0OEGKPfNkaMcXCATjx0/ARM6eer0GRj77LnzzFA39V64eOkNGrh8pWcmMzzd
-            M5ddzbmGLH39xs1bzMg5g5m59fadJph0yd1795mZ0TIPM3NH+wOI/MPVjzCkIcHz+MlToDufPU/C
-            Jg1WcuvAji0vXqJoBwCwsI9N5H6RoQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOS0wOC0xNVQwNTo0
-            MDoxNSswMzowMAGdVpkAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTktMDgtMTVUMDU6NDA6MTUrMDM6
-            MDBwwO4lAAAAAElFTkSuQmCC" />
-          </svg>
-        )
-      case 'coinbase':
-        return (
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 30 30" fill="none">
-          <path fillRule="evenodd" clipRule="evenodd" d="M15 -8.9407e-07C6.71573 -8.9407e-07 0 6.71573 0 15C0 23.2843 6.71573 30 15 30C23.2843 30 30 23.2843 30 15C30 6.71573 23.2843 -8.9407e-07 15 -8.9407e-07Z" fill="url(#paint0_linear)"/>
-          <path fillRule="evenodd" clipRule="evenodd" d="M6.16229 15C6.16229 10.1191 10.1191 6.16232 15 6.16232C19.8809 6.16232 23.8377 10.1191 23.8377 15C23.8377 19.8809 19.8809 23.8377 15 23.8377C10.1191 23.8377 6.16229 19.8809 6.16229 15ZM12.7415 17.8477C12.4161 17.8477 12.1523 17.5839 12.1523 17.2585V12.7415C12.1523 12.4161 12.4161 12.1523 12.7415 12.1523H17.2585C17.5839 12.1523 17.8477 12.4161 17.8477 12.7415V17.2585C17.8477 17.5839 17.5839 17.8477 17.2585 17.8477H12.7415Z" fill="white"/>
-          <defs>
-            <linearGradient id="paint0_linear" x1="15" y1="30" x2="15" y2="0" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#2E66F8"/>
-            <stop offset="1" stopColor="#124ADB"/>
-            </linearGradient>
-          </defs>
-        </svg>)
       case 'binance':
         return (
           <svg x="0px" y="0px" height="30px" viewBox="0 0 632.014 126.611" enable-background="new 0 0 632.014 126.611"><polygon fill="#f5bc00" points="38.171,53.203 62.759,28.616 87.36,53.216 101.667,38.909 62.759,0 23.864,38.896 "></polygon><rect x="3.644" y="53.188" transform="matrix(0.7071 0.7071 -0.7071 0.7071 48.7933 8.8106)" fill="#f5bc00" width="20.233" height="20.234"></rect><polygon fill="#f5bc00" points="38.171,73.408 62.759,97.995 87.359,73.396 101.674,87.695 101.667,87.703 62.759,126.611 23.863,87.716 23.843,87.696 "></polygon><rect x="101.64" y="53.189" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 235.5457 29.0503)" fill="#f5bc00" width="20.234" height="20.233"></rect><polygon fill="#f5bc00" points="77.271,63.298 77.277,63.298 62.759,48.78 52.03,59.509 52.029,59.509 50.797,60.742 48.254,63.285 48.254,63.285 48.234,63.305 48.254,63.326 62.759,77.831 77.277,63.313 77.284,63.305 "></polygon><path fill="#f5bc00" d="M148.37,30.679h31.117c7.723,0,13.563,1.982,17.521,5.946c3.063,3.07,4.594,6.875,4.594,11.414v0.192 c0,1.918-0.237,3.613-0.714,5.083c-0.476,1.472-1.112,2.797-1.907,3.98c-0.793,1.184-1.715,2.223-2.763,3.117 c-1.049,0.896-2.176,1.664-3.383,2.302c3.882,1.472,6.938,3.469,9.166,5.995c2.227,2.527,3.342,6.028,3.342,10.503v0.191 c0,3.07-0.59,5.755-1.771,8.058c-1.181,2.301-2.873,4.22-5.076,5.755c-2.203,1.535-4.852,2.685-7.948,3.453 c-3.096,0.767-6.527,1.15-10.292,1.15H148.37V30.679z M176.376,57.822c3.262,0,5.852-0.558,7.769-1.678 c1.918-1.119,2.877-2.926,2.877-5.419v-0.192c0-2.237-0.832-3.947-2.494-5.131c-1.663-1.183-4.061-1.775-7.193-1.775h-14.579v14.195 H176.376z M180.309,84.871c3.261,0,5.817-0.59,7.673-1.774c1.854-1.183,2.782-3.022,2.782-5.516V77.39 c0-2.238-0.864-4.012-2.59-5.324c-1.727-1.309-4.508-1.965-8.345-1.965h-17.073v14.771H180.309z"></path><path fill="#f5bc00" d="M223.875,30.679h14.772v67.141h-14.772V30.679z"></path><path fill="#f5bc00" d="M261.02,30.679h13.618l31.461,41.34v-41.34h14.579v67.141h-12.564l-32.516-42.682v42.682H261.02V30.679z"></path><path fill="#f5bc00" d="M365.398,30.2h13.619l28.776,67.62H392.35l-6.139-15.058h-28.391l-6.138,15.058h-15.061L365.398,30.2z M380.936,69.716l-8.921-21.772l-8.918,21.772H380.936z"></path><path fill="#f5bc00" d="M423.738,30.679h13.621l31.459,41.34v-41.34h14.579v67.141h-12.564l-32.516-42.682v42.682h-14.579V30.679z"></path><path fill="#f5bc00" d="M536.557,98.97c-4.926,0-9.496-0.896-13.717-2.685s-7.865-4.236-10.934-7.338 c-3.07-3.101-5.469-6.762-7.193-10.982c-1.727-4.221-2.59-8.729-2.59-13.525v-0.191c0-4.796,0.863-9.287,2.59-13.476 c1.725-4.188,4.123-7.865,7.193-11.03c3.068-3.165,6.746-5.66,11.029-7.482s9.018-2.733,14.197-2.733 c3.131,0,5.992,0.257,8.582,0.767c2.59,0.513,4.939,1.215,7.051,2.11c2.111,0.896,4.059,1.983,5.852,3.261 c1.787,1.28,3.451,2.686,4.986,4.221l-9.398,10.838c-2.625-2.365-5.293-4.221-8.01-5.563c-2.719-1.342-5.771-2.014-9.16-2.014 c-2.814,0-5.42,0.544-7.816,1.631c-2.398,1.087-4.461,2.589-6.188,4.507c-1.725,1.918-3.068,4.141-4.029,6.666 c-0.957,2.527-1.436,5.228-1.436,8.105v0.191c0,2.877,0.479,5.596,1.436,8.152c0.961,2.559,2.285,4.796,3.982,6.714 c1.693,1.918,3.74,3.438,6.137,4.557c2.4,1.12,5.037,1.678,7.914,1.678c3.838,0,7.08-0.703,9.734-2.11 c2.654-1.405,5.293-3.324,7.914-5.755l9.4,9.496c-1.727,1.855-3.52,3.518-5.371,4.987c-1.855,1.472-3.885,2.734-6.092,3.79 c-2.205,1.054-4.621,1.855-7.24,2.397C542.756,98.697,539.816,98.97,536.557,98.97z"></path><path fill="#f5bc00" d="M581.467,30.679h50.547v13.141h-35.967v13.62h31.652v13.14h-31.652v14.1h36.449v13.14h-51.029V30.679z"></path></svg>
