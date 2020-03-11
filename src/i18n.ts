@@ -40,7 +40,7 @@ export default {
   connectLedger: "Connect Ledger",
   connectTrezor: "Connect Trezor",
   currentWalletTypeNotSupported: "Current wallet type is not supported",
-  noAvailableAddress: "No available address",
+  noAvailableAddress: "No available address. (May be you need to unlock your wallet first)",
   pleaseSelectAddress: "Please select an address",
   selectPath: "Select Path",
   inputPath: "Input a path",
