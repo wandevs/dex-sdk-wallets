@@ -4,9 +4,9 @@ export interface txParams {
   to: string;
   data?: string;
   value?: number | string | BigNumber;
-  gasPrice?: number | BigNumber;
-  gasLimit?: number;
-  nonce?: number;
+  gasPrice?: number | string | BigNumber;
+  gasLimit?: number | string | BigNumber;
+  nonce?: number | string | BigNumber;
 }
 
 import { BigNumber } from "ethers-wan/utils";
