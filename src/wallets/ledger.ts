@@ -105,12 +105,12 @@ export default class Ledger extends BaseWallet {
 
       const tempTxParams = {
         Txtype: '0x01',
-        nonce: txParams.nonce || '0x00',
-        gasPrice: txParams.gasPrice || '0x29E8D60800',
-        gasLimit: txParams.gasLimit || '0x30D40',
+        nonce: txParams.nonce?'0x' + txParams.nonce.toString(16):'0x00',
+        gasPrice: txParams.gasPrice?'0x'+txParams.gasPrice.toString(16):'0x29E8D60800',
+        gasLimit: txParams.gasLimit?'0x'+txParams.gasLimit.toString(16):'0x30D40',
         to: txParams.to,
-        value: txParams.value || '0x00',
-        data: txParams.data || '0x',
+        value: txParams.value?'0x' + Number(txParams.value).toString(16): '0x00',
+        data: txParams.data?txParams.data:'0x',
       }
       const tx = new Transaction(tempTxParams, { chain: networkID });
 
