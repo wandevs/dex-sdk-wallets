@@ -106,10 +106,10 @@ export default class Ledger extends BaseWallet {
       const tempTxParams = {
         Txtype: '0x01',
         nonce: txParams.nonce?'0x' + txParams.nonce.toString(16):'0x00',
-        gasPrice: txParams.gasPrice?'0x'+txParams.gasPrice.toString(16):'0x29E8D60800',
-        gasLimit: txParams.gasLimit?'0x'+txParams.gasLimit.toString(16):'0x30D40',
+        gasPrice: txParams.gasPrice? this.toHexString(txParams.gasPrice) :'0x29E8D60800',
+        gasLimit: txParams.gasLimit? this.toHexString(txParams.gasLimit) :'0x30D40',
         to: txParams.to,
-        value: txParams.value?'0x' + Number(txParams.value).toString(16): '0x00',
+        value: txParams.value?'0x' +this.toHexString(txParams.value): '0x00',
         data: txParams.data?txParams.data:'0x',
       }
       const tx = new Transaction(tempTxParams, { chain: networkID });
@@ -193,5 +193,13 @@ export default class Ledger extends BaseWallet {
 
   public name(): string {
     return "Ledger";
+  }
+
+  public toHexString(value: any): string {
+    if (typeof value === 'string') {
+      return value.startsWith('0x') ? value : `0x${Number(value).toString(16)}`;
+    } else {
+      return `0x${value.toString(16)}`;
+    }
   }
 }
