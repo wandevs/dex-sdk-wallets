@@ -109,7 +109,7 @@ export default class Ledger extends BaseWallet {
         gasPrice: txParams.gasPrice? this.toHexString(txParams.gasPrice) :'0x29E8D60800',
         gasLimit: txParams.gasLimit? this.toHexString(txParams.gasLimit) :'0x30D40',
         to: txParams.to,
-        value: txParams.value?'0x' +this.toHexString(txParams.value): '0x00',
+        value: txParams.value? this.toHexString(txParams.value): '0x00',
         data: txParams.data?txParams.data:'0x',
       }
       const tx = new Transaction(tempTxParams, { chain: networkID });
