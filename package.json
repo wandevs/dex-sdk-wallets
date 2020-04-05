@@ -70,10 +70,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HydroProtocol/hydro-sdk-wallets.git"
+    "url": "git+https://github.com/wandevs/wandex-sdk-wallets.git"
   },
   "bugs": {
-    "url": "https://github.com/HydroProtocol/hydro-sdk-wallets/issues"
+    "url": "https://github.com/wandevs/wandex-sdk-wallets/issues"
   },
-  "homepage": "https://github.com/HydroProtocol/hydro-sdk-wallets#readme"
+  "homepage": "https://github.com/wandevs/wandex-sdk-wallets#readme"
 }
