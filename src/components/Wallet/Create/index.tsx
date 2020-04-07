@@ -146,6 +146,7 @@ class Create extends React.PureComponent<Props, State> {
   private renderRecoveryInput() {
     const { mnemonic, errorMsg } = this.state;
     const { isRecovery } = this.props;
+    const { walletTranslations } = this.props;
 
     const handleChange = (mnemonic: string) => {
       this.setState({
@@ -160,7 +161,7 @@ class Create extends React.PureComponent<Props, State> {
 
     return (
       <Input
-        label="Recovery Phrase (12 words separated by space)"
+        label={walletTranslations.recoveryPhraseSpace}
         type="text"
         text={mnemonic}
         errorMsg={errorMsg}
@@ -296,6 +297,8 @@ class Create extends React.PureComponent<Props, State> {
 
   private renderAddressSelection() {
     const { isRecovery } = this.props;
+    const { walletTranslations } = this.props;
+
     const { loading, currentAddress } = this.state;
     if (!isRecovery) {
       return null;
@@ -306,7 +309,7 @@ class Create extends React.PureComponent<Props, State> {
       <div>
         <br/>
         <div className="HydroSDK-label">
-          {"Select Address (option)"}
+          {walletTranslations.selectAddressOption}
           <button type="load" onClick = {e => this.onLoadAddress(e)} 
             style={{
               width: "80px", 
@@ -318,11 +321,11 @@ class Create extends React.PureComponent<Props, State> {
             }}
             disabled={loading}>
             {loading ? <i className="HydroSDK-fa fa fa-spinner fa-spin" /> : null}
-            {"Load"}
+            {walletTranslations.load}
           </button>
         </div>
         <Select
-            blank={"Default Address"}
+            blank={walletTranslations.defaultAddress}
             noCaret={addressOptions.length === 0}
             disabled={addressOptions.length === 0}
             options={addressOptions}

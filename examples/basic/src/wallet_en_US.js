@@ -40,7 +40,7 @@ export default {
   connectLedger: "Connect Ledger",
   connectTrezor: "Connect Trezor",
   currentWalletTypeNotSupported: "Current wallet type is not supported",
-  noAvailableAddress: "No available address. (May be you need to unlock your wallet first)",
+  noAvailableAddress: "No available address",
   pleaseSelectAddress: "Please select an address",
   clickToUpdateBalance: "Click to Update Address Balance",
   recoveryPhraseSpace: 'Recovery Phrase (12 words separated by space)',
@@ -55,8 +55,5 @@ export default {
   connectLedgerDesc:
     'Ensure “Browser Support” and “Contract Data” is enabled within your device settings. <br/>Having issues still? Try reconnecting your Ledger or view Ledger Support.<a target="_blank" rel="noopener noreferrer" href="https://support.ddex.io/hc/en-us/articles/360001576533">Ledger Support</a>',
   connectTrezorDesc:
-    'Install Trezor bridge from trezor.io <a target="_blank" rel="noopener noreferrer" href="https://wallet.trezor.io/#/bridge">Trezor Bridge Download</a> <br/> Connect your Trezor wallet directly to your computer.',
-  installLightWallet: "Install Wanchain Light Wallet",
-  installLightWalletDesc: 'You can use wanchain light wallet for cross-chain and exchange. <br/>Download from Wanchain official site: <a target="_blank" rel="noopener noreferrer" href="https://wanchain.org/getstarted">Wanchain Light Wallet Download</a>'
-
+    'Install Trezor bridge from trezor.io <a target="_blank" rel="noopener noreferrer" href="https://wallet.trezor.io/#/bridge">Trezor Bridge Download</a> <br/> Connect your Trezor wallet directly to your computer.'
 };

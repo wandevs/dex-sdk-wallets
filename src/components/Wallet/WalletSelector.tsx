@@ -96,7 +96,7 @@ class WalletSelector extends React.PureComponent<Props, State> {
   }
 
   private getOptions(): Option[] {
-    const { walletType, dispatch, unit, decimals } = this.props;
+    const { walletType, dispatch, unit, decimals, walletTranslations } = this.props;
 
     const options: Option[] = [];
 
@@ -113,6 +113,9 @@ class WalletSelector extends React.PureComponent<Props, State> {
               <span>
                 {isLocked ? <i className="HydroSDK-fa fa fa-lock" /> : <i className="HydroSDK-fa fa fa-check" />}
                 {truncateAddress(text)}
+              </span>
+              <span>
+                <i>{walletTranslations.clickToUpdateBalance}</i>
               </span>
               <span>
                 {balance.div(new BigNumber(10).pow(decimals).toString()).toFixed(5)} {unit}

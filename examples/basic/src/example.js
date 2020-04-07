@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Wallet, getSelectedAccount, WalletButton, WalletButtonLong } from "wan-dex-sdk-wallet";
 import "wan-dex-sdk-wallet/index.css";
+import cn_ZH from './wallet_cn_ZH.js'
+import en_US from './wallet_en_US';
 class Example extends React.Component {
   componentDidMount() {
     try {
@@ -56,6 +58,7 @@ class Example extends React.Component {
           nodeUrl="https://mywanwallet.io/testnet" 
           // defaultWalletType="LIGHTWALLET"
           // walletTypes={["LIGHTWALLET"]}
+          translations={cn_ZH}
          />
         <WalletButton />
         <WalletButtonLong />
