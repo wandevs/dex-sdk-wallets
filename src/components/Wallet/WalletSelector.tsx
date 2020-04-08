@@ -114,7 +114,7 @@ class WalletSelector extends React.PureComponent<Props, State> {
                 {isLocked ? <i className="HydroSDK-fa fa fa-lock" /> : <i className="HydroSDK-fa fa fa-check" />}
                 {truncateAddress(text)}
               </span>
-              <span>
+              <span style={{marginLeft:"20px", marginRight:"20px"}}>
                 <i>{walletTranslations.clickToUpdateBalance}</i>
               </span>
               <span>
