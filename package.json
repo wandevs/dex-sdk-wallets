@@ -41,7 +41,8 @@
     "react-paginate": "^6.3.0",
     "trezor-connect": "^8.0.6",
     "walletlink": "^1.0.0",
-    "wanchaints-tx": "^0.0.2"
+    "wanchaints-tx": "^0.0.2",
+    "web3": "^1.2.8"
   },
   "devDependencies": {
     "@types/ethereumjs-tx": "^1.0.1",

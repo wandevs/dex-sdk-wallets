@@ -1,8 +1,9 @@
 import { Wallet, utils } from "ethers-wan";
-import { JsonRpcProvider } from "ethers-wan/providers";
+import { JsonRpcProvider, Web3Provider } from "ethers-wan/providers";
 import BaseWallet, { txParams } from "./baseWallet";
 import { BigNumber } from "ethers-wan/utils";
 import * as ethUtil from "ethereumjs-util";
+import Web3 from "web3";
 
 export default class HydroWallet extends BaseWallet {
   private static TIMEOUT = 15 * 60 * 1000; // 15 minutes
@@ -191,6 +192,11 @@ export default class HydroWallet extends BaseWallet {
     if (this._provider) {
       return this._provider;
     }
+    if (HydroWallet.nodeUrl.indexOf('ws') === 0) {
+      this._provider = new Web3Provider(new Web3.providers.WebsocketProvider(HydroWallet.nodeUrl));
+      return this._provider;
+    } 
+    
     this._provider = new JsonRpcProvider(HydroWallet.nodeUrl);
     return this._provider;
   }

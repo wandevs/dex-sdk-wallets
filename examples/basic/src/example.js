@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Wallet, getSelectedAccount, WalletButton, WalletButtonLong } from "wan-dex-sdk-wallet";
 import "wan-dex-sdk-wallet/index.css";
 import cn_ZH from './wallet_cn_ZH.js'
-import en_US from './wallet_en_US';
+// import en_US from './wallet_en_US';
 class Example extends React.Component {
   componentDidMount() {
     try {
@@ -55,7 +55,8 @@ class Example extends React.Component {
       <div>
         <h2>Basic Example</h2>
         <Wallet title="Basic Wallet Demo" 
-          nodeUrl="https://mywanwallet.io/testnet" 
+          // nodeUrl="https://mywanwallet.io/testnet" 
+          nodeUrl="wss://apitest.wanchain.org:8443/ws/v3/ae8a283e999e4fbba7ea54d6692806efea33b51bf797128a32d3d352d7a214e2"
           // defaultWalletType="LIGHTWALLET"
           // walletTypes={["LIGHTWALLET"]}
           translations={cn_ZH}
