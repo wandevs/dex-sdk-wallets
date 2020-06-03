@@ -287,6 +287,11 @@ fieldset[disabled] button:hover {
   justify-content: space-between;
   flex: 1;
 }
+@media screen and (max-width: 580px) {
+  .HydroSDK-address-option>span:nth-child(2){
+    display: none;
+  }
+}
 .HydroSDK-qr-image {
   display: flex;
   align-items: center;
