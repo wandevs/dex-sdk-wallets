@@ -56,6 +56,18 @@ body {
   flex-direction: column;
   border:1px solid #40425f;
 }
+
+@media screen and (max-width: 580px) {
+  .HydroSDK-dialog {
+    width: 90vw;
+    position: relative;
+    left: 5vw;
+    top: 4vw;
+    right: unset;
+    bottom: unset;
+  }
+}
+
 .HydroSDK-backdrop {
   background: rgba(0, 0, 0, 0.7);
   width: 100%;
