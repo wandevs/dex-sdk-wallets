@@ -137,6 +137,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+@media screen and (max-width: 580px) {
+  .HydroSDK-selected {
+    font-size: 1vw;
+  }
 }
 .HydroSDK-selected-address {
   word-break: break-all;
