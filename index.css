@@ -143,7 +143,7 @@ body {
 }
 @media screen and (max-width: 580px) {
   .HydroSDK-selected {
-    font-size: 1vw;
+    font-size: 3vw;
   }
 }
 .HydroSDK-selected-address {
