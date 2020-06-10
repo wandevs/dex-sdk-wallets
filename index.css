@@ -225,6 +225,11 @@ body {
   outline: 0;
   word-break: break-word;
 }
+.HydroSDK-button > span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 button.disabled,
 button.disabled.focus,
 button.disabled:focus,
