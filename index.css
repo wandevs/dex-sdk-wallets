@@ -137,6 +137,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+@media screen and (max-width: 580px) {
+  .HydroSDK-selected {
+    font-size: 3vw;
+  }
 }
 .HydroSDK-selected-address {
   word-break: break-all;
@@ -216,6 +224,11 @@ body {
   cursor: pointer;
   outline: 0;
   word-break: break-word;
+}
+.HydroSDK-button > span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 button.disabled,
 button.disabled.focus,
