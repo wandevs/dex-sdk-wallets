@@ -56,7 +56,7 @@ class Example extends React.Component {
         <h2>Basic Example</h2>
         <Wallet title="Basic Wallet Demo" 
           // nodeUrl="https://mywanwallet.io/testnet" 
-          nodeUrl="wss://apitest.wanchain.org:8443/ws/v3/ae8a283e999e4fbba7ea54d6692806efea33b51bf797128a32d3d352d7a214e2"
+          nodeUrl="wss://apitest.wanchain.org:8443/ws/v3/e8fc24812392bcbf4ada0193f95323c8e166d325ca3e2738f95c5d3bf490faa0"
           // defaultWalletType="LIGHTWALLET"
           // walletTypes={["LIGHTWALLET"]}
           translations={cn_ZH}
