@@ -13,7 +13,7 @@ import {
   setGlobalNodeUrl,
   Ledger,
   Trezor,
-  HydroWallet,
+  WanWallet,
   globalNodeUrl,
   LightWallet
 } from "../../wallets";
@@ -92,7 +92,7 @@ class Wallet extends React.PureComponent<Props, State> {
     }
 
     let selectedWalletType: string;
-    const lastSelectedWalletType = window.localStorage.getItem("HydroWallet:lastSelectedWalletType");
+    const lastSelectedWalletType = window.localStorage.getItem("WanWallet:lastSelectedWalletType");
 
     if (defaultWalletType) {
       selectedWalletType = defaultWalletType;
@@ -474,6 +474,6 @@ export default connect((state: any) => {
     isShowWalletModal: walletState.get("isShowWalletModal"),
     step: walletState.get("step"),
     selectedWalletType: walletState.get("selectedWalletType"),
-    LocalWallet: walletState.get("LocalWallet") || HydroWallet
+    LocalWallet: walletState.get("LocalWallet") || WanWallet
   };
 })(Wallet);

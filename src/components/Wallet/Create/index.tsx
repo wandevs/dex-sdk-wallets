@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Input from "../Input";
 import { setWalletStep, WALLET_STEPS, cacheWallet, watchWallet } from "../../../actions/wallet";
 import { WalletState } from "../../../reducers/wallet";
-import { HydroWallet, truncateAddress, getBalance } from "../../../wallets";
+import { WanWallet, truncateAddress, getBalance } from "../../../wallets";
 import Select, { Option } from "../Select";
 import { BigNumber } from "bignumber.js";
 import { Wallet } from "ethers-wan";
@@ -40,7 +40,7 @@ const mapStateToProps = (state: { WalletReducer: WalletState }) => {
   const walletState = state.WalletReducer;
   return {
     walletTranslations: walletState.get("walletTranslations"),
-    LocalWallet: walletState.get("LocalWallet") || HydroWallet
+    LocalWallet: walletState.get("LocalWallet") || WanWallet
   };
 };
 

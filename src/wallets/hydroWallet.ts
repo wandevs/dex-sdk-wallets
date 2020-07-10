@@ -5,12 +5,12 @@ import { BigNumber } from "ethers-wan/utils";
 import * as ethUtil from "ethereumjs-util";
 import Web3 from "web3";
 
-export default class HydroWallet extends BaseWallet {
+export default class WanWallet extends BaseWallet {
   private static TIMEOUT = 15 * 60 * 1000; // 15 minutes
-  private static WALLETS_KEY = "Hydro-Wallets";
+  private static WALLETS_KEY = "Wan-Wallets";
   private static _cache: Map<string, any> = new Map();
 
-  public static TYPE = "Hydro-Wallet";
+  public static TYPE = "Wan-Wallet";
   public static LABEL = "Browser Wallet";
 
   private static nodeUrl: string;
@@ -27,23 +27,23 @@ export default class HydroWallet extends BaseWallet {
     }
   }
 
-  public static async createRandom(): Promise<HydroWallet> {
+  public static async createRandom(): Promise<WanWallet> {
     const wallet = await Wallet.createRandom();
-    const hydroWallet = new HydroWallet(wallet.address, wallet);
+    const hydroWallet = new WanWallet(wallet.address, wallet);
 
     return hydroWallet;
   }
 
-  public static async import(privateKey: string, password: string): Promise<HydroWallet> {
+  public static async import(privateKey: string, password: string): Promise<WanWallet> {
     const wallet = await new Wallet(privateKey);
-    const hydroWallet = new HydroWallet(wallet.address, wallet);
+    const hydroWallet = new WanWallet(wallet.address, wallet);
     await hydroWallet.save(password);
     return hydroWallet;
   }
 
-  public static async fromMnemonic(mnemonic: string, password: string, path?: string): Promise<HydroWallet> {
+  public static async fromMnemonic(mnemonic: string, password: string, path?: string): Promise<WanWallet> {
     const wallet = await Wallet.fromMnemonic(mnemonic, path);
-    const hydroWallet = new HydroWallet(wallet.address, wallet);
+    const hydroWallet = new WanWallet(wallet.address, wallet);
     await hydroWallet.save(password);
     return hydroWallet;
   }
@@ -53,23 +53,23 @@ export default class HydroWallet extends BaseWallet {
       return false;
     }
     const data = await this._wallet.encrypt(password);
-    const wallets = HydroWallet.getWalletData();
-    const index = wallets.findIndex(json => HydroWallet.parseWalletAddress(json) === this._address);
+    const wallets = WanWallet.getWalletData();
+    const index = wallets.findIndex(json => WanWallet.parseWalletAddress(json) === this._address);
     if (index !== -1) {
       wallets.splice(index, 1, data);
     } else {
       wallets.push(data);
     }
 
-    HydroWallet.setWalletData(wallets);
+    WanWallet.setWalletData(wallets);
     return true;
   }
 
   public delete(): boolean {
     this._wallet = null;
-    HydroWallet._cache.delete(this._address!);
-    const wallets = HydroWallet.getWalletData().filter(json => HydroWallet.parseWalletAddress(json) !== this._address);
-    HydroWallet.setWalletData(wallets);
+    WanWallet._cache.delete(this._address!);
+    const wallets = WanWallet.getWalletData().filter(json => WanWallet.parseWalletAddress(json) !== this._address);
+    WanWallet.setWalletData(wallets);
     return true;
   }
 
@@ -80,14 +80,14 @@ export default class HydroWallet extends BaseWallet {
   }
 
   public type(): string {
-    return HydroWallet.TYPE;
+    return WanWallet.TYPE;
   }
 
   public id(): string {
-    return HydroWallet.TYPE + ":" + this._address;
+    return WanWallet.TYPE + ":" + this._address;
   }
 
-  public static list(): HydroWallet[] {
+  public static list(): WanWallet[] {
     return this.getWalletData().map(json => {
       const wallet = this.getWallet(this.parseWalletAddress(json));
       return wallet;
@@ -106,10 +106,10 @@ export default class HydroWallet extends BaseWallet {
     return utils.getAddress(JSON.parse(json).address).toLowerCase();
   }
 
-  private static getWallet(address: string, _wallet?: any): HydroWallet {
+  private static getWallet(address: string, _wallet?: any): WanWallet {
     let wallet = this._cache.get(address);
     if (!wallet || wallet._address !== address) {
-      wallet = new HydroWallet(address, _wallet);
+      wallet = new WanWallet(address, _wallet);
       this._cache.set(address, wallet);
     }
     return wallet;
@@ -173,7 +173,7 @@ export default class HydroWallet extends BaseWallet {
   }
 
   public async unlock(password: string) {
-    const json = HydroWallet.getWalletData().find(json => HydroWallet.parseWalletAddress(json) === this._address);
+    const json = WanWallet.getWalletData().find(json => WanWallet.parseWalletAddress(json) === this._address);
 
     this._wallet = await Wallet.fromEncryptedJson(json, password);
     this._wallet = this._wallet.connect(this.getProvider());
@@ -192,12 +192,12 @@ export default class HydroWallet extends BaseWallet {
     if (this._provider) {
       return this._provider;
     }
-    if (HydroWallet.nodeUrl.indexOf('ws') === 0) {
-      this._provider = new Web3Provider(new Web3.providers.WebsocketProvider(HydroWallet.nodeUrl));
+    if (WanWallet.nodeUrl.indexOf('ws') === 0) {
+      this._provider = new Web3Provider(new Web3.providers.WebsocketProvider(WanWallet.nodeUrl));
       return this._provider;
     } 
     
-    this._provider = new JsonRpcProvider(HydroWallet.nodeUrl);
+    this._provider = new JsonRpcProvider(WanWallet.nodeUrl);
     return this._provider;
   }
 
@@ -221,7 +221,7 @@ export default class HydroWallet extends BaseWallet {
     if (this._timer) {
       window.clearTimeout(this._timer);
     }
-    this._timer = window.setTimeout(() => this.lock(), HydroWallet.TIMEOUT);
+    this._timer = window.setTimeout(() => this.lock(), WanWallet.TIMEOUT);
   }
   public name(): string {
     return "Hydro Wallet";

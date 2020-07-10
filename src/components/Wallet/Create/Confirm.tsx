@@ -2,11 +2,11 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { setWalletStep, WALLET_STEPS, watchWallet } from "../../../actions/wallet";
 import { WalletState } from "../../../reducers/wallet";
-import { HydroWallet } from "../../../wallets";
+import { WanWallet } from "../../../wallets";
 
 interface Props {
   dispatch: any;
-  wallet: HydroWallet;
+  wallet: WanWallet;
   password: string;
   walletTranslations: { [key: string]: any };
 }

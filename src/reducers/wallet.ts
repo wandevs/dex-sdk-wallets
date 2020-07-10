@@ -1,7 +1,7 @@
 import { Map, fromJS } from "immutable";
 import { BigNumber } from "bignumber.js";
 import { ImmutableMap } from ".";
-import { BaseWallet, HydroWallet } from "../wallets";
+import { BaseWallet, WanWallet } from "../wallets";
 import { WALLET_STEPS } from "../actions/wallet";
 
 export interface AccountProps {
@@ -33,11 +33,11 @@ export interface WalletProps {
   isShowWalletModal: boolean;
   step: string;
   walletCache: {
-    wallet: HydroWallet;
+    wallet: WanWallet;
     password: string;
   };
   walletTranslations: { [key: string]: any };
-  LocalWallet: HydroWallet | null;
+  LocalWallet: WanWallet | null;
   unit: string;
   decimals: number;
 }

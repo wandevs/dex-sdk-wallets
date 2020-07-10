@@ -103,12 +103,12 @@ export default connect(state => {
 | Name              | Type         | Default                     | Desc                                                                                              |
 | ----------------- | ------------ | --------------------------- | ------------------------------------------------------------------------------------------------- |
 | nodeUrl           | String       | `https://ropsten.infura.io` | Ethereum JSON RPC Endpoint.                                                                       |
-| defaultWalletType | String       | `EXTENSION`                 | default selected wallet type. Options are `EXTENSION`, `Hydro-Wallet`, `WALLETCONNECT`, `Ledger`. |
+| defaultWalletType | String       | `EXTENSION`                 | default selected wallet type. Options are `EXTENSION`, `Wan-Wallet`, `WALLETCONNECT`, `Ledger`. |
 | translations      | Translations | defaultTranslations         | i18n translations.                                                                                |
 | walletTypes       | Array        | defaultWalletTypes          | customized wallets.                                                                               |
 | menuOptions       | Option[]     | defaultMenuOptions          | customized wallet menu.                                                                           |
 | loadWalletActions | Actions      | {}                          | customized load wallet actions.                                                                   |
-| customLocalWallet | WalletClass  | HydroWallet                 | customized local wallet class.                                                                    |
+| customLocalWallet | WalletClass  | WanWallet                 | customized local wallet class.                                                                    |
 | hideLocalWallet   | Boolean      | false                       | Hide local wallet menu items.                                                                     |
 | unit              | String       | `ETH`                       | balance unit                                                                                      |
 | decimals          | number       | 18                          | balance decimals                                                                                  |

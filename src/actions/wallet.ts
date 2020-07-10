@@ -2,7 +2,7 @@ import { BigNumber } from "ethers-wan/utils";
 import { getAccount, getWallet } from "../selector/wallet";
 import {
   BaseWallet,
-  HydroWallet,
+  WanWallet,
   ExtensionWallet,
   NeedUnlockWalletError,
   NotSupportedError,
@@ -57,7 +57,7 @@ export const destoryTimer = () => {
   });
 };
 
-export const cacheWallet = (wallet: HydroWallet, password: string) => {
+export const cacheWallet = (wallet: WanWallet, password: string) => {
   return {
     type: "WANCHAIN_WALLET_CACHE_WALLET",
     payload: { wallet, password }
@@ -148,8 +148,8 @@ export const selectAccount = (accountID: string, type: string) => {
       type !== Ledger.TYPE &&
       type !== Trezor.TYPE
     ) {
-      window.localStorage.setItem("HydroWallet:lastSelectedWalletType", type);
-      window.localStorage.setItem("HydroWallet:lastSelectedAccountID", accountID);
+      window.localStorage.setItem("WanWallet:lastSelectedWalletType", type);
+      window.localStorage.setItem("WanWallet:lastSelectedAccountID", accountID);
     }
     await dispatch({
       type: "WANCHAIN_WALLET_SELECT_ACCOUNT",
@@ -190,7 +190,7 @@ export const unlockAccount = (accountID: string) => {
 
 export const unlockBrowserWalletAccount = (account: AccountState, password: string) => {
   return async (dispatch: any) => {
-    const hydroWallet = account.get("wallet") as HydroWallet;
+    const hydroWallet = account.get("wallet") as WanWallet;
     if (hydroWallet) {
       await hydroWallet.unlock(password);
       dispatch(updateWallet(hydroWallet));
@@ -201,7 +201,7 @@ export const unlockBrowserWalletAccount = (account: AccountState, password: stri
 
 export const deleteBrowserWalletAccount = (account: AccountState) => {
   return async (dispatch: any) => {
-    const hydroWallet = account.get("wallet") as HydroWallet;
+    const hydroWallet = account.get("wallet") as WanWallet;
     const isLocked = account.get("isLocked");
     if (hydroWallet && !isLocked) {
       const accountID = hydroWallet.id();
@@ -226,7 +226,7 @@ export const hideWalletModal = () => {
 
 export const loadWallet = (type: string, action?: any) => {
   return (dispatch: any, getState: any) => {
-    const LocalWallet = getState().WalletReducer.get("LocalWallet") || HydroWallet;
+    const LocalWallet = getState().WalletReducer.get("LocalWallet") || WanWallet;
     switch (type) {
       case ExtensionWallet.TYPE:
         return dispatch(loadExtensitonWallet());
@@ -286,7 +286,7 @@ export const loadLightWallet = () => {
 
 export const loadLocalWallets = () => {
   return (dispatch: any, getState: any) => {
-    const LocalWallet = getState().WalletReducer.get("LocalWallet") || HydroWallet;
+    const LocalWallet = getState().WalletReducer.get("LocalWallet") || WanWallet;
     LocalWallet.list().map((wallet: any) => {
       dispatch(watchWallet(wallet));
     });
@@ -379,7 +379,7 @@ export const watchWallet = (wallet: BaseWallet) => {
 
       if (currentAddressInStore !== address) {
         dispatch(loadAddress(accountID, address));
-        const lastSelectedAccountID = window.localStorage.getItem("HydroWallet:lastSelectedAccountID");
+        const lastSelectedAccountID = window.localStorage.getItem("WanWallet:lastSelectedAccountID");
         const currentSelectedAccountID = getState().WalletReducer.get("selectedAccountID");
         if (!currentSelectedAccountID && (lastSelectedAccountID === accountID || !lastSelectedAccountID)) {
           dispatch(selectAccount(accountID, type));

@@ -1,4 +1,4 @@
-import HydroWallet from "./hydroWallet";
+import WanWallet from "./hydroWallet";
 import ExtensionWallet from "./extensionWallet";
 import BaseWallet from "./baseWallet";
 import Ledger from "./ledger";
@@ -16,7 +16,7 @@ const { NeedUnlockWalletError, NotSupportedError } = BaseWallet;
 export let globalNodeUrl = "https://ropsten.infura.io";
 export {
   BaseWallet,
-  HydroWallet,
+  WanWallet,
   ExtensionWallet,
   NeedUnlockWalletError,
   NotSupportedError,
@@ -291,4 +291,4 @@ export const getContract = (contractAddress: string, abi: any): Contract => {
   return new Contract(contractAddress, abi, provider);
 };
 
-export const defaultWalletTypes = [ExtensionWallet.TYPE, HydroWallet.TYPE, Ledger.TYPE, Trezor.TYPE, LightWallet.TYPE];
+export const defaultWalletTypes = [ExtensionWallet.TYPE, WanWallet.TYPE, Ledger.TYPE, Trezor.TYPE, LightWallet.TYPE];
