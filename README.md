@@ -162,7 +162,7 @@ const txId = await wallet.sendTransaction(tx);
  *  Draft Message Parameters
  */
 const msgParams = [
-  "HYDRO-AUTHENTICATION" //message
+  "WANCHAIN-AUTHENTICATION" //message
 ];
 
 /**

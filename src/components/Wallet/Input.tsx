@@ -12,13 +12,13 @@ class PasswordInput extends React.PureComponent<Props, {}> {
   public render() {
     const { handleChange, text, label, error, errorMsg, type } = this.props;
     return (
-      <div className="HydroSDK-fieldGroup">
-        <div className="HydroSDK-labelGroup">
-          <div className="HydroSDK-label">{label}</div>
-          <div className="HydroSDK-errorMsg">{errorMsg}</div>
+      <div className="WanchainSDK-fieldGroup">
+        <div className="WanchainSDK-labelGroup">
+          <div className="WanchainSDK-label">{label}</div>
+          <div className="WanchainSDK-errorMsg">{errorMsg}</div>
         </div>
         <input
-          className={`HydroSDK-input${error ? " HydroSDK-error" : ""}`}
+          className={`WanchainSDK-input${error ? " WanchainSDK-error" : ""}`}
           type={type || "password"}
           value={text}
           onChange={e => handleChange(e.target.value)}

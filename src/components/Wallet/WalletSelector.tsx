@@ -50,11 +50,11 @@ class WalletSelector extends React.PureComponent<Props, State> {
 
     return (
       <>
-        <div className="HydroSDK-fieldGroup">
-          <div className="HydroSDK-label">
+        <div className="WanchainSDK-fieldGroup">
+          <div className="WanchainSDK-label">
             {walletTranslations.selectAddress}
             <i
-              className="HydroSDK-copy HydroSDK-fa fa fa-clipboard"
+              className="WanchainSDK-copy WanchainSDK-fa fa fa-clipboard"
               onClick={async () => {
                 if (selectedAccountAddress) {
                   await copy(selectedAccountAddress);
@@ -74,10 +74,10 @@ class WalletSelector extends React.PureComponent<Props, State> {
             options={options}
             selected={selectedAccountID || ""}
           />
-          <div className="HydroSDK-selected-address">
+          <div className="WanchainSDK-selected-address">
             {"Address: "} {selectedAccountAddress}
             <i
-              className="HydroSDK-copy HydroSDK-fa fa fa-clipboard"
+              className="WanchainSDK-copy WanchainSDK-fa fa fa-clipboard"
               onClick={async () => {
                 if (selectedAccountAddress) {
                   await copy(selectedAccountAddress);
@@ -109,9 +109,9 @@ class WalletSelector extends React.PureComponent<Props, State> {
         options.push({
           value: accountID,
           component: (
-            <div className="HydroSDK-address-option">
+            <div className="WanchainSDK-address-option">
               <span>
-                {isLocked ? <i className="HydroSDK-fa fa fa-lock" /> : <i className="HydroSDK-fa fa fa-check" />}
+                {isLocked ? <i className="WanchainSDK-fa fa fa-lock" /> : <i className="WanchainSDK-fa fa fa-check" />}
                 {truncateAddress(text)}
               </span>
               <span style={{marginLeft:"20px", marginRight:"20px"}}>

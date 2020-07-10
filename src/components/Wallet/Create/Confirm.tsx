@@ -39,15 +39,15 @@ class CreateConfirm extends React.PureComponent<Props, State> {
     const { checkbox, processing } = this.state;
     const { walletTranslations } = this.props;
     return (
-      <div className="HydroSDK-confirm">
+      <div className="WanchainSDK-confirm">
         {this.renderConfirmCheckbox()}
-        <div className="HydroSDK-desc">{walletTranslations.confirmDesc}</div>
+        <div className="WanchainSDK-desc">{walletTranslations.confirmDesc}</div>
         <button
-          className="HydroSDK-button HydroSDK-submitButton HydroSDK-featureButton"
+          className="WanchainSDK-button WanchainSDK-submitButton WanchainSDK-featureButton"
           type="submit"
           onClick={() => this.handleSubmit()}
           disabled={checkbox.indexOf(false) !== -1 || processing}>
-          {processing ? <i className="HydroSDK-fa fa fa-spinner fa-spin" /> : null} {walletTranslations.create}
+          {processing ? <i className="WanchainSDK-fa fa fa-spinner fa-spin" /> : null} {walletTranslations.create}
         </button>
       </div>
     );
@@ -68,16 +68,16 @@ class CreateConfirm extends React.PureComponent<Props, State> {
       return (
         <div
           key={index}
-          className={`HydroSDK-checkboxDiv ${checked ? "checked" : ""}`}
+          className={`WanchainSDK-checkboxDiv ${checked ? "checked" : ""}`}
           onClick={() => this.handleCheck(index)}>
-          <div className="HydroSDK-checkbox">
+          <div className="WanchainSDK-checkbox">
             <i className="fa fa-check" />
           </div>
           {walletTranslations.createConfirm[index]}
         </div>
       );
     });
-    return <div className="HydroSDK-checkboxGroup">{nodes}</div>;
+    return <div className="WanchainSDK-checkboxGroup">{nodes}</div>;
   }
 
   public handleCheck(index: number) {

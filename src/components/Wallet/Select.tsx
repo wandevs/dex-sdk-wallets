@@ -100,7 +100,7 @@ export default class Select extends React.PureComponent<Props, State> {
       items.push(
         <div
           key={option.value}
-          className="HydroSDK-item"
+          className="WanchainSDK-item"
           onClick={e => {
             if (option.disabled) {
               return;
@@ -119,7 +119,7 @@ export default class Select extends React.PureComponent<Props, State> {
       );
     }
 
-    const dropdownClassNames = ["HydroSDK-dropdown"];
+    const dropdownClassNames = ["WanchainSDK-dropdown"];
     const direction = this.getDropdownDirection();
 
     if (direction === "down") {
@@ -131,7 +131,7 @@ export default class Select extends React.PureComponent<Props, State> {
     return (
       <div className={dropdownClassNames.join(" ")}>
         {items}
-        {footer && <div className="HydroSDK-selectFooter">{footer}</div>}
+        {footer && <div className="WanchainSDK-selectFooter">{footer}</div>}
       </div>
     );
   }
@@ -152,7 +152,7 @@ export default class Select extends React.PureComponent<Props, State> {
 
     return (
       <div
-        className="HydroSDK-selected"
+        className="WanchainSDK-selected"
         onClick={() => {
           if (!disabled) {
             this.switchFold();
@@ -165,16 +165,16 @@ export default class Select extends React.PureComponent<Props, State> {
   }
 
   private renderCaret() {
-    return <div className="HydroSDK-caret" />;
+    return <div className="WanchainSDK-caret" />;
   }
 
   public render() {
     const { unfolded } = this.state;
 
-    const classNames = ["HydroSDK-select"];
+    const classNames = ["WanchainSDK-select"];
 
     if (unfolded) {
-      classNames.push("HydroSDK-unfolded");
+      classNames.push("WanchainSDK-unfolded");
     }
 
     return (

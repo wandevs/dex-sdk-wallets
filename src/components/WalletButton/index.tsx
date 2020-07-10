@@ -15,7 +15,7 @@ interface Props {
 class WalletButton extends React.PureComponent<Props, any> {
   public render() {
     return (
-      <button className="HydroSDK-button HydroSDK-toggleButton" onClick={() => this.handleClick()}>
+      <button className="WanchainSDK-button WanchainSDK-toggleButton" onClick={() => this.handleClick()}>
         {this.toggleText()}
       </button>
     );
@@ -34,7 +34,7 @@ class WalletButton extends React.PureComponent<Props, any> {
       const isLocked = selectedAccount.get("isLocked");
       return (
         <span>
-          {isLocked ? <i className="HydroSDK-fa fa fa-lock" /> : <i className="HydroSDK-fa fa fa-check" />}
+          {isLocked ? <i className="WanchainSDK-fa fa fa-lock" /> : <i className="WanchainSDK-fa fa fa-check" />}
           {selectedAccount.get("address")
             ? truncateAddress(selectedAccount.get("address") || "")
             : walletTranslations.toggleButtonText}

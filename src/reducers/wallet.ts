@@ -63,81 +63,79 @@ const initialState: WalletState = fromJS({
 
 export default (state = initialState, action: any) => {
   switch (action.type) {
-    case "HYDRO_WALLET_SET_UNIT":
+    case "WANCHAIN_WALLET_SET_UNIT":
       state = state.set("unit", action.payload.unit);
       state = state.set("decimals", action.payload.decimals);
       return state;
-    case "HYDRO_WALLET_INIT_CUSTOM_LOCAL_WALLET":
+    case "WANCHAIN_WALLET_INIT_CUSTOM_LOCAL_WALLET":
       state = state.set("LocalWallet", action.payload.walletClass);
       return state;
-    case "HYDRO_WALLET_SELECT_WALLET_TYPE":
+    case "WANCHAIN_WALLET_SELECT_WALLET_TYPE":
       state = state.set("selectedWalletType", action.payload.type);
       return state;
-    case "HYDRO_WALLET_SET_TRANSLATIONS":
+    case "WANCHAIN_WALLET_SET_TRANSLATIONS":
       state = state.set("walletTranslations", action.payload.translations);
       return state;
-    case "HYDRO_WALLET_DISCONNECT_LEDGER":
+    case "WANCHAIN_WALLET_DISCONNECT_LEDGER":
       state = state.set("ledgerConnecting", false);
       return state;
-    case "HYDRO_WALLET_CONNECT_LEDGER":
+    case "WANCHAIN_WALLET_CONNECT_LEDGER":
       state = state.set("ledgerConnecting", true);
       return state;
-    case "HYDRO_WALLET_DISCONNECT_TREZOR":
+    case "WANCHAIN_WALLET_DISCONNECT_TREZOR":
       state = state.set("trezorConnecting", false);
       return state;
-    case "HYDRO_WALLET_CONNECT_TREZOR":
+    case "WANCHAIN_WALLET_CONNECT_TREZOR":
       state = state.set("trezorConnecting", true);
       return state;
-    case "HYDRO_WALLET_DELETE_ACCOUNT":
+    case "WANCHAIN_WALLET_DELETE_ACCOUNT":
       state = state.removeIn(["accounts", action.payload.accountID]);
       return state;
-    case "HYDRO_WALLET_CACHE_WALLET":
+    case "WANCHAIN_WALLET_CACHE_WALLET":
       state = state.set("walletCache", action.payload);
       return state;
-    case "HYDRO_WALLET_SET_STEP":
+    case "WANCHAIN_WALLET_SET_STEP":
       state = state.set("step", action.payload.step);
       return state;
-    case "HYDRO_WALLET_INIT_ACCOUNT":
-      console.log('HYDRO_WALLET_INIT_ACCOUNT:', action.payload.accountID);
+    case "WANCHAIN_WALLET_INIT_ACCOUNT":
       state = state.setIn(["accounts", action.payload.accountID], initializeAccount);
       state = state.setIn(["accounts", action.payload.accountID, "wallet"], action.payload.wallet);
       return state;
-    case "HYDRO_WALLET_UPDATE_WALLET":
-      console.log('HYDRO_WALLET_UPDATE_WALLET:', action.payload.wallet.id());
+    case "WANCHAIN_WALLET_UPDATE_WALLET":
       const wallet = action.payload.wallet;
       state = state.setIn(["accounts", wallet.id(), "wallet"], wallet);
       return state;
-    case "HYDRO_WALLET_SHOW_DIALOG":
+    case "WANCHAIN_WALLET_SHOW_DIALOG":
       state = state.set("isShowWalletModal", true);
       return state;
-    case "HYDRO_WALLET_HIDE_DIALOG":
+    case "WANCHAIN_WALLET_HIDE_DIALOG":
       state = state.set("isShowWalletModal", false);
       return state;
-    case "HYDRO_WALLET_LOCK_ACCOUNT":
+    case "WANCHAIN_WALLET_LOCK_ACCOUNT":
       state = state.setIn(["accounts", action.payload.accountID, "isLocked"], true);
       return state;
-    case "HYDRO_WALLET_UNLOCK_ACCOUNT":
+    case "WANCHAIN_WALLET_UNLOCK_ACCOUNT":
       state = state.setIn(["accounts", action.payload.accountID, "isLocked"], false);
       return state;
-    case "HYDRO_WALLET_LOAD_ADDRESS":
+    case "WANCHAIN_WALLET_LOAD_ADDRESS":
       state = state.setIn(["accounts", action.payload.accountID, "address"], action.payload.address);
       return state;
-    case "HYDRO_WALLET_LOAD_BALANCE":
+    case "WANCHAIN_WALLET_LOAD_BALANCE":
       state = state.setIn(
         ["accounts", action.payload.accountID, "balance"],
         new BigNumber(String(action.payload.balance))
       );
       return state;
-    case "HYDRO_WALLET_SELECT_ACCOUNT":
+    case "WANCHAIN_WALLET_SELECT_ACCOUNT":
       state = state.set("selectedAccountID", action.payload.accountID);
       return state;
-    case "HYDRO_WALLET_SUPPORT_EXTENSION_WALLET":
+    case "WANCHAIN_WALLET_SUPPORT_EXTENSION_WALLET":
       state = state.set("extensionWalletSupported", true);
       return state;
-    case "HYDRO_WALLET_SUPPORT_LIGHT_WALLET":
+    case "WANCHAIN_WALLET_SUPPORT_LIGHT_WALLET":
       state = state.set("lightWalletSupported", true);
       return state;
-    case "HYDRO_WALLET_LOAD_NETWORK":
+    case "WANCHAIN_WALLET_LOAD_NETWORK":
       state = state.setIn(["accounts", action.payload.accountID, "networkId"], action.payload.networkId);
       return state;
     default:

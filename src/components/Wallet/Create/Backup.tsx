@@ -43,16 +43,16 @@ class Backup extends React.PureComponent<Props, State> {
       e.preventDefault();
     };
     return (
-      <div className="HydroSDK-backup HydroSDK-fieldGroup">
-        <div className="HydroSDK-label">{walletTranslations.recoveryPhrase}</div>
-        <div className="HydroSDK-mnemonic">
-          <ol className="HydroSDK-words" onCopy={e => handleCopy(e)} ref={elem => this.setMnemonicElem(elem)}>
+      <div className="WanchainSDK-backup WanchainSDK-fieldGroup">
+        <div className="WanchainSDK-label">{walletTranslations.recoveryPhrase}</div>
+        <div className="WanchainSDK-mnemonic">
+          <ol className="WanchainSDK-words" onCopy={e => handleCopy(e)} ref={elem => this.setMnemonicElem(elem)}>
             {this.getMnemonicArray().map((word, index) => this.renderWord(word, index))}
           </ol>
         </div>
-        <div className="HydroSDK-desc">{testing ? walletTranslations.testingDesc : walletTranslations.backupDesc}</div>
+        <div className="WanchainSDK-desc">{testing ? walletTranslations.testingDesc : walletTranslations.backupDesc}</div>
         <button
-          className="HydroSDK-button HydroSDK-submitButton HydroSDK-featureButton"
+          className="WanchainSDK-button WanchainSDK-submitButton WanchainSDK-featureButton"
           onClick={() => (testing ? this.confirm() : this.test())}>
           {walletTranslations.next}
         </button>
@@ -96,7 +96,7 @@ class Backup extends React.PureComponent<Props, State> {
       word = <BackupWord word={word} />;
     }
     return (
-      <li key={index} className="HydroSDK-word">
+      <li key={index} className="WanchainSDK-word">
         {word}
       </li>
     );
@@ -148,7 +148,7 @@ class BackupWord extends React.PureComponent<BackupWordProps, BackupWordState> {
   }
 
   public render() {
-    const className = ["HydroSDK-input", this.state.className].filter(cls => !!cls).join(" ");
+    const className = ["WanchainSDK-input", this.state.className].filter(cls => !!cls).join(" ");
     return <input id={this.props.word} className={className} onChange={e => this.handleChange(e.target.value)} />;
   }
 }

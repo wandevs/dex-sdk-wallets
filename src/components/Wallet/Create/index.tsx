@@ -118,7 +118,7 @@ class Create extends React.PureComponent<Props, State> {
     const { password, confirmation, isConfirm, processing } = this.state;
     const { walletTranslations } = this.props;
     return (
-      <form className="HydroSDK-form" onSubmit={e => this.submit(e)}>
+      <form className="WanchainSDK-form" onSubmit={e => this.submit(e)}>
         {this.renderRecoveryInput()}
         {this.renderAddressSelection()}
         <Input
@@ -132,12 +132,12 @@ class Create extends React.PureComponent<Props, State> {
           text={confirmation}
           handleChange={(confirmation: string) => this.setState({ confirmation })}
         />
-        <div className="HydroSDK-desc">{walletTranslations.createDesc}</div>
+        <div className="WanchainSDK-desc">{walletTranslations.createDesc}</div>
         <button
-          className="HydroSDK-button HydroSDK-submitButton HydroSDK-featureButton"
+          className="WanchainSDK-button WanchainSDK-submitButton WanchainSDK-featureButton"
           type="submit"
           disabled={processing || !password || password !== confirmation}>
-          {processing ? <i className="HydroSDK-fa fa fa-spinner fa-spin" /> : null} {walletTranslations.next}
+          {processing ? <i className="WanchainSDK-fa fa fa-spinner fa-spin" /> : null} {walletTranslations.next}
         </button>
       </form>
     );
@@ -204,16 +204,16 @@ class Create extends React.PureComponent<Props, State> {
       addressOptions.push({
         value: address,
         component: (
-          <div className="HydroSDK-address-option">
+          <div className="WanchainSDK-address-option">
             <span>
-              <i className="HydroSDK-fa fa fa-check" />
+              <i className="WanchainSDK-fa fa fa-check" />
               {truncateAddress(address)}
             </span>
             <span>
               {balance ? (
                 balance.div("1000000000000000000").toFixed(5)
               ) : (
-                <i className="HydroSDK-fa fa fa-spinner fa-spin" />
+                <i className="WanchainSDK-fa fa fa-spinner fa-spin" />
               )}{" "}
               WAN
             </span>
@@ -274,15 +274,15 @@ class Create extends React.PureComponent<Props, State> {
           marginPagesDisplayed={0}
           pageRangeDisplayed={2}
           onPageChange={this.changePage}
-          containerClassName={"HydroSDK-pagination"}
+          containerClassName={"WanchainSDK-pagination"}
           breakClassName={"break-me"}
           activeClassName={"active"}
         />
-        <div className="HydroSDK-paginationGotoPage">
+        <div className="WanchainSDK-paginationGotoPage">
           Go to page
           <form onSubmit={this.gotoPageSubmit}>
             <input
-              className="HydroSDK-input"
+              className="WanchainSDK-input"
               type="number"
               min="1"
               step="1"
@@ -308,7 +308,7 @@ class Create extends React.PureComponent<Props, State> {
     return (
       <div>
         <br/>
-        <div className="HydroSDK-label">
+        <div className="WanchainSDK-label">
           {walletTranslations.selectAddressOption}
           <button type="load" onClick = {e => this.onLoadAddress(e)} 
             style={{
@@ -320,7 +320,7 @@ class Create extends React.PureComponent<Props, State> {
               borderColor: "#555"
             }}
             disabled={loading}>
-            {loading ? <i className="HydroSDK-fa fa fa-spinner fa-spin" /> : null}
+            {loading ? <i className="WanchainSDK-fa fa fa-spinner fa-spin" /> : null}
             {walletTranslations.load}
           </button>
         </div>

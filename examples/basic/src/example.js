@@ -25,7 +25,7 @@ class Example extends React.Component {
         <br />
         <br />
         <button
-          className="HydroSDK-button"
+          className="WanchainSDK-button"
           onClick={() =>
             account
               .get("wallet")
@@ -36,7 +36,7 @@ class Example extends React.Component {
         </button>
 
         <button
-          className="HydroSDK-button"
+          className="WanchainSDK-button"
           onClick={() =>
             account
               .get("wallet")

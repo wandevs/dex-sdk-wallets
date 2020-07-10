@@ -20,8 +20,8 @@ class AddFunds extends React.PureComponent<Props, any> {
   public render() {
     const { walletTranslations } = this.props;
     return (
-      <div className="HydroSDK-addFunds">
-        <div className="HydroSDK-buttonGroup">
+      <div className="WanchainSDK-addFunds">
+        <div className="WanchainSDK-buttonGroup">
           <a href="https://www.hbg.com/" target="_blank" rel="noopener noreferrer">
             <div className="button coinbase">
               <Svg name="huobi" />
@@ -33,9 +33,9 @@ class AddFunds extends React.PureComponent<Props, any> {
             </div>
           </a>
         </div>
-        <div className="HydroSDK-desc">{walletTranslations.addFundsDesc}</div>
+        <div className="WanchainSDK-desc">{walletTranslations.addFundsDesc}</div>
         <button
-          className="HydroSDK-button HydroSDK-submitButton HydroSDK-featureButton"
+          className="WanchainSDK-button WanchainSDK-submitButton WanchainSDK-featureButton"
           onClick={() => this.props.dispatch(setWalletStep(WALLET_STEPS.SELECT))}>
           {walletTranslations.done}
         </button>

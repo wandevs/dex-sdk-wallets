@@ -13,7 +13,7 @@ class Svg extends React.PureComponent<Props, any> {
       case "metamask":
         return (
           <svg
-            className="HydroSDK-themeSvg"
+            className="WanchainSDK-themeSvg"
             xmlns="http://www.w3.org/2000/svg"
             width={size}
             height={size}
@@ -55,7 +55,7 @@ class Svg extends React.PureComponent<Props, any> {
       case "create":
         return (
           <svg
-            className="HydroSDK-themeSvg"
+            className="WanchainSDK-themeSvg"
             xmlns="http://www.w3.org/2000/svg"
             width={size}
             height={size}
@@ -70,7 +70,7 @@ class Svg extends React.PureComponent<Props, any> {
       case "import":
         return (
           <svg
-            className="HydroSDK-themeSvg"
+            className="WanchainSDK-themeSvg"
             xmlns="http://www.w3.org/2000/svg"
             width={size}
             height={size}
@@ -85,7 +85,7 @@ class Svg extends React.PureComponent<Props, any> {
       case "delete":
         return (
           <svg
-            className="HydroSDK-themeSvg"
+            className="WanchainSDK-themeSvg"
             xmlns="http://www.w3.org/2000/svg"
             width={size}
             height={size}
@@ -100,7 +100,7 @@ class Svg extends React.PureComponent<Props, any> {
       case "logo":
         return (
           <svg
-            className="HydroSDK-themeSvg"
+            className="WanchainSDK-themeSvg"
             width={size}
             height={size}
             xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +190,7 @@ class Svg extends React.PureComponent<Props, any> {
       case "ledger":
         return (
           <svg
-            className="HydroSDK-themeSvg"
+            className="WanchainSDK-themeSvg"
             xmlns="http://www.w3.org/2000/svg"
             width={size}
             height={size}
@@ -205,7 +205,7 @@ class Svg extends React.PureComponent<Props, any> {
         case "trezor":
           return (
             <svg
-              className="HydroSDK-themeSvg"
+              className="WanchainSDK-themeSvg"
               xmlns="http://www.w3.org/2000/svg"
               width={size}
               height={size}

@@ -93,14 +93,14 @@ class TrezorConnector extends React.PureComponent<Props, State> {
     const { isLocked, trezorConnecting, walletTranslations } = this.props;
 
     return (
-      <div className="HydroSDK-trezor">
+      <div className="WanchainSDK-trezor">
         {this.renderContent()}
         {isLocked && (
           <button
-            className="HydroSDK-button HydroSDK-submitButton HydroSDK-featureButton"
+            className="WanchainSDK-button WanchainSDK-submitButton WanchainSDK-featureButton"
             disabled={trezorConnecting}
             onClick={() => this.connectTrezor()}>
-            {trezorConnecting ? <i className="HydroSDK-fa fa fa-spinner fa-spin" /> : null}{" "}
+            {trezorConnecting ? <i className="WanchainSDK-fa fa fa-spinner fa-spin" /> : null}{" "}
             {walletTranslations.connectTrezor}
           </button>
         )}
@@ -125,17 +125,17 @@ class TrezorConnector extends React.PureComponent<Props, State> {
 
     return (
       <>
-        <div className="HydroSDK-fieldGroup">
-          <div className="HydroSDK-label">{walletTranslations.selectPath}</div>
+        <div className="WanchainSDK-fieldGroup">
+          <div className="WanchainSDK-label">{walletTranslations.selectPath}</div>
           <Select options={pathOptions} selected={pathType} onSelect={this.selectPath} />
         </div>
         {pathType === Trezor.CUSTOMIZAION_PATH && this.renderCustomizedPath()}
-        <div className="HydroSDK-fieldGroup">
-          <div className="HydroSDK-label">
+        <div className="WanchainSDK-fieldGroup">
+          <div className="WanchainSDK-label">
             {walletTranslations.selectAddress}{" "}
             {currentAddress && (
               <i
-                className="HydroSDK-copy HydroSDK-fa fa fa-clipboard"
+                className="WanchainSDK-copy WanchainSDK-fa fa fa-clipboard"
                 onClick={async () => {
                   if (currentAddress) {
                     await copy(currentAddress);
@@ -172,21 +172,21 @@ class TrezorConnector extends React.PureComponent<Props, State> {
     const { realPath, loading } = this.state;
     const { walletTranslations } = this.props;
     return (
-      <div className="HydroSDK-fieldGroup">
-        <div className="HydroSDK-label">{walletTranslations.inputPath}</div>
-        <div className="HydroSDK-customizationInputGroup">
+      <div className="WanchainSDK-fieldGroup">
+        <div className="WanchainSDK-label">{walletTranslations.inputPath}</div>
+        <div className="WanchainSDK-customizationInputGroup">
           <span>{Trezor.PREFIX_ETHEREUM_PATH}</span>
           <input
-            className="HydroSDK-input"
+            className="WanchainSDK-input"
             placeholder={"0'/0"}
             value={realPath.replace(Trezor.PREFIX_ETHEREUM_PATH, "")}
             onChange={this.handleChangeCustomizedPath}
           />
           <button
-            className="HydroSDK-button HydroSDK-featureButton"
+            className="WanchainSDK-button WanchainSDK-featureButton"
             disabled={loading}
             onClick={() => this.loadAddresses()}>
-            {loading ? <i className="HydroSDK-fa fa fa-spinner fa-spin" /> : null} Load Accounts
+            {loading ? <i className="WanchainSDK-fa fa fa-spinner fa-spin" /> : null} Load Accounts
           </button>
         </div>
       </div>
@@ -211,11 +211,11 @@ class TrezorConnector extends React.PureComponent<Props, State> {
     return [
       {
         value: Trezor.PATH_TYPE.WAN,
-        component: <div className="HydroSDK-pathItem">(WAN) (m/44'/5718350'/0'/0)</div>
+        component: <div className="WanchainSDK-pathItem">(WAN) (m/44'/5718350'/0'/0)</div>
       },
       {
         value: Trezor.CUSTOMIZAION_PATH,
-        component: <div className="HydroSDK-pathItem">Customization</div>
+        component: <div className="WanchainSDK-pathItem">Customization</div>
       }
     ];
   }
@@ -229,16 +229,16 @@ class TrezorConnector extends React.PureComponent<Props, State> {
       addressOptions.push({
         value: address,
         component: (
-          <div className="HydroSDK-address-option">
+          <div className="WanchainSDK-address-option">
             <span>
-              <i className="HydroSDK-fa fa fa-check" />
+              <i className="WanchainSDK-fa fa fa-check" />
               {truncateAddress(address)}
             </span>
             <span>
               {balance ? (
                 balance.div("1000000000000000000").toFixed(5)
               ) : (
-                <i className="HydroSDK-fa fa fa-spinner fa-spin" />
+                <i className="WanchainSDK-fa fa fa-spinner fa-spin" />
               )}{" "}
               WAN
             </span>
@@ -266,15 +266,15 @@ class TrezorConnector extends React.PureComponent<Props, State> {
           marginPagesDisplayed={0}
           pageRangeDisplayed={2}
           onPageChange={this.changePage}
-          containerClassName={"HydroSDK-pagination"}
+          containerClassName={"WanchainSDK-pagination"}
           breakClassName={"break-me"}
           activeClassName={"active"}
         />
-        <div className="HydroSDK-paginationGotoPage">
+        <div className="WanchainSDK-paginationGotoPage">
           Go to page
           <form onSubmit={this.gotoPageSubmit}>
             <input
-              className="HydroSDK-input"
+              className="WanchainSDK-input"
               type="number"
               min="1"
               step="1"

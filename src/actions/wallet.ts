@@ -59,49 +59,49 @@ export const destoryTimer = () => {
 
 export const cacheWallet = (wallet: HydroWallet, password: string) => {
   return {
-    type: "HYDRO_WALLET_CACHE_WALLET",
+    type: "WANCHAIN_WALLET_CACHE_WALLET",
     payload: { wallet, password }
   };
 };
 
 export const setUnit = (unit: string, decimals: number) => {
   return {
-    type: "HYDRO_WALLET_SET_UNIT",
+    type: "WANCHAIN_WALLET_SET_UNIT",
     payload: { unit, decimals }
   };
 };
 
 export const initCustomLocalWallet = (walletClass: any) => {
   return {
-    type: "HYDRO_WALLET_INIT_CUSTOM_LOCAL_WALLET",
+    type: "WANCHAIN_WALLET_INIT_CUSTOM_LOCAL_WALLET",
     payload: { walletClass }
   };
 };
 
 export const selectWalletType = (type: string) => {
   return {
-    type: "HYDRO_WALLET_SELECT_WALLET_TYPE",
+    type: "WANCHAIN_WALLET_SELECT_WALLET_TYPE",
     payload: { type }
   };
 };
 
 export const setTranslations = (translations: { [key: string]: string }) => {
   return {
-    type: "HYDRO_WALLET_SET_TRANSLATIONS",
+    type: "WANCHAIN_WALLET_SET_TRANSLATIONS",
     payload: { translations }
   };
 };
 
 export const setWalletStep = (step: string) => {
   return {
-    type: "HYDRO_WALLET_SET_STEP",
+    type: "WANCHAIN_WALLET_SET_STEP",
     payload: { step }
   };
 };
 
 export const initAccount = (accountID: string, wallet: BaseWallet) => {
   return {
-    type: "HYDRO_WALLET_INIT_ACCOUNT",
+    type: "WANCHAIN_WALLET_INIT_ACCOUNT",
     payload: {
       accountID,
       wallet
@@ -111,7 +111,7 @@ export const initAccount = (accountID: string, wallet: BaseWallet) => {
 
 export const updateWallet = (wallet: BaseWallet) => {
   return {
-    type: "HYDRO_WALLET_UPDATE_WALLET",
+    type: "WANCHAIN_WALLET_UPDATE_WALLET",
     payload: {
       wallet
     }
@@ -120,21 +120,21 @@ export const updateWallet = (wallet: BaseWallet) => {
 
 export const loadAddress = (accountID: string, address: string | null) => {
   return {
-    type: "HYDRO_WALLET_LOAD_ADDRESS",
+    type: "WANCHAIN_WALLET_LOAD_ADDRESS",
     payload: { accountID, address }
   };
 };
 
 export const loadBalance = (accountID: string, balance: BigNumber) => {
   return {
-    type: "HYDRO_WALLET_LOAD_BALANCE",
+    type: "WANCHAIN_WALLET_LOAD_BALANCE",
     payload: { accountID, balance }
   };
 };
 
 export const loadNetwork = (accountID: string, networkId: number | undefined) => {
   return {
-    type: "HYDRO_WALLET_LOAD_NETWORK",
+    type: "WANCHAIN_WALLET_LOAD_NETWORK",
     payload: {
       accountID,
       networkId
@@ -152,7 +152,7 @@ export const selectAccount = (accountID: string, type: string) => {
       window.localStorage.setItem("HydroWallet:lastSelectedAccountID", accountID);
     }
     await dispatch({
-      type: "HYDRO_WALLET_SELECT_ACCOUNT",
+      type: "WANCHAIN_WALLET_SELECT_ACCOUNT",
       payload: { accountID }
     });
     const wallet = getWallet(getState(), accountID);
@@ -164,26 +164,26 @@ export const selectAccount = (accountID: string, type: string) => {
 
 export const supportExtensionWallet = () => {
   return {
-    type: "HYDRO_WALLET_SUPPORT_EXTENSION_WALLET"
+    type: "WANCHAIN_WALLET_SUPPORT_EXTENSION_WALLET"
   };
 };
 
 export const supportLightWallet = () => {
   return {
-    type: "HYDRO_WALLET_SUPPORT_LIGHT_WALLET"
+    type: "WANCHAIN_WALLET_SUPPORT_LIGHT_WALLET"
   };
 };
 
 export const lockAccount = (accountID: string) => {
   return {
-    type: "HYDRO_WALLET_LOCK_ACCOUNT",
+    type: "WANCHAIN_WALLET_LOCK_ACCOUNT",
     payload: { accountID }
   };
 };
 
 export const unlockAccount = (accountID: string) => {
   return {
-    type: "HYDRO_WALLET_UNLOCK_ACCOUNT",
+    type: "WANCHAIN_WALLET_UNLOCK_ACCOUNT",
     payload: { accountID }
   };
 };
@@ -206,7 +206,7 @@ export const deleteBrowserWalletAccount = (account: AccountState) => {
     if (hydroWallet && !isLocked) {
       const accountID = hydroWallet.id();
       clearTimer(accountID);
-      dispatch({ type: "HYDRO_WALLET_DELETE_ACCOUNT", payload: { accountID } });
+      dispatch({ type: "WANCHAIN_WALLET_DELETE_ACCOUNT", payload: { accountID } });
       await hydroWallet.delete();
     }
   };
@@ -214,13 +214,13 @@ export const deleteBrowserWalletAccount = (account: AccountState) => {
 
 export const showWalletModal = () => {
   return {
-    type: "HYDRO_WALLET_SHOW_DIALOG"
+    type: "WANCHAIN_WALLET_SHOW_DIALOG"
   };
 };
 
 export const hideWalletModal = () => {
   return {
-    type: "HYDRO_WALLET_HIDE_DIALOG"
+    type: "WANCHAIN_WALLET_HIDE_DIALOG"
   };
 };
 
@@ -304,13 +304,13 @@ export const loadLedger = () => {
 
 export const connectLedger = () => {
   return {
-    type: "HYDRO_WALLET_CONNECT_LEDGER"
+    type: "WANCHAIN_WALLET_CONNECT_LEDGER"
   };
 };
 
 export const disconnectLedger = () => {
   return {
-    type: "HYDRO_WALLET_DISCONNECT_LEDGER"
+    type: "WANCHAIN_WALLET_DISCONNECT_LEDGER"
   };
 };
 
@@ -325,13 +325,13 @@ export const loadTrezor = () => {
 
 export const connectTrezor = () => {
   return {
-    type: "HYDRO_WALLET_CONNECT_TREZOR"
+    type: "WANCHAIN_WALLET_CONNECT_TREZOR"
   };
 };
 
 export const disconnectTrezor = () => {
   return {
-    type: "HYDRO_WALLET_DISCONNECT_TREZOR"
+    type: "WANCHAIN_WALLET_DISCONNECT_TREZOR"
   };
 };
 
