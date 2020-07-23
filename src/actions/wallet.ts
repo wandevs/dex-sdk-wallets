@@ -436,5 +436,5 @@ export const watchWallet = (wallet: BaseWallet) => {
 };
 
 const getWatcherRate = (selectedType: string, type: string) => {
-  return selectedType === type && window.document.visibilityState !== "hidden" ? 3000 : 300000;
+  return selectedType === type && window.document.visibilityState !== "hidden" ? 30000 : 300000;
 };
