@@ -1,5 +1,5 @@
 {
-  "name": "wan-dex-sdk-wallet",
+  "name": "wan-web-wallet",
   "version": "0.2.2",
   "main": "./build/index.js",
   "files": [
@@ -13,8 +13,8 @@
     "example:start": "cross-env NODE_ENV=development npm --prefix ./examples/basic start",
     "prepublish": "npm run build",
     "estart": "npm run build && yarn && npm run rm && npm run copybuild && npm run example:start",
-    "rm": "rm -rf ./examples/basic/node_modules/wan-dex-sdk-wallet/build ./examples/basic/node_modules/wan-dex-sdk-wallet/index.css",
-    "copybuild": "cp -r ./{build,index.css} ./examples/basic/node_modules/wan-dex-sdk-wallet"
+    "rm": "rm -rf ./examples/basic/node_modules/wan-web-wallet/build ./examples/basic/node_modules/wan-web-wallet/index.css",
+    "copybuild": "cp -r ./{build,index.css} ./examples/basic/node_modules/wan-web-wallet"
   },
   "eslintConfig": {
     "extends": "react-app"

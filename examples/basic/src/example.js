@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Wallet, getSelectedAccount, WalletButton, WalletButtonLong } from "wan-dex-sdk-wallet";
-import "wan-dex-sdk-wallet/index.css";
+import { Wallet, getSelectedAccount, WalletButton, WalletButtonLong } from "wan-web-wallet";
+import "wan-web-wallet/index.css";
 import cn_ZH from './wallet_cn_ZH.js'
 // import en_US from './wallet_en_US';
 class Example extends React.Component {
