@@ -246,7 +246,7 @@ export const loadWallet = (type: string, action?: any) => {
 export const loadExtensitonWallet = () => {
   return async (dispatch: any) => {
     let wallet;
-    if (typeof window.wan3 !== "undefined") {
+    if (typeof window.wanchain !== "undefined") {
       wallet = new ExtensionWallet();
     }
     if (wallet && wallet.isSupported()) {

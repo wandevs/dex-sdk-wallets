@@ -1,7 +1,8 @@
 import BaseWallet, { txParams } from "./baseWallet";
 declare global {
   interface Window {
-    wan3: any;
+    wanWeb3?: any;
+    wanchain?: any;
     ethereum?: any;
     alertAntd?: any;
   }
@@ -24,7 +25,7 @@ export default class ExtensionWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.wan3.version.getNetwork((err: Error, networkId: number) => {
+      window.wanWeb3.version.getNetwork((err: Error, networkId: number) => {
         if (err) {
           reject(err);
         } else {
@@ -43,7 +44,7 @@ export default class ExtensionWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.wan3.personal.sign(window.wan3.toHex(message), window.wan3.eth.accounts[0], (err: Error, res: string) => {
+      window.wanWeb3.personal.sign(window.wanWeb3.toHex(message), window.wanWeb3.eth.accounts[0], (err: Error, res: string) => {
         if (err) {
           reject(err);
         } else {
@@ -58,7 +59,7 @@ export default class ExtensionWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.wan3.eth.sendTransaction(txParams, (err: Error, res: string) => {
+      window.wanWeb3.eth.sendTransaction(txParams, (err: Error, res: string) => {
         if (err) {
           reject(err);
         } else {
@@ -73,8 +74,8 @@ export default class ExtensionWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.wan3.currentProvider.sendAsync(
-        { method, params, from: window.wan3.eth.accounts[0] },
+      window.wanWeb3.currentProvider.sendAsync(
+        { method, params, from: window.wanWeb3.eth.accounts[0] },
         (err: Error, res: any) => {
           if (err) {
             reject(err);
@@ -91,7 +92,7 @@ export default class ExtensionWallet extends BaseWallet {
       if (!this.isSupported()) {
         reject(BaseWallet.NotSupportedError);
       }
-      window.wan3.eth.getAccounts((err: Error, accounts: string[]) => {
+      window.wanWeb3.eth.getAccounts((err: Error, accounts: string[]) => {
         if (err) {
           reject(err);
         } else {
@@ -102,10 +103,10 @@ export default class ExtensionWallet extends BaseWallet {
   }
 
   public static async enableBrowserExtensionWallet(): Promise<void> {
-    if (!window.ethereum) {
+    if (!window.wanchain) {
       return;
     }
-    // await window.ethereum.enable();
+    await window.wanchain.enable();
   }
 
   public isLocked(address: string | null): boolean {
@@ -113,15 +114,15 @@ export default class ExtensionWallet extends BaseWallet {
   }
 
   public isSupported(): boolean {
-    return !!window.wan3;
+    return !!window.wanchain;
   }
 
   public name(): string {
     if (!this.isSupported()) {
       return "";
     }
-    const cp = window.wan3.currentProvider;
-    if (cp.isWanMask) {
+    const cp = window.wanchain;
+    if (cp.isWanchainMask) {
       return "WanMask";
     } else if (cp.isCipher) {
       return "Cipher";
